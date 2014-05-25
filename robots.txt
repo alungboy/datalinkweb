@@ -1,5 +1,5 @@
 User-agent: *
-Disallow: /css/*
-Disallow: /font/*
-Disallow: /js/*
-Disallow: /CNAME
+Disallow: /css/
+Disallow: /font/
+Disallow: /js/
+Sitemap: http://www.datalinkdigital.com/sitemap.xml
