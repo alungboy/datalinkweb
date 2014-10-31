@@ -4,77 +4,76 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
 <url>
   <loc>http://www.datalinkdigital.com/</loc>
-  <lastmod>2014-05-25T20:04:34+00:00</lastmod>
-  <changefreq>monthly</changefreq>
+  <lastmod>2014-10-31T11:17:09+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>http://www.datalinkdigital.com/index.html</loc>
-  <lastmod>2014-05-25T20:04:34+00:00</lastmod>
-  <changefreq>monthly</changefreq>
+  <lastmod>2014-10-31T11:17:09+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://www.datalinkdigital.com/team.html</loc>
-  <lastmod>2014-05-25T20:04:34+00:00</lastmod>
-  <changefreq>monthly</changefreq>
+  <lastmod>2014-10-31T11:17:09+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://www.datalinkdigital.com/services.html</loc>
-  <lastmod>2014-05-25T20:04:34+00:00</lastmod>
-  <changefreq>monthly</changefreq>
+  <lastmod>2014-10-31T11:17:09+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://www.datalinkdigital.com/projects.html</loc>
-  <lastmod>2014-05-25T20:04:34+00:00</lastmod>
-  <changefreq>monthly</changefreq>
+  <lastmod>2014-10-31T11:17:09+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>http://www.datalinkdigital.com/contact.html</loc>
-  <lastmod>2014-05-25T20:04:34+00:00</lastmod>
-  <changefreq>monthly</changefreq>
+  <lastmod>2014-10-31T11:17:09+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
+  <loc>http://www.datalinkdigital.com/projects/queuebkmm.html</loc>
+  <lastmod>2014-10-31T11:17:09+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
   <loc>http://www.datalinkdigital.com/projects/kppt.html</loc>
-  <lastmod>2014-05-25T20:04:34+00:00</lastmod>
-  <changefreq>monthly</changefreq>
+  <lastmod>2014-10-31T11:17:09+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>http://www.datalinkdigital.com/projects/e-office.html</loc>
-  <lastmod>2014-05-25T20:04:34+00:00</lastmod>
-  <changefreq>monthly</changefreq>
+  <lastmod>2014-10-31T11:17:09+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>http://www.datalinkdigital.com/projects/garuda.html</loc>
-  <lastmod>2014-05-25T20:04:34+00:00</lastmod>
-  <changefreq>monthly</changefreq>
+  <lastmod>2014-10-31T11:17:09+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>http://www.datalinkdigital.com/projects/konasgh.html</loc>
-  <lastmod>2014-05-25T20:04:34+00:00</lastmod>
-  <changefreq>monthly</changefreq>
+  <lastmod>2014-10-31T11:17:09+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://www.datalinkdigital.com/projects/smart.html</loc>
-  <lastmod>2014-05-25T20:04:34+00:00</lastmod>
-  <changefreq>monthly</changefreq>
+  <loc>http://www.datalinkdigital.com/projects/absen-online.html</loc>
+  <lastmod>2014-10-31T11:17:09+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>http://www.datalinkdigital.com/projects/apwcc.html</loc>
-  <lastmod>2014-05-25T20:04:34+00:00</lastmod>
-  <changefreq>monthly</changefreq>
+  <lastmod>2014-10-31T11:17:09+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.datalinkdigital.com/projects/e-letter.html</loc>
+  <lastmod>2014-10-31T11:17:09+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 </urlset>
