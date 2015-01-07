@@ -5,12 +5,15 @@ app.controller('StockTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
             $stateParams.pageSize = '10';
         };
         $scope.listTiketBaik = tiketBaik;
+        $scope.listSum = $scope.listTiketBaik.length;
         $scope.errMsg = null;
         $scope.okMsg = null;
+
 
         $scope.timeFromNow = function(input) {
             return moment(input).fromNow();
         };
+        
         $scope.getStatusName = function(input) {
             if (input == 0) {
                 return 'Baik'
@@ -59,6 +62,31 @@ app.controller('StockTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
                 $state.transitionTo('app.pelni.stocktiket', {
                     startDate: null,
                     pageSize: paramSize + 10,
+                    asc: null
+
+                });
+            }
+        };
+
+
+        $scope.showAll = function() {
+            var paramSize = parseInt($stateParams.pageSize);
+            if (paramSize == 2000) {
+                return true;
+            } else {
+                return false;
+            }
+
+        };
+
+        $scope.loadAll = function() {
+            var paramSize = parseInt($stateParams.pageSize);
+
+            if ($scope.listTiketBaik.length >= paramSize) {
+
+                $state.transitionTo('app.pelni.stocktiket', {
+                    startDate: null,
+                    pageSize: 2000,
                     asc: null
 
                 });

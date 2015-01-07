@@ -53,7 +53,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="(key ,value) in listTiketIssued | orderBy:'IssuedAt':true | filter: search">
+                    <tr class="fadeInRight animated" ng-repeat="(key ,value) in listTiketIssued | orderBy:'IssuedAt':true | filter: search">
                         <td>{{key + 1}}</td>
                         <td>{{value.NoTiket}}</td>
                         <td>
