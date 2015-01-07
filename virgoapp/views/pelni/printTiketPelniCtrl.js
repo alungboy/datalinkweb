@@ -138,6 +138,7 @@ app.controller('PrintTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
 
                 }
             });
+            
         };
 
         $scope.print = function(e) {

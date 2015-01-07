@@ -48,6 +48,8 @@
 
                         <th>Tgl Issued</th>
                         <th>Diisued Oleh</th>
+                        <th>Stock Tgl</th>
+                        <th>Stock Oleh</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -71,6 +73,20 @@
                             <span class="thumb-sm avatar m-t-n-sm m-b-n-sm m-l-sm">
                             <a ng-href="https://www.facebook.com/{{getUserByUid(value.IssuedBy).facebook.id}}" target="_blank">
                             <img ng-src="https://graph.facebook.com/{{getUserByUid(value.IssuedBy).facebook.id}}/picture?type=square" tooltip="{{getUserByUid(value.IssuedBy).facebook.displayName}}" style="width:80%;">
+                            </a>
+                            </span>
+                             
+                        </td>
+                        <td>
+                            <span tooltip="{{value.CreatedAt | date:'dd-MM-yyyy HH:mm:ss'}}">
+                            {{timeFromNow(value.CreatedAt)}}
+                            </span>
+                       
+                        </td>
+                        <td>
+                            <span class="thumb-sm avatar m-t-n-sm m-b-n-sm m-l-sm">
+                            <a ng-href="https://www.facebook.com/{{getUserByUid(value.CreatedBy).facebook.id}}" target="_blank">
+                            <img ng-src="https://graph.facebook.com/{{getUserByUid(value.CreatedBy).facebook.id}}/picture?type=square" tooltip="{{getUserByUid(value.CreatedBy).facebook.displayName}}" style="width:80%;">
                             </a>
                             </span>
                              

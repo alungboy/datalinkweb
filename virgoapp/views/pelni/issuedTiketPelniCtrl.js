@@ -1,6 +1,6 @@
 'use strict';
-app.controller('IssuedTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'tiketIssued',
-    function($scope, $rootScope, $stateParams, $state, tiketIssued) {
+app.controller('IssuedTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'tiketIssued', 'TiketOneObj',
+    function($scope, $rootScope, $stateParams, $state, tiketIssued, TiketOneObj) {
         if (!$stateParams.pageSize || $stateParams.pageSize == '') {
             $stateParams.pageSize = '10';
         };
@@ -57,7 +57,7 @@ app.controller('IssuedTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
 
             if ($scope.listTiketIssued.length >= paramSize) {
 
-                $state.transitionTo('app.pelni.stocktiket', {
+                $state.transitionTo('app.pelni.issuedtiket', {
                     startDate: null,
                     pageSize: paramSize + 10,
                     asc: null
@@ -107,23 +107,35 @@ app.controller('IssuedTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
                 Status: 1,
                 StatusTgl: '1' + dateStr,
             }
-
-            var fbDb = $scope.listTiketIssued.$inst();
-
-            fbDb.$update('' + noTiketInt, tiketPost).then(function(ref) {
-                $scope.okMsg = "No Tiket " + noTiketInt + " berhasil ditambahkan!";
-                $scope.tiketBaru = '';
-                return;
-            }, function(error) {
-                if (error.code === 'PERMISSION_DENIED') {
-                    $scope.errMsg = 'No Tiket ' + noTiketInt + ' Sudah Ada';
-                } else {
-                    $scope.errMsg = error;
-
+            var findTiket = TiketOneObj($scope.tiketBaru);
+            findTiket.$loaded().then(function() {
+                if (findTiket.$value === null) {
+                    $scope.errMsg = 'Tiket Belum Ada Dalam Stock';
+                    $scope.tiketBaru = '';
+                    return;
                 }
-                $scope.tiketBaru = '';
-                return;
+                if (findTiket.Status > 0) {
+                    $scope.errMsg = 'Tiket Sudah Diisued';
+                    $scope.tiketBaru = '';
+                    return;
+                }
+
+                var fbDb = $scope.listTiketIssued.$inst();
+
+                fbDb.$update('' + noTiketInt, tiketPost).then(function(ref) {
+                    $scope.okMsg = "No Tiket " + noTiketInt + " berhasil ditambahkan!";
+                    $scope.tiketBaru = '';
+                    return;
+                }, function(error) {
+                    $scope.errMsg = error;
+                    $scope.tiketBaru = '';
+                    return;
+                });
+
+
             });
+
+
 
 
         };
