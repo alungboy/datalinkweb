@@ -1,0 +1,135 @@
+<div class="hbox hbox-auto-xs bg-light ">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Tiket Batal - List
+        </div>
+        <div class="row wrapper">
+            <div class="col-sm-5 m-b-xs">
+                <form ng-submit="tambahStock($event)">
+                    <input type="text" ng-model="tiketBaru" placeholder="Scan Barcode">
+                    <button type="submit">Issued Tiket</button>
+                </form>
+
+            </div>
+
+            <div class="col-sm-4">
+
+                <div ng-show="errMsg" class="alert alert-danger">
+                    {{errMsg}}
+                </div>
+
+                <div ng-show="okMsg" class="alert alert-success">
+                    {{okMsg}}
+                </div>
+
+            </div>
+            <div class="col-sm-3">
+                <div class="input-group">
+                    <span class="input-group-addon input-sm"><i class="fa fa-search"></i></span>
+                    <input type="text" class="form-control input-sm" placeholder="Search" ng-model="search">
+                </div>
+            </div>
+        </div>
+        
+        <div class="row wrapper">
+
+            <div class="col-sm-6">
+                <h6><b>Informasi Penjualan</b></h6>
+                <br><span>Nama: <b></b></span>
+                <br><span>Alamat: <b></b></span>
+                
+            </div>
+            <div class="col-sm-6">
+                <br><span>Status/Umur: <b></b></span>
+                <br><span>Tgl Jual: <b></b></span>
+                <br><span>Loket/ Travel: <b></b></span>
+            </div>
+        </div>
+        <div class="row wrapper">
+            
+            <div class="col-sm-6">
+                <h6><b>Jadwal Keberangkatan</b></h6>
+                <br><span>Kapal: <b></b></span>
+                <br><span>Embarkasi-Call: <b></b></span>
+                <br><span>Debarkasi-Call: <b></b></span>
+                <br><span>Kelas: <b></b></span>
+            </div>
+            <div class="col-sm-6">
+
+                <br><span>No. Route: <b></b></span>
+                <br><span>Voyage/Tahun: <b></b></span>
+                <br><span>Jarak: <b></b></span>
+                <br><span>Deck/Kabin/Seat: <b></b></span>
+            </div>
+        </div>
+        <div class="row wrapper">
+            <div class="col-sm-6">
+                <h6><b>Penumpang</b></h6>
+                <br><span>Harga Tiket(Rp): <b></b></span>
+                <br><span>Tarif Dasar(Rp): <b></b></span>
+                <br><span>Denda(Rp): <b></b></span>
+            </div>
+            <div class="col-sm-6">
+                <h6><b>Pengganti</b></h6>
+                <br><span>Harga Tiket (Rp): <b></b></span>
+                <br><span>Tarif Dasar (Rp): <b></b></span>
+              
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                    <tr>
+                        <th style="width:20px;">No</th>
+                        <th>No Tiket</th>
+                        <th>Tgl Status</th>
+                        <th>Status</th>
+
+                        <th>Tgl Issued</th>
+                        <th>Diisued Oleh</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="(key ,value) in listTiketIssued | orderBy:'IssuedAt':true | filter: search">
+                        <td>{{key + 1}}</td>
+                        <td>{{value.NoTiket}}</td>
+                        <td>
+                            <span tooltip="{{value.StatusTgl | date:'dd-MM-yyyy HH:mm:ss'}}">
+                            {{timeFromNow(value.StatusTgl)}}
+                            </span>
+                       
+                        </td>
+                        <td>{{getStatusName(value.Status)}}</td>
+                        <td>
+                            <span tooltip="{{value.IssuedAt | date:'dd-MM-yyyy HH:mm:ss'}}">
+                            {{timeFromNow(value.IssuedAt)}}
+                            </span>
+                       
+                        </td>
+                        <td>
+                            <span class="thumb-sm avatar m-t-n-sm m-b-n-sm m-l-sm">
+                            <a ng-href="https://www.facebook.com/{{getUserByUid(value.IssuedBy).facebook.id}}" target="_blank">
+                            <img ng-src="https://graph.facebook.com/{{getUserByUid(value.IssuedBy).facebook.id}}/picture?type=square" tooltip="{{getUserByUid(value.IssuedBy).facebook.displayName}}" style="width:80%;">
+                            </a>
+                            </span>
+                             
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-4 hidden-xs">
+
+
+                </div>
+                <div class="col-sm-4 text-center">
+                    <a ng-click="loadMore()" ng-show="showLoadMore()"><small class="text-info inline m-t-sm m-b-sm">Load more...</small></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>

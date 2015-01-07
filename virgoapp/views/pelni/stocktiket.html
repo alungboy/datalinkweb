@@ -1,0 +1,87 @@
+<div class="hbox hbox-auto-xs bg-light ">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Stock Tiket - List
+        </div>
+        <div class="row wrapper">
+            <div class="col-sm-4 m-b-xs">
+                <form ng-submit="tambahStock($event)">
+                    <div class="input-group">
+                        <input class="form-control input-sm" type="text" ng-model="tiketBaru" placeholder="Scan Barcode">
+                        <span class="input-group-btn">
+                            <button class="btn btn-sm btn-default" type="submit">
+                                Tambah Stock
+                            </button>
+                        </span>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="col-sm-5">
+
+                <div ng-show="errMsg" class="alert alert-danger">
+                    {{errMsg}}
+                </div>
+
+                <div ng-show="okMsg" class="alert alert-success">
+                    {{okMsg}}
+                </div>
+
+            </div>
+            <div class="col-sm-3">
+                <div class="input-group">
+                    <span class="input-group-addon input-sm"><i class="fa fa-search"></i></span>
+                    <input type="text" class="form-control input-sm" placeholder="Search" ng-model="search">
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                    <tr>
+                        <th style="width:20px;">No</th>
+                        <th>No Tiket</th>
+                        <th>Status</th>
+                        <th>Tgl Masuk</th>
+                        <th>Diterima Oleh</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="(key ,value) in listTiketBaik | orderBy:'CreatedAt':true |filter: search">
+                        <td>{{key + 1}}</td>
+                        <td>{{value.NoTiket}}</td>
+
+                        <td>{{getStatusName(value.Status)}}</td>
+                        <td>
+                            <span tooltip="{{value.CreatedAt | date:'dd-MM-yyyy HH:mm:ss'}}">
+                            {{timeFromNow(value.CreatedAt)}}
+                            </span>
+                       
+                        </td>
+                        <td>
+                            <span class="thumb-sm avatar m-t-n-sm m-b-n-sm m-l-sm">
+                            <a ng-href="https://www.facebook.com/{{getUserByUid(value.CreatedBy).facebook.id}}" target="_blank">
+                            <img ng-src="https://graph.facebook.com/{{getUserByUid(value.CreatedBy).facebook.id}}/picture?type=square" tooltip="{{getUserByUid(value.CreatedBy).facebook.displayName}}" style="width:80%;">
+                            </a>
+                            </span>
+                             
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer class="panel-footer">
+            <div class="row">
+                <div class="col-sm-4 hidden-xs">
+
+
+                </div>
+                <div class="col-sm-4 text-center">
+                    <a ng-click="loadMore()" ng-show="showLoadMore()"><small class="text-info inline m-t-sm m-b-sm">Load more...</small></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>

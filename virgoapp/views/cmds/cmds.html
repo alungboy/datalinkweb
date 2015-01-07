@@ -1,0 +1,47 @@
+<div class="hbox hbox-auto-xs bg-light ">
+    <div class="col w-md lt b-r">
+        <div class="vbox">
+            <div class="wrapper">
+                <div class="h4">Pilih Perusahaan</div>
+            </div>
+            <div class="wrapper b-t m-t-xxs">
+                <div class="input-group">
+                    <span class="input-group-addon input-sm"><i class="fa fa-search"></i></span>
+                    <input type="text" class="form-control input-sm" placeholder="search" ng-model="query">
+                </div>
+            </div>
+            <div class="row-row">
+                <div class="cell scrollable hover">
+                    <div class="cell-inner">
+                        <div class="padder">
+                            <div class="list-group">
+                                <a ng-repeat="(key, value) in companies | filter:query" class="list-group-item b-l-info b-l-3x hover-anchor" ng-class="{'hover': isSelected(key) }" ng-click="changeCompany(key)">
+
+                                    <span class="block text-ellipsis">{{value.Name}}</span>
+
+
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="vbox">
+            <div class="wrapper">
+                <div class="h4">
+                    Status Command Mesin - {{breadcrumb.view}}
+                    <span class="pull-right label bg-info">{{getCompanyName()}}</span>
+                </div>
+
+            </div>
+            <div ui-view></div>
+        </div>
+    </div>
+
+
+
+</div>

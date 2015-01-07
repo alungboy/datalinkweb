@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="app">
+
+<head>
+    <meta charset="utf-8" />
+    <title>VirgoTravel | Aplikasi Reissued</title>
+    <meta name="description" content="app, web app, responsive, responsive layout, admin, admin panel, admin dashboard, flat, flat ui, ui kit, AngularJS, ui route, charts, widgets, components" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="css/simple-line-icons.css" type="text/css" />
+    <link rel="stylesheet" href="css/font.css" type="text/css" />
+    <link rel="stylesheet" href="css/app.css" type="text/css" />
+    <link rel="stylesheet" href="css/custom.css" type="text/css" />
+
+    <link rel="stylesheet" href="vendor/jquery/fullcalendar/fullcalendar.css" type="text/css" />
+    <link rel="stylesheet" href="vendor/jquery/fullcalendar/theme.css" type="text/css" />
+
+</head>
+
+<body ng-controller="AppCtrl">
+    <div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}" ui-view></div>
+
+    <!-- Development Only -->
+    <script src="bower_components/chance/chance.js"></script>
+
+    <!-- jQuery -->
+    <script src="bower_components/jquery/jquery.min.js"></script>
+
+    <!-- Moment -->
+    <script src="bower_components/moment/min/moment-with-locales.min.js"></script>
+    <!-- lodash -->
+    <script src="bower_components/lodash/dist/lodash.min.js"></script>
+    <!-- Angular -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-validation/dist/angular-validation.min.js"></script>
+    <script src="bower_components/angular-validation/dist/angular-validation-rule.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="bower_components/firebase/firebase.js"></script>
+    <script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.min.js"></script>
+    <!-- Vendor -->
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.min.js"></script>
+    <script src="vendor/jquery/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="vendor/jquery/fullcalendar/fullcalendar.min.js"></script>
+
+
+
+    <!-- bootstrap -->
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <!-- lazyload -->
+    <script src="bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
+    <!-- translate -->
+    <script src="bower_components/angular-translate/angular-translate.min.js"></script>
+    <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+    <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js"></script>
+    <script src="bower_components/angular-translate-storage-local/angular-translate-storage-local.min.js"></script>
+
+
+    <!-- App -->
+    <script src="js/app.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/config.lazyload.js"></script>
+    <script src="js/config.router.js"></script>
+    <script src="js/services/ui-load.js"></script>
+    <script src="js/services/fb-base.js"></script>
+
+
+    <script src="js/main.js"></script>
+    <script src="js/filters/fromNow.js"></script>
+    <script src="js/directives/setnganimate.js"></script>
+    <script src="js/directives/ui-butterbar.js"></script>
+    <script src="js/directives/ui-focus.js"></script>
+    <script src="js/directives/ui-fullscreen.js"></script>
+    <script src="js/directives/ui-jq.js"></script>
+    <script src="js/directives/ui-module.js"></script>
+    <script src="js/directives/ui-nav.js"></script>
+    <script src="js/directives/ui-scroll.js"></script>
+    <script src="js/directives/ui-shift.js"></script>
+    <script src="js/directives/ui-toggleclass.js"></script>
+    <script src="js/directives/ui-validate.js"></script>
+    <script src="js/controllers/bootstrap.js"></script>
+    <!-- Lazy loading -->
+    <!-- Controllers -->
+    <script src="views/access/loginCtrl.js"></script>
+    <script src="views/home/homeCtrl.js"></script>
+    <script src="views/pelni/stockTiketPelniCtrl.js"></script>
+    <script src="views/pelni/issuedTiketPelniCtrl.js"></script>
+    <script src="views/pelni/printTiketPelniCtrl.js"></script>
+    <script src="views/pelni/rusakTiketPelniCtrl.js"></script>
+    <script src="views/pelni/batalTiketPelniCtrl.js"></script>
+    <script src="views/pelni/hilangTiketPelniCtrl.js"></script>
+
+</body>
+
+</html>

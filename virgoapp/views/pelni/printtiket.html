@@ -1,0 +1,140 @@
+<div class="hbox hbox-auto-xs bg-light ">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Print Tiket - List
+        </div>
+        <div class="row wrapper">
+            <div class="col-sm-4 m-b-xs">
+                <form ng-submit="tampilkanData($event)">
+                    <div class="input-group">
+                        <input class="form-control input-sm" type="text" ng-model="tiketBaru" placeholder="Scan Barcode" ng-disabled="disTiket">
+                        <span class="input-group-btn">
+                            <button class="btn btn-sm btn-default" type="submit" ng-hide="showDetail">
+                                Tampilkan Data Penumpang
+                            </button>
+                            
+                            <a ng-show="showDetail" class="btn btn-sm btn-default" ng-click="scanUlang()">Scan Ulang</a>
+                        </span>
+                    </div>
+                </form>
+                <form ng-submit="print($event)" ng-show="showDetail">
+                    <div class="input-group">
+                        <input id="focusPrint" class="form-control input-sm" type="text" ng-model="barcodePrint" placeholder="Scan Barcode Printer" autofocus>
+                        <span class="input-group-btn">
+                            <button class="btn btn-sm btn-info" type="submit">
+                                Print
+                            </button>
+                        </span>
+                    </div>
+                </form>
+
+
+
+            </div>
+
+            <div class="col-sm-5">
+                <div ng-show="errMsg" class="alert alert-danger">
+                    {{errMsg}}
+                </div>
+
+                <div ng-show="okMsg" class="alert alert-success">
+                    {{okMsg}}
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="input-group">
+                    <span class="input-group-addon input-sm"><i class="fa fa-search"></i></span>
+                    <input type="text" class="form-control input-sm" placeholder="Search" ng-model="search">
+                </div>
+            </div>
+        </div>
+        <span ng-show="showDetail">
+            <div class="row wrapper">
+
+                <div class="col-sm-6">
+                    <h4><b>Informasi Penumpang</b></h4>
+                    <span>Nama: <b>{{selected.Nama}}</b></span>
+        <br><span>Alamat: <b>{{selected.Alamat}}</b></span>
+        <br><span>Harga Basic: Rp.{{selected.Harga | number:0}},-</span>
+        <br><span>Harga Full: <b>Rp.{{selected.Harga + 30000| number:0}},-</b></span>
+
+    </div>
+    <div class="col-sm-6">
+        <br>
+        <br><span>Status/Umur: <b>{{selected.Umur}}</b></span>
+        <br><span>Tgl Jual: <b>{{selected.TglJual}}</b></span>
+        <br><span>Loket/Travel: <b>{{selected.Loket}}/{{selected.Travel}}</b></span>
+    </div>
+</div>
+<div class="row wrapper">
+
+    <div class="col-sm-6">
+        <h4><b>Jadwal Keberangkatan  - {{getDayFromTime(selected.ETD)}}</b></h4>
+        <span>Kapal: <b>{{selected.Kapal}}</b></span>
+        <br><span>Embarkasi-Call: <b>{{selected.EmbarkasiCall}}</b></span>
+        <br><span>Debarkasi-Call: <b>{{selected.DebarkasiCall}}</b></span>
+        <br><span>Kelas: <b>{{selected.Kelas}}</b></span>
+    </div>
+    <div class="col-sm-6">
+        <br>
+        <br><span>No. Route: <b>{{selected.NoRute}}</b></span>
+        <br><span>Voyage/Tahun: <b>{{selected.VoyageTahun}}</b></span>
+        <br><span>Jarak: <b>{{selected.Jarak}}</b></span>
+        <br><span>Deck/Kabin/Seat: <b>{{selected.DeckKabinSeat}}</b></span>
+    </div>
+</div>
+
+</span>
+
+<div class="table-responsive">
+    <table class="table table-striped b-t b-light">
+        <thead>
+            <tr>
+                <th style="width:20px;">No</th>
+                <th>No Tiket</th>
+                <th>Tgl Status</th>
+                <th>Status</th>
+                <th>Tgl Issued</th>
+                <th>Diisued Oleh</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="(key ,value) in listTiketIssued | orderBy:'IssuedAt':true | filter: search">
+                <td>{{key + 1}}</td>
+                <td>{{value.NoTiket}}</td>
+                <td>
+                    <span tooltip="{{value.StatusTgl | date:'dd-MM-yyyy HH:mm:ss'}}">
+                            {{timeFromNow(value.StatusTgl)}}
+                            </span>
+                </td>
+                <td>{{getStatusName(value.Status)}}</td>
+                <td>
+                    <span tooltip="{{value.IssuedAt | date:'dd-MM-yyyy HH:mm:ss'}}">
+                            {{timeFromNow(value.IssuedAt)}}
+                            </span>
+                </td>
+                <td>
+                    <span class="thumb-sm avatar m-t-n-sm m-b-n-sm m-l-sm">
+                                <a ng-href="https://www.facebook.com/{{getUserByUid(value.IssuedBy).facebook.id}}" target="_blank">
+                                    <img ng-src="https://graph.facebook.com/{{getUserByUid(value.IssuedBy).facebook.id}}/picture?type=square" tooltip="{{getUserByUid(value.IssuedBy).facebook.displayName}}" style="width:80%;">
+                                </a>
+                            </span>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+<footer class="panel-footer">
+    <div class="row">
+        <div class="col-sm-4 hidden-xs">
+
+
+        </div>
+        <div class="col-sm-4 text-center">
+            <a ng-click="loadMore()" ng-show="showLoadMore()"><small class="text-info inline m-t-sm m-b-sm">Load more...</small></a>
+        </div>
+    </div>
+</footer>
+</div>
+</div>

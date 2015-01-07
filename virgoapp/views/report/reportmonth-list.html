@@ -1,0 +1,120 @@
+<!-- LIST REKAP HARIAN -->
+
+<div class="panel panel-default" ng-show="checkView('List')">
+    <div class="panel-heading">
+        SilahKan Pilih Bulan
+        <span class="pull-right">
+            <a class="btn btn-xs btn-primary" ui-sref="print.rekapbulanan">Print</a>
+        </span>
+    </div>
+    <div class="row wrapper">
+        <div class="col-sm-2 m-b-xs">
+
+            <select class="input-sm form-control" placeholder="Bulan">
+                <option value="">-Pilih Bulan-</option>
+                <option value="">Januari</option>
+                <option value="">Februari</option>
+                <option value="">Maret</option>
+                <option value="">April</option>
+                <option value="">Mei</option>
+                <option value="">Juni</option>
+                <option value="">Juli</option>
+                <option value="">Agustus</option>
+                <option value="">September</option>
+                <option value="">Oktober</option>
+                <option value="">November</option>
+                <option value="">Desember</option>
+            </select>
+
+        </div>
+        <div class="col-sm-2">
+            <div class="input-group">
+                <input type="text" class="input-sm form-control" placeholder="Tahun">
+                <span class="input-group-btn">
+                    <button class="btn btn-sm btn-default">Rekap</button>
+                </span>
+            </div>
+        </div>
+        <div class="col-sm-8">
+
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped b-t b-light">
+            <thead>
+                <tr>
+                    <th style="width:20px;">Pin</th>
+                    <th>Id Pegawai</th>
+                    <th>Nama</th>
+                    <th>Departemen</th>
+                    <th>Hari Kerja</th>
+                    <th>Hari Libur</th>
+                    <th>Masuk</th>
+                    <th>Tidak Masuk</th>
+                    <th>Ijin</th>
+                    <th>Dinas Luar</th>
+                    <th>Sakit</th>
+                    <th>Cuti</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>Rio</td>
+                    <td>IT</td>
+                    <td>25</td>
+                    <td>5</td>
+                    <td><b>25</b></td>
+                    <td><b>0</b></td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>Hentje</td>
+                    <td>Ticketing</td>
+                    <td>25</td>
+                    <td>5</td>
+                    <td><b>25</b></td>
+                    <td><b>0</b></td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>Natha</td>
+                    <td>Ticketing</td>
+                    <td>25</td>
+                    <td>5</td>
+                    <td><b>25</b></td>
+                    <td><b>0</b></td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <footer class="panel-footer">
+        <div class="row">
+            <div class="col-sm-4 hidden-xs">
+
+            </div>
+            <div class="col-sm-4 text-center">
+                <a><small class="text-info inline m-t-sm m-b-sm">Load more...</small></a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- LIST REKAP HARIAN END -->

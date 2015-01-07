@@ -1,0 +1,758 @@
+<div class="panel panel-default" ng-show="checkView('List')">
+    <div class="row wrapper">
+        <div class="col-sm-5 m-b-xs">
+            <button class="btn btn-sm btn-primary" ng-click="toCreate()">New Jadwal</button>
+        </div>
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-3">
+            <div class="input-group">
+                <input type="text" class="input-sm form-control" placeholder="Search">
+                <span class="input-group-btn">
+            <button class="btn btn-sm btn-default" type="button">Go!</button>
+          </span>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped b-t b-light">
+            <thead>
+                <tr>
+                    <th width="20">No</th>
+                    <th>name</th>
+                    <th>note</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="value in ListJadwal">
+                    <td>
+                        {{value.$id}}
+                    </td>
+                    <td>
+                        <a class="text-info" ng-click="Detail(value)">
+                            {{value.Name}}
+                        </a>
+                    </td>
+                    <td>
+
+                        {{value.Note}}
+
+                    </td>
+
+
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <footer class="panel-footer">
+        <div class="row">
+            <div class="col-sm-4 hidden-xs">
+
+            </div>
+            <div class="col-sm-4 text-center">
+
+            </div>
+        </div>
+    </footer>
+</div>
+
+<div class="panel panel-default" ng-show="checkView('Create')">
+    <div class="row wrapper">
+
+        <div class="col-sm-3">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-sm btn-default" type="button" disabled>Nama Jadwal</button>
+                </span>
+                <input type="text" class="input-sm form-control" ng-model="newSche.name">
+
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-sm btn-default" type="button" readonly>Keterangan</button>
+                </span>
+                <input type="text" class="input-sm form-control" ng-model="newSche.note">
+
+            </div>
+        </div>
+
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped b-t b-light">
+            <thead>
+                <tr>
+                    <th>Ket</th>
+                    <th>Senin</th>
+                    <th>Selasa</th>
+                    <th>Rabu</th>
+                    <th>Kamis</th>
+                    <th>Jumat</th>
+                    <th>Sabtu</th>
+                    <th>Minggu</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Active</td>
+                    <td>
+                        <input type="checkbox" ng-model="newSche[1].Active">
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="newSche[2].Active">
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="newSche[3].Active">
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="newSche[4].Active">
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="newSche[5].Active">
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="newSche[6].Active">
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="newSche[7].Active">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>open</td>
+                    <td>
+                        <input style="width:60px;" type="number" ng-model="newSche[1].Open">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="number" ng-model="newSche[2].Open">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="number" ng-model="newSche[3].Open">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="number" ng-model="newSche[4].Open">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="number" ng-model="newSche[5].Open">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="number" ng-model="newSche[6].Open">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="number" ng-model="newSche[7].Open">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>startWork</td>
+                    <td>
+                        <timepicker ng-model="selectedSche[1].StartWork" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[2].StartWork" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[3].StartWork" minute-step="5" show-meridian="false"></timepicker>
+
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[4].StartWork" minute-step="5" show-meridian="false"></timepicker>
+
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[5].StartWork" minute-step="5" show-meridian="false"></timepicker>
+
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[6].StartWork" minute-step="5" show-meridian="false"></timepicker>
+
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[7].StartWork" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>endWork</td>
+                    <td>
+                        <timepicker ng-model="selectedSche[1].EndWork" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[2].EndWork" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[3].EndWork" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[4].EndWork" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[5].EndWork" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[6].EndWork" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[7].EndWork" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Is Over Time</td>
+                    <td>
+                        <input style="width:60px;" type="checkbox" ng-model="newSche[1].IsOverTime">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="checkbox" ng-model="newSche[2].IsOverTime">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="checkbox" ng-model="newSche[3].IsOverTime">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="checkbox" ng-model="newSche[4].IsOverTime">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="checkbox" ng-model="newSche[5].IsOverTime">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="checkbox" ng-model="newSche[6].IsOverTime">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="checkbox" ng-model="newSche[7].IsOverTime">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>overTime</td>
+                    <td>
+                        <timepicker ng-model="newSche[1].OverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="newSche[2].OverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="newSche[3].OverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="newSche[4].OverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="newSche[5].OverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="newSche[6].OverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="newSche[7].OverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+
+
+                </tr>
+                <tr>
+                    <td>endOverTime</td>
+                    <td>
+                        <timepicker ng-model="newSche[1].EndOverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="newSche[2].EndOverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="newSche[3].EndOverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="newSche[4].EndOverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="newSche[5].EndOverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="newSche[6].EndOverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="newSche[7].EndOverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>Close</td>
+                    <td>
+                        <input type="number" style="width:60px;" ng-model="newSche[1].Close">
+                    </td>
+                    <td>
+                        <input type="number" style="width:60px;" ng-model="newSche[2].Close">
+                    </td>
+                    <td>
+                        <input type="number" style="width:60px;" ng-model="newSche[3].Close">
+                    </td>
+                    <td>
+                        <input type="number" style="width:60px;" ng-model="newSche[4].Close">
+                    </td>
+                    <td>
+                        <input type="number" style="width:60px;" ng-model="newSche[5].Close">
+                    </td>
+                    <td>
+                        <input type="number" style="width:60px;" ng-model="newSche[6].Close">
+                    </td>
+                    <td>
+                        <input type="number" style="width:60px;" ng-model="newSche[7].Close">
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <footer class="panel-footer">
+        <div class="row">
+            <div class="col-sm-4">
+                <button class="btn btn-sm btn-default" ng-click="toList()">Back</button>
+                <button class="btn btn-sm btn-success" ng-click="create()">Create</button>
+
+            </div>
+            <div class="col-sm-4 text-center">
+                <a ng-click="loadMore()" ng-show="showLoadMore()"><small class="text-info inline m-t-sm m-b-sm">Load more...</small></a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+
+<div class="panel panel-default" ng-show="checkView('Detail')">
+    <div class="row wrapper">
+        <div class="col-sm-3">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-sm btn-default" type="button" disabled>No</button>
+                </span>
+                <input type="text" class="input-sm form-control" ng-model="selectedSche.$id" disabled>
+
+            </div>
+
+        </div>
+        <div class="col-sm-3">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-sm btn-default" type="button" disabled>Nama Jadwal</button>
+                </span>
+                <input type="text" class="input-sm form-control" value="{{selectedSche.Name}}" disabled>
+
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-sm btn-default" type="button" disabled>Keterangan</button>
+                </span>
+                <input type="text" class="input-sm form-control" value="{{selectedSche.Note}}" disabled>
+
+            </div>
+        </div>
+        <div class="col-sm-3">
+
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped b-t b-light">
+            <thead>
+                <tr>
+                    <th>Ket</th>
+                    <th>Senin</th>
+                    <th>Selasa</th>
+                    <th>Rabu</th>
+                    <th>Kamis</th>
+                    <th>Jumat</th>
+                    <th>Sabtu</th>
+                    <th>Minggu</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>active</td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[1].Active" disabled>
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[2].Active" disabled>
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[3].Active" disabled>
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[4].Active" disabled>
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[5].Active" disabled>
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[6].Active" disabled>
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[7].Active" disabled>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>open</td>
+                    <td>{{selectedSche[1].Open}} min</td>
+                    <td>{{selectedSche[2].Open}} min</td>
+                    <td>{{selectedSche[3].Open}} min</td>
+                    <td>{{selectedSche[4].Open}} min</td>
+                    <td>{{selectedSche[5].Open}} min</td>
+                    <td>{{selectedSche[6].Open}} min</td>
+                    <td>{{selectedSche[7].Open}} min</td>
+                </tr>
+                <tr>
+                    <td>startWork</td>
+                    <td>{{selectedSche[1].StartWork}}</td>
+                    <td>{{selectedSche[2].StartWork}}</td>
+                    <td>{{selectedSche[3].StartWork}}</td>
+                    <td>{{selectedSche[4].StartWork}}</td>
+                    <td>{{selectedSche[5].StartWork}}</td>
+                    <td>{{selectedSche[6].StartWork}}</td>
+                    <td>{{selectedSche[7].StartWork}}</td>
+
+                </tr>
+                <tr>
+                    <td>endWork</td>
+                    <td>{{selectedSche[1].EndWork}}</td>
+                    <td>{{selectedSche[2].EndWork}}</td>
+                    <td>{{selectedSche[3].EndWork}}</td>
+                    <td>{{selectedSche[4].EndWork}}</td>
+                    <td>{{selectedSche[5].EndWork}}</td>
+                    <td>{{selectedSche[6].EndWork}}</td>
+                    <td>{{selectedSche[7].EndWork}}</td>
+
+                </tr>
+                <tr>
+                    <td>IsOverTime</td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[1].IsOverTime" disabled>
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[2].IsOverTime" disabled>
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[3].IsOverTime" disabled>
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[4].IsOverTime" disabled>
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[5].IsOverTime" disabled>
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[6].IsOverTime" disabled>
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[7].IsOverTime" disabled>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>overTime</td>
+                    <td>{{selectedSche[1].OverTime}}</td>
+                    <td>{{selectedSche[2].OverTime}}</td>
+                    <td>{{selectedSche[3].OverTime}}</td>
+                    <td>{{selectedSche[4].OverTime}}</td>
+                    <td>{{selectedSche[5].OverTime}}</td>
+                    <td>{{selectedSche[6].OverTime}}</td>
+                    <td>{{selectedSche[7].OverTime}}</td>
+
+                </tr>
+                <tr>
+                    <td>endOverTime</td>
+                    <td>{{selectedSche[1].EndOverTime}}</td>
+                    <td>{{selectedSche[2].EndOverTime}}</td>
+                    <td>{{selectedSche[3].EndOverTime}}</td>
+                    <td>{{selectedSche[4].EndOverTime}}</td>
+                    <td>{{selectedSche[5].EndOverTime}}</td>
+                    <td>{{selectedSche[6].EndOverTime}}</td>
+                    <td>{{selectedSche[7].EndOverTime}}</td>
+                </tr>
+                <tr>
+                    <td>Close</td>
+                    <td>{{selectedSche[1].Close}} min</td>
+                    <td>{{selectedSche[2].Close}} min</td>
+                    <td>{{selectedSche[3].Close}} min</td>
+                    <td>{{selectedSche[4].Close}} min</td>
+                    <td>{{selectedSche[5].Close}} min</td>
+                    <td>{{selectedSche[6].Close}} min</td>
+                    <td>{{selectedSche[7].Close}} min</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <footer class="panel-footer">
+        <div class="row">
+            <div class="col-sm-4">
+                <button class="btn btn-sm btn-default" ng-click="toList()">Back</button>
+                <button class="btn btn-sm btn-warning" ng-click="toEdit()">Edit</button>
+            </div>
+            <div class="col-sm-4 text-center">
+                <a ng-click="loadMore()" ng-show="showLoadMore()"><small class="text-info inline m-t-sm m-b-sm">Load more...</small></a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<div class="panel panel-default" ng-show="checkView('Edit')">
+    <div class="row wrapper">
+        <div class="col-sm-3">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-sm btn-default" type="button" disabled>Nama Jadwal</button>
+                </span>
+                <input type="text" class="input-sm form-control" ng-model="selectedSche.Name">
+
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-sm btn-default" type="button" disabled>Keterangan</button>
+                </span>
+                <input type="text" class="input-sm form-control" ng-model="selectedSche.Note">
+
+            </div>
+        </div>
+        <div class="col-sm-3">
+
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped b-t b-light">
+            <thead>
+                <tr>
+                    <th>Ket</th>
+                    <th>Senin</th>
+                    <th>Selasa</th>
+                    <th>Rabu</th>
+                    <th>Kamis</th>
+                    <th>Jumat</th>
+                    <th>Sabtu</th>
+                    <th>Minggu</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>active</td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[1].Active">
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[2].Active">
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[3].Active">
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[4].Active">
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[5].Active">
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[6].Active">
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[7].Active">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>open</td>
+                    <td>
+                        <input style="width:60px;" type="number" ng-model="selectedSche[1].Open">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="number" ng-model="selectedSche[2].Open">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="number" ng-model="selectedSche[3].Open">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="number" ng-model="selectedSche[4].Open">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="number" ng-model="selectedSche[5].Open">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="number" ng-model="selectedSche[6].Open">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="number" ng-model="selectedSche[7].Open">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>startWork</td>
+                    <td>
+                        <timepicker ng-model="selectedSche[1].StartWork" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[2].StartWork" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[3].StartWork" minute-step="5" show-meridian="false"></timepicker>
+
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[4].StartWork" minute-step="5" show-meridian="false"></timepicker>
+
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[5].StartWork" minute-step="5" show-meridian="false"></timepicker>
+
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[6].StartWork" minute-step="5" show-meridian="false"></timepicker>
+
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[7].StartWork" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>endWork</td>
+                    <td>
+                        <timepicker ng-model="selectedSche[1].EndWork" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[2].EndWork" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[3].EndWork" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[4].EndWork" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[5].EndWork" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[6].EndWork" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[7].EndWork" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                </tr>
+                <tr>
+                    <td>IsOverTime</td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[1].IsOverTime">
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[2].IsOverTime">
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[3].IsOverTime">
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[4].IsOverTime">
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[5].IsOverTime">
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[6].IsOverTime">
+                    </td>
+                    <td>
+                        <input type="checkbox" ng-model="selectedSche[7].IsOverTime">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>overTime</td>
+                    <td>
+                        <timepicker ng-model="selectedSche[1].OverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[2].OverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[3].OverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[4].OverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[5].OverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[6].OverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[7].OverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+
+
+                </tr>
+                <tr>
+                    <td>endOverTime</td>
+                    <td>
+                        <timepicker ng-model="selectedSche[1].EndOverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[2].EndOverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[3].EndOverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[4].EndOverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[5].EndOverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[6].EndOverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+                    <td>
+                        <timepicker ng-model="selectedSche[7].EndOverTime" minute-step="5" show-meridian="false"></timepicker>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>Close</td>
+                    <td>
+                        <input style="width:60px;" type="number" ng-model="selectedSche[1].Close">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="number" ng-model="selectedSche[2].Close">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="number" ng-model="selectedSche[3].Close">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="number" ng-model="selectedSche[4].Close">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="number" ng-model="selectedSche[5].Close">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="number" ng-model="selectedSche[6].Close">
+                    </td>
+                    <td>
+                        <input style="width:60px;" type="number" ng-model="selectedSche[7].Close">
+                    </td>
+
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <footer class="panel-footer">
+        <div class="row">
+            <div class="col-sm-4">
+                <button class="btn btn-sm btn-default" ng-click="toDetail()">Back</button>
+                <button class="btn btn-sm btn-success" ng-click="update()">Update</button>
+
+            </div>
+            <div class="col-sm-4 text-center">
+                <a ng-click="loadMore()" ng-show="showLoadMore()"><small class="text-info inline m-t-sm m-b-sm">Load more...</small></a>
+            </div>
+        </div>
+    </footer>
+</div>

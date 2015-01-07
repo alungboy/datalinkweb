@@ -1,0 +1,95 @@
+<!-- LIST REKAP HARIAN -->
+
+<div class="panel panel-default" ng-show="checkView('List')">
+    <div class="panel-heading">
+        SilahKan Pilih Tanggal Dan klik Rekap
+        <span class="pull-right">
+            <a class="btn btn-xs btn-primary" ui-sref="print.rekapharian">Print</a>
+        </span>
+    </div>
+    <div class="row wrapper">
+        <div class="col-sm-3 m-b-xs">
+            <div class="input-group">
+                <input type="date" class="input-sm form-control" placeholder="Rekap Harian">
+                <span class="input-group-btn">
+                    <button class="btn btn-sm btn-default">Rekap</button>
+                </span>
+            </div>
+        </div>
+        <div class="col-sm-6">
+        </div>
+        <div class="col-sm-3">
+
+
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped b-t b-light">
+            <thead>
+                <tr>
+                    <th style="width:20px;">Pin</th>
+                    <th>Id Pegawai</th>
+                    <th>Nama</th>
+                    <th>Departemen</th>
+                    <th>Absen Awal</th>
+                    <th>Absen Akhir</th>
+                    <th>Status Kehadiran</th>
+                    <th>Terlambat</th>
+                    <th>Lembur</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>Rio</td>
+                    <td>IT</td>
+                    <td>08:01:00</td>
+                    <td>18:00:00</td>
+                    <td><b>Hadir</b>
+                    </td>
+                    <td>00:01:00</td>
+                    <td>01:00:00</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>Hentje</td>
+                    <td>Ticketing</td>
+                    <td>08:00:00</td>
+                    <td>17:05:00</td>
+                    <td><b>Hadir</b>
+                    </td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>Natha</td>
+                    <td>Ticketing</td>
+                    <td>08:00:00</td>
+                    <td>17:05:00</td>
+                    <td><b>Hadir</b>
+                    </td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <footer class="panel-footer">
+        <div class="row">
+            <div class="col-sm-4 hidden-xs">
+
+            </div>
+            <div class="col-sm-4 text-center">
+                <a><small class="text-info inline m-t-sm m-b-sm">Load more...</small></a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- LIST REKAP HARIAN END -->

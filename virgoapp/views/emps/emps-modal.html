@@ -1,0 +1,93 @@
+<div class="modal-body wrapper-lg">
+    <div class="row">
+        <div class="col-sm-12">
+            <h4 class="m-t-none m-b font-thin">
+              Ambil Sampel Sidik <span class="label bg-info">{{CompName}}</span> <span class="label bg-success">{{DeptName}}</span>
+              <a class="pull-right" ng-click="cancel()"><i class="fa fa-times text-danger"></i></a>
+            </h4>
+            <form role="form">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>No</label>
+                            <input type="text" class="form-control" value="{{Value.Pin}}" disabled>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>NIP</label>
+                            <input type="text" class="form-control" value="{{Value.EmpId}}" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Nama Pegawai</label>
+                    <input type="text" class="form-control" value="{{Value.Name}}" disabled>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Pilih Mesin {{Sn}}</label>
+                    <br>
+                    <div class="radio-inline" ng-repeat="machine in Devs" >
+                        <label class="i-checks">
+                            <input type="radio" ng-model="$parent.Sn" name="machineList" value="{{machine.Sn}}">
+                            <i></i> {{machine.Name}}
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Pilih Jari</label>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-6 text-center">
+                            <label>Jari Tangan Kiri</label>
+                            <br>
+                            <a class="btn btn-primary btn-sm" ng-click="getFinger(0,Sn)" ng-disabled="disabledFinger(0)">
+                                Kelingking
+                            </a>&nbsp;
+                            <a class="btn btn-primary btn-sm" ng-click="getFinger(1,Sn)" ng-disabled="disabledFinger(1)">
+                                +
+                            </a>&nbsp;
+                            <a class="btn btn-primary btn-sm" ng-click="getFinger(2,Sn)" ng-disabled="disabledFinger(2)">
+                                +
+                            </a>&nbsp;
+                            <a class="btn btn-primary btn-sm" ng-click="getFinger(3,Sn)" ng-disabled="disabledFinger(3)">
+                                +
+                            </a>&nbsp;
+                            <a class="btn btn-primary btn-sm" ng-click="getFinger(4,Sn)" ng-disabled="disabledFinger(4)">
+                                Jempol
+                            </a>&nbsp;
+                            <br>
+                            <img class="img-responsive center-block" src="img/finger/left_hand.png">
+                        </div>
+                        <div class="col-sm-6 text-center">
+                            <label>Jari Tangan Kanan</label>
+                            <br>
+                            <a class="btn btn-primary btn-sm" ng-click="getFinger(5,Sn)" ng-disabled="disabledFinger(5)">
+                            Jempol
+                            </a>&nbsp;
+                            <a class="btn btn-primary btn-sm" ng-click="getFinger(6,Sn)" ng-disabled="disabledFinger(6)">
+                            +
+                            </a>&nbsp;
+                            <a class="btn btn-primary btn-sm" ng-click="getFinger(7,Sn)" ng-disabled="disabledFinger(7)">
+                            +
+                            </a>&nbsp;
+                            <a class="btn btn-primary btn-sm" ng-click="getFinger(8,Sn)" ng-disabled="disabledFinger(8)">
+                            +
+                            </a>&nbsp;
+                            <a class="btn btn-primary btn-sm" ng-click="getFinger(9,Sn)" ng-disabled="disabledFinger(9)">
+                            Kelingking
+                            </a>&nbsp;
+                            <br>
+                            <img class="img-responsive center-block" src="img/finger/right_hand.png">
+                        </div>
+                    </div>
+
+                </div>
+                
+            </form>
+        </div>
+
+    </div>
+</div>
