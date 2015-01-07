@@ -71,6 +71,17 @@ angular.module('Fbase', ['app', 'firebase'])
     return get;
 }])
 
+.service("TiketOneObj", ['Fbase', "$firebase", function(Fbase, $firebase) {
+    var get = function(noTiket) {
+        if (noTiket) {
+            var sync = $firebase(Fbase.child('tiketpelni').child(noTiket));
+            return sync.$asObject();
+        }
+        return null;
+    };
+
+    return get;
+}])
 
 .service("TiketPelniBaikArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
     var get = function(startDate, pageSize, asc) {
