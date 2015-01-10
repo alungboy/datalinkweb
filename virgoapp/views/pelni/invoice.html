@@ -14,8 +14,8 @@
                 <br> Kapal: <b id="_id88" name="_id88">LAMBELU</b>
                 <label class="label bg-success" id="_id175" name="_id175">EKONOMI</label>
                 <br> Tanggal Berangkat: <b id="_id96" name="_id96"> Minggu, 27 Juli 2014 12:43 </b>
-                <br> Pelayaran: <b id="_id116" name="_id116">Bitung</b> - <b id="_id132" name="_id132">Ternate</b>    
-                  <!-- embarkasi call _id118 debarkasi call _id134  -->
+                <br> Pelayaran: <b id="_id116" name="_id116">Bitung</b> - <b id="_id132" name="_id132">Ternate</b>
+                <!-- embarkasi call _id118 debarkasi call _id134  -->
                 <br>
                 <br> Penanggungjawab: <b>Rio Ciputra</b>
                 <div class="form-group input-sm" style="padding-top:15px;">
@@ -48,7 +48,7 @@
                 <div class="form-group input-sm">
                     <label class="col-lg-3 control-label">Alamat</label>
                     <div class="col-lg-8">
-                        <input id="_id222" name="_id222"  type="text" class="form-control input-sm" placeholder="Alamat" ng-model="newPemasan.Alamat" ng-disabled="lockform">
+                        <input id="_id222" name="_id222" type="text" class="form-control input-sm" placeholder="Alamat" ng-model="newPemasan.Alamat" ng-disabled="lockform">
                     </div>
                 </div>
                 <div class="form-group input-sm">
@@ -64,7 +64,7 @@
             </div>
         </div>
         <div class="row wrapper">
-   
+
             <div class="col-sm-3">
                 <div class="form-group input-sm">
                     <label class="col-lg-3 control-label">Wanita</label>
@@ -89,7 +89,7 @@
                     </div>
                 </div>
             </div>
-                      <div class="col-sm-3">
+            <div class="col-sm-3">
                 <div class="form-group input-sm">
                     <label class="col-lg-3 control-label">Bayi</label>
                     <div class="col-lg-8">
@@ -101,23 +101,26 @@
         <table class="table table-bordered b-t b-dark" style="font-size:12px;">
             <thead>
                 <tr>
-                    <th style="width:50px;">No</th>
+                    <th style="width:70px;">No</th>
                     <th>Nama Penumpang</th>
                     <th style="width:250px;">Status</th>
                     <th style="width:100px;">Umur (thn/bln)</th>
+
                     <th style="width:200px;">Harga</th>
+                    <th style="width:200px;">Service Fee</th>
+                    <th style="width:200px;">Subtotal</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in totalPenumpang">
+                <tr ng-repeat="(key, value) in listPenumpang">
                     <td>
-                        {{item}}
+                        <button class="btn btn-default btn-sm" type="button" ng-click="rmPng(key)" ng-hide="listPenumpang.length < 2">-</button>&nbsp;&nbsp;{{key+ 1}}
                     </td>
                     <td>
-                        <input type="text" class="form-control input-sm" placeholder="Nama Penumpang" ng-model="newPenumpang[item].Nama" ng-disabled="lockform">
+                        <input type="text" class="form-control input-sm" placeholder="Nama Penumpang" ng-model="value.Nama" ng-disabled="lockform">
                     </td>
                     <td>
-                        <select class="form-control input-sm" ng-model="newPenumpang[item].Status" ng-disabled="lockform">
+                        <select class="form-control input-sm" ng-model="value.Status" ng-disabled="lockform">
                             <option value="">-Pilih Status-</option>
                             <option value="Pria">Pria</option>
                             <option value="Wanita">Wanita</option>
@@ -126,21 +129,24 @@
                         </select>
                     </td>
                     <td>
-                        <input type="text" class="form-control input-sm" placeholder="Umur" ng-model="newPenumpang[item].Umur" ng-disabled="lockform">
+                        <input type="text" class="form-control input-sm" placeholder="Umur" ng-model="value.Umur" ng-disabled="lockform">
                     </td>
                     <td class="text-right">
-                        Rp 300.000
+                        {{value.Harga}}
+                    </td>
+                    <td class="text-right">
+                        {{value.ServiceFee}}
+                    </td>
+                    <td class="text-right">
+                        {{value.SubTotal}}
                     </td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <th colspan="2">
+                    <th colspan="4">
                         <div class="input-group">
-                            <input type="number" class="form-control input-sm" placeholder="Total Penumpang" ng-model="total" ng-disabled="lockform">
-                            <a ng-click="addTotal()" class="input-group-addon input-sm" title="Total Penumpang">
-                                <i class="fa fa-users"></i>
-                            </a>
+                            <button class="btn btn-default btn-sm" type="button" ng-click="tambahPng()" ng-hide="listPenumpang.length > 9">Tambah</button>
                         </div>
                     </th>
                     <th>
