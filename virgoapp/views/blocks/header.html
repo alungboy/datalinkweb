@@ -30,6 +30,12 @@
 
             <ul class="dropdown-menu animated fadeInRight w">
                 <li>
+                    <a href="/Travel/faces/HomeMenu.jspx" target="_blank">Aplikasi Pelni</a>
+                </li>
+                <li>
+                    <a ui-sref="app.pelni.search">Search Jadwal (Invoice)</a>
+                </li>
+                <li>
                     <a ui-sref="app.pelni.issuedtiket">Issued Tiket</a>
                 </li>
                 <li>
@@ -50,8 +56,16 @@
             </ul>
 
         </li>
-       
-
+        <li ui-sref-active="active">
+            <a ui-sref="app.pelni.invoice">
+                <span>Tampilan Invoice</span>
+            </a>
+        </li>
+        <li ui-sref-active="active">
+            <a ui-sref="printinvoicepelni" target="_blank">
+                <span>Tampilan Print Invoice</span>
+            </a>
+        </li>
 
     </ul>
     <!-- / link and dropdown -->
@@ -81,7 +95,9 @@
               </span>
                 <span class="hidden-sm hidden-md">{{User.facebook.displayName}}</span> <b class="caret"></b>
             </a>
+
             <!-- dropdown -->
+
             <ul class="dropdown-menu animated fadeInRight w">
                 <li>
                     <a ng-href="https://www.facebook.com/{{User.facebook.id}}" target="_blank">Profile</a>

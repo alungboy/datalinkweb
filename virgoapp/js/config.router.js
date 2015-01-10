@@ -53,6 +53,13 @@ angular.module('app')
                     templateUrl: 'views/access/page_404.html'
                 })
 
+                // Print
+                .state('printinvoicepelni', {
+                    url: '/printinvoicepelni/:noInvoice',
+                    templateUrl: 'views/print/printinvoicepelni.html',
+                    // controller: 'PrintInvoicePelniCtrl'
+                })
+
                 // App
                 .state('app', {
                     abstract: true,
@@ -79,7 +86,7 @@ angular.module('app')
                 .state('app.pelni', {
                     abstract: true,
                     url: '/pelni',
-                    template: '<div ui-view></div>',
+                    template: '<div class="wrapper" style="padding:0px;" ui-view></div>',
 
                 })
                 
@@ -96,6 +103,24 @@ angular.module('app')
                             }
                         ],
                     }
+
+                })
+
+                // STATE SEARCH JADWAL (INVOICE)
+                .state('app.pelni.search', {
+                    url: '/search',
+                    templateUrl: 'views/pelni/search.html',
+                    controller: 'StockTiketPelniCtrl',
+  
+
+                })
+
+                // STATE INVOICE
+                .state('app.pelni.invoice', {
+                    url: '/invoice/:idJadwal/:kelas',
+                    templateUrl: 'views/pelni/invoice.html',
+                    controller: 'InvoicePelniCtrl'
+  
 
                 })
 

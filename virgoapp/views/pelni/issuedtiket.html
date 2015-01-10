@@ -43,7 +43,7 @@
                     <tr>
                         <th style="width:20px;">No</th>
                         <th>No Tiket</th>
-                        <th>Tgl Status</th>
+                       
                         <th>Status</th>
 
                         <th>Tgl Issued</th>
@@ -56,15 +56,10 @@
                     <tr class="fadeInRight animated" ng-repeat="(key ,value) in listTiketIssued | orderBy:'IssuedAt':true | filter: search">
                         <td>{{key + 1}}</td>
                         <td>{{value.NoTiket}}</td>
-                        <td>
-                            <span tooltip="{{value.StatusTgl | date:'dd-MM-yyyy HH:mm:ss'}}">
-                            {{timeFromNow(value.StatusTgl)}}
-                            </span>
-                       
-                        </td>
+                        
                         <td>{{getStatusName(value.Status)}}</td>
                         <td>
-                            <span tooltip="{{value.IssuedAt | date:'dd-MM-yyyy HH:mm:ss'}}">
+                            <span title="{{value.IssuedAt | date:'dd-MM-yyyy HH:mm:ss'}}">
                             {{timeFromNow(value.IssuedAt)}}
                             </span>
                        
@@ -78,7 +73,7 @@
                              
                         </td>
                         <td>
-                            <span tooltip="{{value.CreatedAt | date:'dd-MM-yyyy HH:mm:ss'}}">
+                            <span title="{{value.CreatedAt | date:'dd-MM-yyyy HH:mm:ss'}}">
                             {{timeFromNow(value.CreatedAt)}}
                             </span>
                        

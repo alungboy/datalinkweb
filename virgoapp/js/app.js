@@ -15,5 +15,6 @@ angular.module('app', [
     'pascalprecht.translate',
     'Fbase',
     'validation',
-    'validation.rule'
+    'validation.rule',
+    'angucomplete'
 ]);
