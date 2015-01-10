@@ -110,7 +110,7 @@ angular.module('app')
                 .state('app.pelni.search', {
                     url: '/search',
                     templateUrl: 'views/pelni/search.html',
-                    controller: 'InvoicePelniCtrl',
+                    controller: 'SearchTiketPelniCtrl',
   
 
                 })

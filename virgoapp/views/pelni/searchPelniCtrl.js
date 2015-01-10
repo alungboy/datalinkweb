@@ -1,5 +1,5 @@
 'use strict';
-app.controller('StockTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 
+app.controller('SearchTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 
     function($scope, $rootScope, $stateParams, $state) {
         
 
