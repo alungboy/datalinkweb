@@ -18,6 +18,6 @@ app.controller('StockTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
             }
         ];
 
-        console.log($scope.DebarkasiArr);
+        
     }
 ]);
