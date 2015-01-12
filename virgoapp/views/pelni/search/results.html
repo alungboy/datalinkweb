@@ -1,0 +1,62 @@
+<div class="panel panel-default" ng-repeat="(key, value) in ListJadwal">
+    <div class="panel-heading">
+        <span class="label text-base bg-primary pos-rlt m-r">
+            {{value.KapalNama}} - {{value.Kapal}}
+            <i class="arrow right arrow-primary"></i>
+            </span>
+
+         Berangkat : <b>{{value.Berangkat}}</b>
+    </div>
+    <div class="row wrapper">
+        <div class="col-sm-9 m-b-xs">
+            Pelayaran: <b>{{value.Embar}} {{value.EmbarNama}} - {{value.EmbarCall}} <i class="fa fa-arrow-right"></i> {{value.Debar}} {{value.DebarNama}} - {{value.DebarCall}}</b>
+            <br> Update Jadwal: <b>{{value.LastUpdate}}</b>
+            <br> Jenis Tiket: <b>{{value.JnsTiket}}</b>
+        </div>
+
+        <div class="col-sm-3">  
+            Voyage/Tahun: <b>{{value.Voy}}/{{value.VoyThn}}</b>
+            <br> Sistem Kabin: <b>{{value.SistemKabin}}</b>
+            <br> Sisa <span class="text-danger"><b>Non Seat</b></span> : <b>{{value.seatharga.NonSeat}}</b>
+        </div>
+
+    </div>
+    <table class="table table-bordered b-t b-dark" style="font-size:12px; border: 1px solid #eaeff0;">
+        <thead style="background-color: #F6F8F8;">
+            <tr>
+                <th rowspan="2" class="text-center" style="width:100px;">Kelas</th>
+                <th colspan="3" class="text-center">
+                    Daftar Harga - 
+                    Update Seat Harga: {{value.seatharga.LastUpdate}}
+                </th>
+                <th colspan="3" class="text-center">Sisa Seat</th>
+            </tr>
+            <tr>
+                <th class="text-center">Dewasa</th>
+                <th class="text-center">Anak</th>
+                <th class="text-center">Bayi</th>
+                <th style="width:70px;">Pria</th>
+                <th style="width:70px;">Wanita</th>
+                <th style="width:70px;">Netral</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="(subkey, item) in value.seatharga.Kelas">
+                <td>
+                    <button type="button" class="btn btn-info btn-xs" ng-click="createInvoce(value.$id, subkey);">
+                        {{item.Nama}}
+                    </button>
+                </td>
+                <td class="text-right">Rp. {{item.HargaDewasa}}</td>
+                <td class="text-right">Rp. {{item.HargaAnak}}</td>
+                <td class="text-right">Rp. {{item.HargaBayi}}</td>
+                <td class="text-center">{{item.SeatPria}}</td>
+                <td class="text-center">{{item.SeatWanita}}</td>
+                <td class="text-center">{{item.SeatNetral}}</td>
+            </tr>
+           
+
+
+        </tbody>
+    </table>
+</div>

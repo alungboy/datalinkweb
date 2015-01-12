@@ -154,3 +154,85 @@ angular.module('Fbase', ['app', 'firebase'])
 
     return get;
 }])
+
+.factory("ReqJadwalPelniRef", ['Fbase', 'FbAuth', "$firebase", function(Fbase, FbAuth, $firebase) {
+    var objRef = null
+
+    var getRef = function() {
+        if (!objRef) {
+
+
+            objRef = $firebase(Fbase.child('reqjadwalpelni'));
+
+
+        }
+        return objRef;
+    };
+
+    return getRef;
+}])
+
+.factory("PelabuhanPelniArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
+    var obj = null
+    var get = function() {
+        if (!obj) {
+            obj = $firebase(Fbase.child('pelabuhanpelni'));
+        }
+        return obj.$asArray();
+    };
+
+    return get;
+}])
+
+.service("JadwalPelniArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
+
+    var get = function(embar,debar) {
+
+        var obj = $firebase(Fbase.child('jadwalpelni'));
+
+        return obj.$asArray();
+    };
+
+    return get;
+}])
+
+.service("JadwalPelniSingleObj", ['Fbase', "$firebase", function(Fbase, $firebase) {
+
+    var get = function(idJadwal) {
+
+        var obj = $firebase(Fbase.child('jadwalpelni').child(idJadwal));
+
+        return obj.$asObject();
+    };
+
+    return get;
+}])
+
+.factory("InvoicePelniRef", ['Fbase', 'FbAuth', "$firebase", function(Fbase, FbAuth, $firebase) {
+    var objRef = null
+
+    var getRef = function() {
+        if (!objRef) {
+
+
+            objRef = $firebase(Fbase.child('invoicepelni'));
+
+
+        }
+        return objRef;
+    };
+
+    return getRef;
+}])
+
+.service("InvoicePelniSingleObj", ['Fbase', "$firebase", function(Fbase, $firebase) {
+
+    var get = function(idInvoicePelni) {
+
+        var obj = $firebase(Fbase.child('invoicepelni').child(idInvoicePelni));
+
+        return obj.$asObject();
+    };
+
+    return get;
+}])

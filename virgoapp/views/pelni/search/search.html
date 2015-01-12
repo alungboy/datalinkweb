@@ -1,0 +1,35 @@
+<div class="hbox hbox-auto-xs bg-light ">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Searh Jadwal Pelni
+        </div>
+        <div class="row wrapper">
+            <div class="col-sm-3 m-b-xs">
+                <div inputclass="form-control input-sm" angucomplete placeholder="{{embarView}}" pause="200" selectedobject="Embar" localdata="DebarkasiArr" searchfields="Nama" titlefield="Nama,Kode" minlength="1" />
+             
+
+            </div>
+
+            <div class="col-sm-3">
+                <div inputclass="form-control input-sm" angucomplete placeholder="{{debarView}}" pause="200" selectedobject="Debar" localdata="DebarkasiArr" searchfields="Nama" titlefield="Nama,Kode" minlength="1" />
+
+
+        
+            </div>
+            <div class="col-sm-3">
+                <div ng-show="errMsg" class="alert alert-danger">
+                    {{errMsg}}
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="btn-toolbar pull-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-default" ng-click="clearSearchPelni()">Clear</button>
+                        <button type="button" class="btn btn-sm btn-info" ng-click="searchPelni()">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fade-in-up" ui-view></div>
+</div>
