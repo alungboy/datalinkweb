@@ -172,6 +172,20 @@ angular.module('Fbase', ['app', 'firebase'])
     return getRef;
 }])
 
+.factory("ReqIssuedPelniRef", ['Fbase', 'FbAuth', "$firebase", function(Fbase, FbAuth, $firebase) {
+    var objRef = null
+
+    var getRef = function() {
+        if (!objRef) {
+
+            objRef = $firebase(Fbase.child('reqissuedpelni'));
+        }
+        return objRef;
+    };
+
+    return getRef;
+}])
+
 .factory("PelabuhanPelniArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
     var obj = null
     var get = function() {
@@ -185,16 +199,31 @@ angular.module('Fbase', ['app', 'firebase'])
 }])
 
 .service("JadwalPelniArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
+    var timeNow = moment().format('YYYYMMDD') + '0000';
+    var timeEnd = '999999999999'
+    var get = function(embar, debar) {
 
-    var get = function(embar,debar) {
-
-        var obj = $firebase(Fbase.child('jadwalpelni'));
+        var obj = $firebase(Fbase.child('jadwalpelni').orderByChild('RuteTgl').startAt(embar + '-' + debar + '-' + timeNow).endAt(embar + '-' + debar + '-' + timeEnd));
 
         return obj.$asArray();
     };
 
     return get;
 }])
+
+.service("JadwalPelniKapalArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
+    var timeNow = moment().format('YYYYMMDD') + '0000';
+    var timeEnd = '999999999999'
+    var get = function(idKapal) {
+
+        var obj = $firebase(Fbase.child('jadwalpelni').orderByChild('KapalTgl').startAt(idKapal+'-' + timeNow).endAt(idKapal+ '-' + timeEnd));
+
+        return obj.$asArray();
+    };
+
+    return get;
+}])
+
 
 .service("JadwalPelniSingleObj", ['Fbase', "$firebase", function(Fbase, $firebase) {
 

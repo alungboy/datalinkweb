@@ -70,23 +70,20 @@ angular.module('app')
                             return FbAuth.$requireAuth();
                         }]
                     }
-
                 })
-
 
                 // Home
                 .state('app.home', {
                     url: '/home',
                     templateUrl: 'views/home/home.html',
                     controller: 'HomeCtrl',
-
                 })
 
                 // TIKET PELNI
                 .state('app.pelni', {
                     abstract: true,
                     url: '/pelni',
-                    template: '<div class="wrapper" style="padding:0px;" ui-view></div>',
+                    template: '<div class="wrapper fade-in-up" style="padding:0px;" ui-view></div>',
 
                 })
 
@@ -103,7 +100,6 @@ angular.module('app')
                             }
                         ],
                     }
-
                 })
 
                 // STATE SEARCH JADWAL 
@@ -132,6 +128,19 @@ angular.module('app')
                         }
 
                     })
+                    .state('app.pelni.search.reskapal', {
+                        url: '/reskapal/:idKapal',
+                        templateUrl: 'views/pelni/search/reskapal.html',
+                        controller: 'SearchResultsKapalPelniCtrl',
+                        resolve: {
+                            listKapalPelni: ['$stateParams', 'JadwalPelniKapalArr',
+                                function($stateParams, JadwalPelniKapalArr) {
+                                    return JadwalPelniKapalArr($stateParams.idKapal).$loaded();
+                                }
+                            ],
+                        }
+
+                    })
 
                 // STATE INVOICE CREATE ONLY
                 .state('app.pelni.invoicenew', {
@@ -150,24 +159,44 @@ angular.module('app')
                 })
 
                 // STATE LIST DETAIL EDIT INVOICE
-                // .state('app.pelni.invoicenew', {
-                //     url: '/invoicenew/:idJadwal/:idKelas/',
-                //     templateUrl: 'views/pelni/invoice/invoicenew.html',
-                //     controller: 'InvoiceNewPelniCtrl',
-                //     resolve: {
-                //         singleJadwal: ['$stateParams', 'JadwalPelniSingleObj',
-                //             function($stateParams, JadwalPelniSingleObj) {
-                //                 return JadwalPelniSingleObj($stateParams.idJadwal).$loaded();
-                //             }
-                //         ],
-                //         invoicePelni: ['$stateParams', 'InvoicePelniSingleObj',
-                //             function($stateParams, InvoicePelniSingleObj) {
-                //                 return InvoicePelniSingleObj($stateParams.idInvoice).$loaded();
-                //             }
-                //         ],
-                //     }
+                .state('app.pelni.invoice', {
+                    url: '/invoice',
+                    abstract: true,
+                    template: '<div class="fade-in-right" ui-view></div>',
 
-                // })
+                })
+                .state('app.pelni.invoice.list', {
+                    url: '/list',
+                    templateUrl: 'views/pelni/invoice/invoicelist.html',
+                })
+                .state('app.pelni.invoice.detail', {
+                    url: '/detail/:idInvoice',
+                    templateUrl: 'views/pelni/invoice/invoicedetail.html',
+                    controller: 'InvoiceDetailPelniCtrl',
+                    resolve: {
+                        invoicePelni: ['$stateParams', 'InvoicePelniSingleObj',
+                            function($stateParams, InvoicePelniSingleObj) {
+                                return InvoicePelniSingleObj($stateParams.idInvoice).$loaded();
+                            }
+                        ],
+                
+                    }
+                    
+                })
+                .state('app.pelni.invoice.edit', {
+                    url: '/edit/:idInvoice',
+                    templateUrl: 'views/pelni/invoice/invoiceedit.html',
+                    controller: 'InvoiceEditPelniCtrl',
+                    resolve: {
+                        invoicePelni: ['$stateParams', 'InvoicePelniSingleObj',
+                            function($stateParams, InvoicePelniSingleObj) {
+                                return InvoicePelniSingleObj($stateParams.idInvoice).$loaded();
+                            }
+                        ],
+                
+                    }
+                    
+                })
   
 
                 // STATE ISSUED

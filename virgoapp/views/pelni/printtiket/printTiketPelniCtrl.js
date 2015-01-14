@@ -1,5 +1,5 @@
 'use strict';
-app.controller('PrintTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'tiketPrinted', 'TiketDataObj', '$timeout', 
+app.controller('PrintTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'tiketPrinted', 'TiketDataObj', '$timeout',
     function($scope, $rootScope, $stateParams, $state, tiketPrinted, TiketDataObj, $timeout) {
         if (!$stateParams.pageSize || $stateParams.pageSize == '') {
             $stateParams.pageSize = '10';
@@ -78,6 +78,7 @@ app.controller('PrintTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
 
         $scope.tampilkanData = function(e) {
             e.preventDefault();
+            $scope.selected = null;
             $scope.errMsg = null;
             $scope.okMsg = null;
 
@@ -112,43 +113,73 @@ app.controller('PrintTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
 
 
             $scope.selected = TiketDataObj($scope.tiketBaru);
+            $scope.dataTiketHtml = "";
 
             $scope.selected.$loaded().then(function() {
-                if ($scope.selected.$value === null) {
+                if (!$scope.selected) {
+                    $scope.showDetail = false;
+                    $scope.errMsg = 'Tidak ada data';
+                    $scope.tiketBaru = '';
+                    return;
+                }
+                if ($scope.selected.$value && $scope.selected.$value === null) {
                     $scope.showDetail = false;
                     $scope.errMsg = 'Tiket Belum Diissued';
                     $scope.tiketBaru = '';
-                } else if ($scope.selected.Nama == null || $scope.selected.Nama === '') {
+                    return;
+                }
+                if ($scope.selected.PrintOut == null || $scope.selected.PrintOut === '') {
                     $scope.showDetail = false;
                     $scope.errMsg = 'Belum Ada Data Penumpang';
                     $scope.tiketBaru = '';
-                } else {
-                    $scope.showDetail = true;
-
-                    $timeout(function(){
-                        var element = document.getElementById('focusPrint');
-                        if (element) {
-                            element.focus();
-                        }
-                    });
-
-                    $scope.errMsg = null;
-                    $scope.disTiket = true;
-
-
+                    return;
                 }
+
+                $scope.showDetail = true;
+
+                $timeout(function() {
+                    var element = document.getElementById('focusPrint');
+                    if (element) {
+                        element.focus();
+                    }
+                });
+
+                $scope.errMsg = null;
+                $scope.disTiket = true;
             });
-            
+
         };
 
         $scope.print = function(e) {
+            if ($scope.barcodePrint != 'TMU950P-2' && $scope.barcodePrint != 'TMU950P-1') {
+                $scope.errMsg = "Tidak ada nama printer dalam sistem!";
+                return;
+            }
 
-            alert('Berhasil Print "' + $scope.selected.Nama + '" di printer: ' + $scope.barcodePrint);
+            var dataPrint = {
+                printer: $scope.barcodePrint,
+                slip: '\n\n\n\n'+$scope.selected.PrintOut,
+                journal: $scope.tiketBaru,
+                receipt: ""
+            };
+            console.log(dataPrint);
+            $.post("http://127.0.0.1:81/print", dataPrint).done(function(data) {
+
+            });;
+
+            $scope.errMsg = "";
+            alert('Kirim Data Ke Printer ' + $scope.barcodePrint + '\n' + $scope.selected.PrintOut);
+            $scope.selected = null;
             $scope.showDetail = false;
             $scope.disTiket = false;
             $scope.barcodePrint = '';
             $scope.tiketBaru = '';
-
+            $timeout(function() {
+                var element = document.getElementById('inputTiket');
+                if (element) {
+                    element.focus();
+                }
+            });
         };
 
     }

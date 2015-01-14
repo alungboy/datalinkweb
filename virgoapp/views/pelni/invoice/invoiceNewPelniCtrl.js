@@ -131,7 +131,30 @@ app.controller('InvoiceNewPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
         }
 
         $scope.save = function() {
-            
+            $scope.errMsg = '';
+            if ($scope.selectedInvoice.Pemesan == '' || $scope.selectedInvoice.Pemesan == null) {
+                $scope.errMsg = 'Nama Pemesan Harus Diisi';
+                return;
+            }
+            if ($scope.selectedInvoice.MobilePemesan == '' || $scope.selectedInvoice.MobilePemesan == null) {
+                $scope.errMsg = 'No HP Harus Diisi';
+                return;
+            }
+            var reg = /^\d+$/;
+            var testreg = reg.test($scope.selectedInvoice.MobilePemesan);
+            if (testreg == false) {
+                $scope.errMsg = 'No HP Harus terdiri dari angka';
+                return;
+            }
+            if ($scope.selectedInvoice.MobilePemesan.length < 9) {
+                $scope.errMsg = 'Panjang no Hp Harus Tepat';
+                return;
+            }
+            if ($scope.selectedInvoice.AlamatPemesan == '' || $scope.selectedInvoice.AlamatPemesan == null) {
+                $scope.errMsg = 'Alamat Harus Diisi';
+                return;
+            }
+
             InvoicePelniRef().$push($scope.selectedInvoice).then(function(ref) {
                 $state.transitionTo('app.pelni.invoice.detail', {
                     idInvoice: ref.key()

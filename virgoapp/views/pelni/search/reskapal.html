@@ -1,11 +1,9 @@
-<div class="panel panel-default" ng-repeat="(key, value) in ListJadwal">
+<div class="panel panel-default" ng-repeat="(key, value) in ListKapal | orderBy:'Berangkat':false">
     <div class="panel-heading">
         <span class="label text-base bg-primary pos-rlt m-r">
-            <a ng-click="kapalSearch(value.Kapal)">
             {{value.KapalNama}} - {{value.Kapal}}
             <i class="arrow right arrow-primary"></i>
-            </a>
-        </span>
+            </span>
 
          Berangkat : <b>{{getDayDateYear(value.Berangkat)}}</b>
     </div>

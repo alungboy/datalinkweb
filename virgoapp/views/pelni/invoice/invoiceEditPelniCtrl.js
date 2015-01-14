@@ -1,49 +1,27 @@
 'use strict';
-app.controller('InvoicePelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'singleJadwal', 'invoicePelni', 'InvoicePelniRef',
-    function($scope, $rootScope, $stateParams, $state, singleJadwal, invoicePelni, InvoicePelniRef) {
+app.controller('InvoiceEditPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'JadwalPelniSingleObj', 'invoicePelni', 'InvoicePelniRef',
+    function($scope, $rootScope, $stateParams, $state, JadwalPelniSingleObj, invoicePelni, InvoicePelniRef) {
 
-        $scope.selectedJadwal = singleJadwal;
-        $scope.dataKelas = $scope.selectedJadwal.seatharga.Kelas[$stateParams.idKelas];
         $scope.User = $rootScope.User;
         $scope.selectedInvoice = invoicePelni;
+
+     
+        $scope.selectedJadwal = JadwalPelniSingleObj($scope.selectedInvoice.IdJadwal);
+        $scope.selectedJadwal.$loaded(
+            function(data) {
+                $scope.dataKelas = $scope.selectedJadwal.seatharga.Kelas[$scope.selectedInvoice.IdKelas];
+            },
+            function(error) {
+                console.error("Error:", error);
+            }
+        );
+       
+
+
+
+
         if (invoicePelni.$value && invoicePelni.$value == null) {
-            $scope.selectedInvoice = {
-                TipeBooking: 0,
-                JenisBooking: 0,
-                Pemesan: '',
-                AlamatPemesan: '',
-                MobilePemesan: '',
-                Kapal: $scope.selectedJadwal.Kapal,
-                KapalNama: $scope.selectedJadwal.KapalNama,
-                TglBerangkat: $scope.selectedJadwal.Berangkat,
-                IdJadwal: $stateParams.idJadwal,
-                Embar: $scope.selectedJadwal.Embar,
-                EmbarNama: $scope.selectedJadwal.EmbarNama,
-                EmbarCall: $scope.selectedJadwal.EmbarCall,
-                Debar: $scope.selectedJadwal.Debar,
-                DebarNama: $scope.selectedJadwal.DebarNama,
-                DebarCall: $scope.selectedJadwal.DebarCall,
-                Kelas: $scope.dataKelas.Kode,
-                KelasNama: $scope.dataKelas.Nama,
-                IdKelas: $stateParams.idKelas,
-                NonSeat: false,
-                CreatedBy: $rootScope.User.uid,
-                CreatedAt: {
-                    '.sv': 'timestamp'
-                },
-                ListPng: {},
-            };
-            InvoicePelniRef().$push().then(function(ref) {
-                $scope.selectedInvoice.ListPng[ref.key()] = {
-                    Nama: '',
-                    Status: '',
-                    Tipe: 'Thn',
-                    Umur: null,
-                    Harga: 0,
-                    ServiceFee: 0,
-                    SubTotal: 0
-                };
-            });
+            alert('Tidak Ada Data Invoice');
         }
 
 
@@ -131,19 +109,50 @@ app.controller('InvoicePelniCtrl', ['$scope', '$rootScope', '$stateParams', '$st
         }
 
         $scope.save = function() {
-            console.log($scope.selectedInvoice);
-            InvoicePelniRef().$push($scope.selectedInvoice).then(function(ref) {
-                $state.transitionTo('app.pelni.invoice.detail', {
-                    idInvoice: ref.key()
-                });
+            $scope.errMsg = '';
+            if ($scope.selectedInvoice.Pemesan == '' || $scope.selectedInvoice.Pemesan == null) {
+                $scope.errMsg = 'Nama Pemesan Harus Diisi';
+                return;
+            }
+            if ($scope.selectedInvoice.MobilePemesan == '' || $scope.selectedInvoice.MobilePemesan == null) {
+                $scope.errMsg = 'No HP Harus Diisi';
+                return;
+            }
+            var reg = /^\d+$/;
+            var testreg = reg.test($scope.selectedInvoice.MobilePemesan);
+            if (testreg == false) {
+                $scope.errMsg = 'No HP Harus terdiri dari angka';
+                return;
+            }
+            if ($scope.selectedInvoice.MobilePemesan.length < 9  ) {
+                $scope.errMsg = 'Panjang no Hp Harus Tepat';
+                return;
+            }
+            if ($scope.selectedInvoice.AlamatPemesan == '' || $scope.selectedInvoice.AlamatPemesan == null) {
+                $scope.errMsg = 'Alamat Harus Diisi';
+                return;
+            }
 
-            }, function(err) {
-                $scope.errMsg = err;
+
+            $scope.selectedInvoice.UpdatedAt = {
+                '.sv': 'timestamp'
+            };
+            $scope.selectedInvoice.UpdatedBy = $scope.User.uid;
+            $scope.selectedInvoice.$save().then(function(ref) {
+
+            }, function(error) {
+                console.log("Error:", error);
             });
+
 
 
         }
 
+        $scope.toDetail = function(){
+            $state.transitionTo('app.pelni.invoice.detail', {
+                idInvoice: $stateParams.idInvoice,
+            });
+        }
         $scope.printInvoice = function() {
 
             console.log($scope.selectedInvoice)

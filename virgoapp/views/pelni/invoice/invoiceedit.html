@@ -1,7 +1,7 @@
 <div class="hbox hbox-auto-xs bg-light ">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Invoice New
+            Invoice Edit
         </div>
         <div class="row wrapper">
             <img src="img/virgo.png" class="center-block">
@@ -12,12 +12,12 @@
 
                 <br> Kapal: <b id="_id88" name="_id88">{{selectedInvoice.Kapal}} {{selectedInvoice.KapalNama}}</b>
                 <br> Tanggal Berangkat: <b id="_id96" name="_id96"> {{selectedInvoice.TglBerangkat}} </b>
-                <br> Pelayaran: 
+                <br> Pelayaran:
                 <b id="_id132" name="_id132">{{selectedInvoice.Embar}} {{selectedInvoice.EmbarNama}} - {{selectedInvoice.EmbarCall}}</b>
                 <i class="fa fa-arrow-right"></i>
-                <b id="_id116" name="_id116">{{selectedInvoice.Debar}} {{selectedInvoice.DebarNama}} - {{selectedInvoice.DebarCall}}</b> 
-               
-                
+                <b id="_id116" name="_id116">{{selectedInvoice.Debar}} {{selectedInvoice.DebarNama}} - {{selectedInvoice.DebarCall}}</b>
+
+
                 <!-- embarkasi call _id118 debarkasi call _id134  -->
                 <br> Kelas:
                 <label class="label bg-success" id="_id175" name="_id175">{{selectedInvoice.KelasNama}}</label>
@@ -137,11 +137,11 @@
                     </th>
                     <th>
                         <div class="btn-group btn-group-justified">
-        
-                            <a ng-click="save()"  class="btn btn-sm btn-success">Save</a>
-                           
+                            <a ng-click="toDetail()" class="btn btn-sm btn-default">Back</a>
+                            <a ng-click="save()" class="btn btn-sm btn-success">Save</a>
+
                         </div>
-                       
+
 
                     </th>
                     <th>
