@@ -133,15 +133,16 @@ angular.module('Fbase', ['app', 'firebase'])
 }])
 
 .service("TiketPelniIssuedDayArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
-    var get = function(date, month, year) {
+    var get = function(date) {
         var sync = Fbase.child('tiketpelni');
-       
-            date = moment().format('DD');
-            month = moment().format('MM');
-            year = moment().format('YYYY');
 
-        var dStart = '2' + year + month + date + '000000';
-        var dEnd = '2' + year + month + (parseInt(date)+1)   + '000000';
+        if (date == null || date == '' || date.length < 6) {
+            date = moment().format('YYYYMMDD');
+
+        }
+
+        var dStart = '1' + date + '000000';
+        var dEnd = '1' + date + '999999';
         console.log(dStart, dEnd);
         sync = sync.orderByChild('StatusTgl').startAt(dStart).endAt(dEnd).limitToFirst(500);
         return $firebase(sync).$asArray();
@@ -151,20 +152,25 @@ angular.module('Fbase', ['app', 'firebase'])
 }])
 
 .service("TiketPelniIssuedMonthArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
-    var get = function(date, month, year) {
+    var get = function(date) {
         var sync = Fbase.child('tiketpelni');
-       
-             date = moment().format('DD');
-            month = moment().format('MM');
-            year = moment().format('YYYY');
 
-        var dStart = '2' + year + month + '01' + '000000';
-        var dEnd = '2' + year + month + '31'   + '999999';
+
+        if (date == null || date == '' || date.length < 6) {
+            var monthYear = moment().format('YYYYMM');
+            var endDate = moment().endOf('month').format('DD');
+        } else {
+            var monthYear = moment(date, 'YYYYMMDD').format('YYYYMM');
+            var endDate = moment(date, 'YYYYMMDD').endOf('month').format('DD');
+        }
+
+
+        var dStart = '1' + monthYear + '01' + '000000';
+        var dEnd = '1' + monthYear + endDate + '999999';
         console.log(dStart, dEnd);
         sync = sync.orderByChild('StatusTgl').startAt(dStart).endAt(dEnd).limitToFirst(500);
         return $firebase(sync).$asArray();
     }
-
     return get;
 }])
 
@@ -191,6 +197,46 @@ angular.module('Fbase', ['app', 'firebase'])
 
     return get;
 }])
+
+.service("TiketPelniPrintDayArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
+    var get = function(date) {
+        var sync = Fbase.child('tiketpelni');
+
+        if (date == null || date == '' || date.length < 6) {
+            date = moment().format('YYYYMMDD');
+        }
+
+        var dStart = '2' + date + '000000';
+        var dEnd = '2' + date + '999999';
+
+        sync = sync.orderByChild('StatusTgl').startAt(dStart).endAt(dEnd);
+        return $firebase(sync).$asArray();
+    }
+
+    return get;
+}])
+
+.service("TiketPelniPrintMonthArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
+    var get = function(date) {
+        var sync = Fbase.child('tiketpelni');
+
+        if (date == null || date == '' || date.length < 6) {
+            var monthYear = moment().format('YYYYMM');
+            var endDate = moment().endOf('month').format('DD');
+        } else {
+            var monthYear = moment(date, 'YYYYMMDD').format('YYYYMM');
+            var endDate = moment(date, 'YYYYMMDD').endOf('month').format('DD');
+        }
+
+        var dStart = '2' + monthYear + '01' + '000000';
+        var dEnd = '2' + monthYear + endDate + '999999';
+        sync = sync.orderByChild('StatusTgl').startAt(dStart).endAt(dEnd);
+        return $firebase(sync).$asArray();
+    }
+
+    return get;
+}])
+
 
 .factory("ReqJadwalPelniRef", ['Fbase', 'FbAuth', "$firebase", function(Fbase, FbAuth, $firebase) {
     var objRef = null

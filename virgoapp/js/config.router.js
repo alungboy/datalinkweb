@@ -278,7 +278,7 @@ angular.module('app')
 
                 // STATE STOCK TIKET
                 .state('app.pelni.stockpenjualan', {
-                    url: '/stockpenjualan/:date/:month/:year',
+                    url: '/stockpenjualan/:date',
                     templateUrl: 'views/pelni/stockpenjualan/stockpenjualan.html',
                     controller: 'StockPenjualanPelniCtrl',
                     resolve: {
@@ -290,13 +290,25 @@ angular.module('app')
                         ],
                         tiketIssuedDay: ['$stateParams', 'TiketPelniIssuedDayArr',
                             function($stateParams, TiketPelniIssuedDayArr) {
-                                return TiketPelniIssuedDayArr($stateParams.date, $stateParams.month, $stateParams.year)
+                                return TiketPelniIssuedDayArr($stateParams.date)
                                     .$loaded();
                             }
                         ],
                         tiketIssuedMonth: ['$stateParams', 'TiketPelniIssuedMonthArr',
                             function($stateParams, TiketPelniIssuedMonthArr) {
-                                return TiketPelniIssuedMonthArr($stateParams.date, $stateParams.month, $stateParams.year)
+                                return TiketPelniIssuedMonthArr($stateParams.date)
+                                    .$loaded();
+                            }
+                        ],
+                        tiketPrintDay: ['$stateParams', 'TiketPelniPrintDayArr',
+                            function($stateParams, TiketPelniPrintDayArr) {
+                                return TiketPelniPrintDayArr($stateParams.date)
+                                    .$loaded();
+                            }
+                        ],
+                        tiketPrintMonth: ['$stateParams', 'TiketPelniPrintMonthArr',
+                            function($stateParams, TiketPelniPrintMonthArr) {
+                                return TiketPelniPrintMonthArr($stateParams.date)
                                     .$loaded();
                             }
                         ],
