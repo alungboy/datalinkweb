@@ -60,7 +60,7 @@ app.controller('PrintTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
             var paramSize = parseInt($stateParams.pageSize);
             if ($scope.listTiketIssued.length >= paramSize) {
 
-                $state.transitionTo('app.pelni.stocktiket', {
+                $state.transitionTo('app.pelni.printtiket', {
                     startDate: null,
                     pageSize: paramSize + 10,
                     asc: null

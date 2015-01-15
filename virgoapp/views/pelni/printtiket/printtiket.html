@@ -69,18 +69,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="(key ,value) in listTiketIssued | orderBy:'PrintedOutAt':true | filter: search">
+                    <tr class="fadeInRight animated" ng-repeat="(key ,value) in listTiketIssued | orderBy:'PrintedOutAt':true | filter: search">
                         <td>{{key + 1}}</td>
                         <td>{{value.NoTiket}}</td>
                         <td>{{value.Nama}}</td>
                         <td>
-                            <span tooltip="{{value.PrintedOutAt | date:'dd-MM-yyyy HH:mm:ss'}}">
+                            <span title="{{value.PrintedOutAt | date:'dd-MM-yyyy HH:mm:ss'}}">
                             {{timeFromNow(value.PrintedOutAt)}}
                             </span>
                         </td>
                         <td>{{getStatusName(value.Status)}}</td>
                         <td>
-                            <span tooltip="{{value.IssuedAt | date:'dd-MM-yyyy HH:mm:ss'}}">
+                            <span title="{{value.IssuedAt | date:'dd-MM-yyyy HH:mm:ss'}}">
                             {{timeFromNow(value.IssuedAt)}}
                             </span>
                         </td>
