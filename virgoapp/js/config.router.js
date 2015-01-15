@@ -294,6 +294,12 @@ angular.module('app')
                                     .$loaded();
                             }
                         ],
+                        tiketIssuedMonth: ['$stateParams', 'TiketPelniIssuedMonthArr',
+                            function($stateParams, TiketPelniIssuedMonthArr) {
+                                return TiketPelniIssuedMonthArr($stateParams.date, $stateParams.month, $stateParams.year)
+                                    .$loaded();
+                            }
+                        ],
                     }
                 })
 

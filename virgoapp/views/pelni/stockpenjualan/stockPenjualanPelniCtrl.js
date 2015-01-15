@@ -1,8 +1,9 @@
 'use strict';
-app.controller('StockPenjualanPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'tiketBaik', 'tiketIssuedDay',
-    function($scope, $rootScope, $stateParams, $state, tiketBaik, tiketIssuedDay) {
+app.controller('StockPenjualanPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'tiketBaik', 'tiketIssuedDay', 'tiketIssuedMonth',
+    function($scope, $rootScope, $stateParams, $state, tiketBaik, tiketIssuedDay, tiketIssuedMonth) {
         $scope.sumTiketBaik = tiketBaik.length;
         $scope.sumTiketIssuedDay = tiketIssuedDay.length;
+        $scope.sumTiketIssuedMonth = tiketIssuedMonth.length;
 
 
         $scope.timeFromNow = function(input) {

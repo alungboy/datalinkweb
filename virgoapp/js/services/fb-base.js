@@ -141,9 +141,27 @@ angular.module('Fbase', ['app', 'firebase'])
             year = moment().format('YYYY');
 
         var dStart = '2' + year + month + date + '000000';
-        var dEnd = '2' + year + month + date + '999999';
+        var dEnd = '2' + year + month + (parseInt(date)+1)   + '000000';
         console.log(dStart, dEnd);
-        sync = sync.orderByChild('StatusTgl').startAt(dStart).endAt(dEnd);
+        sync = sync.orderByChild('StatusTgl').startAt(dStart).endAt(dEnd).limitToFirst(500);
+        return $firebase(sync).$asArray();
+    }
+
+    return get;
+}])
+
+.service("TiketPelniIssuedMonthArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
+    var get = function(date, month, year) {
+        var sync = Fbase.child('tiketpelni');
+       
+             date = moment().format('DD');
+            month = moment().format('MM');
+            year = moment().format('YYYY');
+
+        var dStart = '2' + year + month + '01' + '000000';
+        var dEnd = '2' + year + month + '31'   + '999999';
+        console.log(dStart, dEnd);
+        sync = sync.orderByChild('StatusTgl').startAt(dStart).endAt(dEnd).limitToFirst(500);
         return $firebase(sync).$asArray();
     }
 
