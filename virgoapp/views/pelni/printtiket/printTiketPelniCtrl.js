@@ -168,7 +168,7 @@ app.controller('PrintTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
             });;
 
             $scope.errMsg = "";
-            alert('Kirim Data Ke Printer ' + $scope.barcodePrint + '\n' + $scope.selected.PrintOut);
+            // alert('Kirim Data Ke Printer ' + $scope.barcodePrint + '\n' + $scope.selected.PrintOut);
             $scope.selected = null;
             $scope.showDetail = false;
             $scope.disTiket = false;

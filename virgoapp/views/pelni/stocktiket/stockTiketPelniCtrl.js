@@ -69,29 +69,29 @@ app.controller('StockTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
         };
 
 
-        $scope.showAll = function() {
-            var paramSize = parseInt($stateParams.pageSize);
-            if (paramSize == 2000) {
-                return true;
-            } else {
-                return false;
-            }
+        // $scope.showAll = function() {
+        //     var paramSize = parseInt($stateParams.pageSize);
+        //     if (paramSize == 2000) {
+        //         return true;
+        //     } else {
+        //         return false;
+        //     }
 
-        };
+        // };
 
-        $scope.loadAll = function() {
-            var paramSize = parseInt($stateParams.pageSize);
+        // $scope.loadAll = function() {
+        //     var paramSize = parseInt($stateParams.pageSize);
 
-            if ($scope.listTiketBaik.length >= paramSize) {
+        //     if ($scope.listTiketBaik.length >= paramSize) {
 
-                $state.transitionTo('app.pelni.stocktiket', {
-                    startDate: null,
-                    pageSize: 2000,
-                    asc: null
+        //         $state.transitionTo('app.pelni.stocktiket', {
+        //             startDate: null,
+        //             pageSize: 2000,
+        //             asc: null
 
-                });
-            }
-        };
+        //         });
+        //     }
+        // };
 
         $scope.tambahStock = function(e) {
             e.preventDefault();

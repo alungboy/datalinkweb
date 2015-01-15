@@ -107,6 +107,7 @@ angular.module('Fbase', ['app', 'firebase'])
     return get;
 }])
 
+
 .service("TiketPelniIssuedArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
     var get = function(startDate, pageSize, asc) {
         if (!pageSize) {
@@ -125,6 +126,24 @@ angular.module('Fbase', ['app', 'firebase'])
             sync = sync.limitToFirst(pageSize);
         }
 
+        return $firebase(sync).$asArray();
+    }
+
+    return get;
+}])
+
+.service("TiketPelniIssuedDayArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
+    var get = function(date, month, year) {
+        var sync = Fbase.child('tiketpelni');
+       
+            date = moment().format('DD');
+            month = moment().format('MM');
+            year = moment().format('YYYY');
+
+        var dStart = '2' + year + month + date + '000000';
+        var dEnd = '2' + year + month + date + '999999';
+        console.log(dStart, dEnd);
+        sync = sync.orderByChild('StatusTgl').startAt(dStart).endAt(dEnd);
         return $firebase(sync).$asArray();
     }
 
@@ -216,7 +235,7 @@ angular.module('Fbase', ['app', 'firebase'])
     var timeEnd = '999999999999'
     var get = function(idKapal) {
 
-        var obj = $firebase(Fbase.child('jadwalpelni').orderByChild('KapalTgl').startAt(idKapal+'-' + timeNow).endAt(idKapal+ '-' + timeEnd));
+        var obj = $firebase(Fbase.child('jadwalpelni').orderByChild('KapalTgl').startAt(idKapal + '-' + timeNow).endAt(idKapal + '-' + timeEnd));
 
         return obj.$asArray();
     };
