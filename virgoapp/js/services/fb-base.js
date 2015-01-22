@@ -105,10 +105,10 @@ angular.module('Fbase', ['app', 'firebase'])
             pageSize = 10;
         }
         var sync = Fbase.child('tiketpelni');
-        if (!startDate || startDate.length !== 14) {
-            sync = sync.orderByChild('StatusTgl').startAt(100000000000000).endAt(199999999999999);
+        if (!startDate || startDate.length !== 13) {
+            sync = sync.orderByChild('StatusTgl').startAt(10000000000000).endAt(19999999999999);
         } else {
-            sync = sync.orderByChild('StatusTgl').startAt(parseInt('1' + startDate)).endAt(199999999999999);
+            sync = sync.orderByChild('StatusTgl').startAt(parseInt('1' + startDate)).endAt(19999999999999);
         }
 
         if (!asc || asc == '' || asc == 0) {
@@ -130,10 +130,10 @@ angular.module('Fbase', ['app', 'firebase'])
             pageSize = 10;
         }
         var sync = Fbase.child('tiketpelni');
-        if (!startDate || startDate.length !== 14) {
-            sync = sync.orderByChild('StatusTgl').startAt(200000000000000).endAt(299999999999999);
+        if (!startDate || startDate.length !== 13) {     
+            sync = sync.orderByChild('StatusTgl').startAt(20000000000000).endAt(29999999999999);
         } else {
-            sync = sync.orderByChild('StatusTgl').startAt(parseInt('2' + startDate)).endAt(299999999999999);
+            sync = sync.orderByChild('StatusTgl').startAt(parseInt('2' + startDate)).endAt(29999999999999);
         }
 
         if (!asc || asc == '' || asc == 0) {
@@ -185,7 +185,7 @@ angular.module('Fbase', ['app', 'firebase'])
         }
 
 
-        var dStart = parseInt('2' + monthYear + '01' + '000000');
+        var dStart = parseInt('2' + monthYear + '01' + '00000');
         var dEnd = parseInt('2' + monthYear + endDate + '999999');
         sync = sync.orderByChild('StatusTgl').startAt(dStart).endAt(dEnd);
         return $firebase(sync).$asArray();
