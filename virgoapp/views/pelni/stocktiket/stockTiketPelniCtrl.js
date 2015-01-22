@@ -121,7 +121,7 @@ app.controller('StockTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
                 return;
             }
 
-            var dateStr = moment().format('YYYYMMDDHHmmss');
+            var dateStr = moment().valueOf();
             var tiketPost = {
                 NoTiket: noTiketInt,
                 CreatedAt: {

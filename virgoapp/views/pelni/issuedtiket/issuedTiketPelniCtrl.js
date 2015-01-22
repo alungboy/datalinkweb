@@ -95,14 +95,14 @@ app.controller('IssuedTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
                 return;
             }
 
-            var dateStr = moment().format('YYYYMMDDHHmmss');
+            var dateStr = moment().valueOf();
             var tiketPost = {
                 IssuedAt: {
                     '.sv': 'timestamp'
                 },
                 IssuedBy: $rootScope.User.uid,
                 Status: 2,
-                StatusTgl: ParseInt('2' + dateStr),
+                StatusTgl: parseInt('2' + dateStr),
             }
 
             ReqIssuedPelniRef().$push({
@@ -127,7 +127,7 @@ app.controller('IssuedTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
                     }
 
                     var fbDb = $scope.listTiketIssued.$inst();
-
+                    console.log(tiketPost);
                     fbDb.$update('' + noTiketInt, tiketPost).then(function(ref) {
                         $scope.okMsg = "No Tiket " + noTiketInt + " berhasil ditambahkan!";
                         $scope.tiketBaru = '';

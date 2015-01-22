@@ -13,6 +13,25 @@ app.controller('PenujualanHarianReportPelniCtrl', ['$scope', '$rootScope', '$sta
 
         $scope.calendar = new Date(moment($stateParams.date, 'YYYYMMDD').valueOf());
 
+        $scope.getStatusName = function(input) {
+            if (input == 1) {
+                return 'Baik'
+            }
+            if (input == 2) {
+                return 'Issued'
+            }
+            if (input == 3) {
+                return 'Batal'
+            }
+            if (input == 4) {
+                return 'Rusak'
+            }
+            if (input == 5) {
+                return 'Hilang'
+            }
+            return '';
+        };
+
         $scope.showLoadMore = function() {
             var paramSize = parseInt($stateParams.pageSize);
             if ($scope.listIssuedDay.length >= paramSize) {
@@ -29,7 +48,7 @@ app.controller('PenujualanHarianReportPelniCtrl', ['$scope', '$rootScope', '$sta
 
                 $state.transitionTo('app.pelni.penjualanharianreport', {
                     date: $stateParams.date,
-                    pageSize: paramSize + 50
+                    pageSize: paramSize + 2000
                 });
             }
         };
@@ -38,7 +57,7 @@ app.controller('PenujualanHarianReportPelniCtrl', ['$scope', '$rootScope', '$sta
         $scope.search = function() {
             $state.transitionTo('app.pelni.penjualanharianreport', {
                 date: moment($scope.calendar).format('YYYYMMDD'),
-                pageSize: 50
+                pageSize: 2000
             });
         };
 

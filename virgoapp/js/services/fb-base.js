@@ -130,7 +130,7 @@ angular.module('Fbase', ['app', 'firebase'])
             pageSize = 10;
         }
         var sync = Fbase.child('tiketpelni');
-        if (!startDate || startDate.length !== 13) {     
+        if (!startDate || startDate.length !== 13) {
             sync = sync.orderByChild('StatusTgl').startAt(20000000000000).endAt(29999999999999);
         } else {
             sync = sync.orderByChild('StatusTgl').startAt(parseInt('2' + startDate)).endAt(29999999999999);
@@ -153,16 +153,19 @@ angular.module('Fbase', ['app', 'firebase'])
         var sync = Fbase.child('tiketpelni');
 
         if (date == null || date == '' || date.length !== 8) {
-            date = moment().format('YYYYMMDD');
-
+            var dayStart = moment().startOf('day').valueOf();
+            var dayEnd = moment().endOf('day').valueOf();
+        } else {
+            var dayStart = moment(date, 'YYYYMMDD').startOf('day').valueOf();
+            var dayEnd = moment(date, 'YYYYMMDD').endOf('day').valueOf();
         }
         pageSize = parseInt(pageSize);
-        if (!pageSize || pageSize < 50) {
-            pageSize = 50;
+        if (!pageSize || pageSize < 2000) {
+            pageSize = 2000;
         }
 
-        var dStart = parseInt('2' + date + '000000');
-        var dEnd = parseInt('2' + date + '999999');
+        var dStart = parseInt('2' + dayStart);
+        var dEnd = parseInt('2' + dayEnd);
         sync = sync.orderByChild('StatusTgl').startAt(dStart).endAt(dEnd).limitToLast(pageSize);
 
         return $firebase(sync).$asArray();
@@ -177,16 +180,16 @@ angular.module('Fbase', ['app', 'firebase'])
 
 
         if (date == null || date == '' || date.length !== 8) {
-            var monthYear = moment().format('YYYYMM');
-            var endDate = moment().endOf('month').format('DD');
+            var dStart = moment().startOf('month').valueOf();
+            var dEnd = moment().endOf('month').valueOf();
         } else {
-            var monthYear = moment(date, 'YYYYMMDD').format('YYYYMM');
-            var endDate = moment(date, 'YYYYMMDD').endOf('month').format('DD');
+            var dStart = moment(date, 'YYYYMMDD').startOf('month').valueOf();
+            var dEnd = moment(date, 'YYYYMMDD').endOf('month').valueOf();
         }
 
+        dStart = parseInt('2' + dStart);
+        dEnd = parseInt('2' + dEnd);
 
-        var dStart = parseInt('2' + monthYear + '01' + '00000');
-        var dEnd = parseInt('2' + monthYear + endDate + '999999');
         sync = sync.orderByChild('StatusTgl').startAt(dStart).endAt(dEnd);
         return $firebase(sync).$asArray();
     }
@@ -218,16 +221,16 @@ angular.module('Fbase', ['app', 'firebase'])
 
 
         if (date == null || date == '' || date.length !== 8) {
-            var monthYear = moment().format('YYYYMM');
-            var endDate = moment().endOf('month').format('DD');
+            var dStart = moment().startOf('month').valueOf();
+            var dEnd = moment().endOf('month').valueOf();
         } else {
-            var monthYear = moment(date, 'YYYYMMDD').format('YYYYMM');
-            var endDate = moment(date, 'YYYYMMDD').endOf('month').format('DD');
+            var dStart = moment(date, 'YYYYMMDD').startOf('month').valueOf();
+            var dEnd = moment(date, 'YYYYMMDD').endOf('month').valueOf();
         }
 
+        dStart = parseInt('4' + dStart);
+        dEnd = parseInt('4' + dEnd);
 
-        var dStart = parseInt('4' + monthYear + '01' + '000000');
-        var dEnd = parseInt('4' + monthYear + endDate + '999999');
         sync = sync.orderByChild('StatusTgl').startAt(dStart).endAt(dEnd);
         return $firebase(sync).$asArray();
     }
@@ -240,16 +243,15 @@ angular.module('Fbase', ['app', 'firebase'])
 
 
         if (date == null || date == '' || date.length !== 8) {
-            var monthYear = moment().format('YYYYMM');
-            var endDate = moment().endOf('month').format('DD');
+            var dStart = moment().startOf('month').valueOf();
+            var dEnd = moment().endOf('month').valueOf();
         } else {
-            var monthYear = moment(date, 'YYYYMMDD').format('YYYYMM');
-            var endDate = moment(date, 'YYYYMMDD').endOf('month').format('DD');
+            var dStart = moment(date, 'YYYYMMDD').startOf('month').valueOf();
+            var dEnd = moment(date, 'YYYYMMDD').endOf('month').valueOf();
         }
 
-
-        var dStart = parseInt('3' + monthYear + '01' + '000000');
-        var dEnd = parseInt('3' + monthYear + endDate + '999999');
+        dStart = parseInt('3' + dStart);
+        dEnd = parseInt('3' + dEnd);
         sync = sync.orderByChild('StatusTgl').startAt(dStart).endAt(dEnd);
         return $firebase(sync).$asArray();
     }
@@ -260,18 +262,16 @@ angular.module('Fbase', ['app', 'firebase'])
     var get = function(date) {
         var sync = Fbase.child('tiketpelni');
 
-
         if (date == null || date == '' || date.length !== 8) {
-            var monthYear = moment().format('YYYYMM');
-            var endDate = moment().endOf('month').format('DD');
+            var dStart = moment().startOf('month').valueOf();
+            var dEnd = moment().endOf('month').valueOf();
         } else {
-            var monthYear = moment(date, 'YYYYMMDD').format('YYYYMM');
-            var endDate = moment(date, 'YYYYMMDD').endOf('month').format('DD');
+            var dStart = moment(date, 'YYYYMMDD').startOf('month').valueOf();
+            var dEnd = moment(date, 'YYYYMMDD').endOf('month').valueOf();
         }
 
-
-        var dStart = parseInt('5' + monthYear + '01' + '000000');
-        var dEnd = parseInt('5' + monthYear + endDate + '999999');
+        dStart = parseInt('5' + dStart);
+        dEnd = parseInt('5' + dEnd);
         sync = sync.orderByChild('StatusTgl').startAt(dStart).endAt(dEnd);
         return $firebase(sync).$asArray();
     }

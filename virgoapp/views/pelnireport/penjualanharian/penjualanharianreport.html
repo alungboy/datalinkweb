@@ -35,8 +35,8 @@
                         <th style="width:20px;">No</th>
                         <th>No Tiket </th>
                         <th>Status</th>
-                        <th>Tgl Masuk</th>
-                        <th>Diterima Oleh</th>
+                        <th>Tgl Issued</th>
+                        <th>Diissued Oleh</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,15 +46,15 @@
 
                         <td>{{getStatusName(value.Status)}}</td>
                         <td>
-                            <span title="{{value.CreatedAt | date:'dd-MM-yyyy HH:mm:ss'}}">
-                            {{timeFromNow(value.CreatedAt)}}
+                            <span title="{{value.IssuedAt | date:'dd-MM-yyyy HH:mm:ss'}}">
+                            {{timeFromNow(value.IssuedAt)}}
                             </span>
                        
                         </td>
                         <td>
                             <span class="thumb-sm avatar m-t-n-sm m-b-n-sm m-l-sm">
-                            <a ng-href="https://www.facebook.com/{{getUserByUid(value.CreatedBy).facebook.id}}" target="_blank">
-                            <img ng-src="https://graph.facebook.com/{{getUserByUid(value.CreatedBy).facebook.id}}/picture?type=square" tooltip="{{getUserByUid(value.CreatedBy).facebook.displayName}}" style="width:80%;">
+                            <a ng-href="https://www.facebook.com/{{getUserByUid(value.IssuedBy).facebook.id}}" target="_blank">
+                            <img ng-src="https://graph.facebook.com/{{getUserByUid(value.IssuedBy).facebook.id}}/picture?type=square" tooltip="{{getUserByUid(value.IssuedBy).facebook.displayName}}" style="width:80%;">
                             </a>
                             </span>
                              
