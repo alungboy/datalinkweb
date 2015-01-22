@@ -1,0 +1,283 @@
+<div class="hbox hbox-auto-xs bg-light">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Search Status Tiket Kapal Pelni
+        </div>
+        <div class="row wrapper">
+            <div class="col-sm-4 m-b-xs">
+                <form ng-submit="tampilkanData($event)">
+                    <div class="input-group">
+                        <input class="form-control input-sm" type="text" ng-model="tiketBaru" placeholder="Scan Barcode Tiket" ng-disabled="disTiket" id="inputTiket">
+                        <span class="input-group-btn">
+                            <button class="btn btn-sm btn-default" type="submit" ng-hide="showDetail">
+                                Tampilkan Data Tiket
+                            </button>
+            
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-4">
+
+                <div ng-show="errMsg" class="alert alert-danger">
+                    {{errMsg}}
+                </div>
+
+                <div ng-show="okMsg" class="alert alert-success">
+                    {{okMsg}}
+                </div>
+
+            </div>
+            <div class="col-sm-3">
+
+            </div>
+        </div>
+        <div class="row wrapper">
+            <div class="col-sm-4" ng-hide="tiketSingle.IssuedAt == null">
+                <div class="panel panel-success">
+                    <div class="panel-heading" style="background-color: #dff0d8;">
+                        <div class="clearfix">
+                            <a href="" class="pull-left thumb-md avatar b-3x m-r">
+                                <img ng-src="https://graph.facebook.com/{{getUserByUid(tiketSingle.IssuedBy).facebook.id}}/picture?type=square">
+                            </a>
+                            <div class="clear">
+                                <div class="h3 m-t-xs m-b-xs">
+                                    {{tiketSingle.NoTiket}}
+                                    <i class="fa fa-circle text-default pull-right text-xs m-t-sm"></i>
+                                </div>
+                                <small>Status: <b>{{getStatusName(tiketSingle.Status)}}</b>
+                                    <b class="pull-right">ISSUED TIKET</b>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group no-radius alt">
+
+                        <a class="list-group-item" href="">
+                            <i class="fa fa-calendar-o fa-fw text-muted"></i> Tgl Issued
+                            <span class="pull-right">
+                                <b>{{getDayFromTime(tiketSingle.IssuedAt)}}</b>
+                             </span>
+                        </a>
+                        <a class="list-group-item" href="">
+                            <i class="fa fa-desktop fa-fw text-muted"></i> Diisued Oleh
+                            <span class="pull-right">
+                                <b>{{getUserByUid(tiketSingle.IssuedBy).facebook.displayName}}</b>
+                             </span>
+                        </a>
+                        <a class="list-group-item" href="" ng-hide="tiketSingle.Nama == null">
+                            <i class="fa fa-user fa-fw text-muted"></i> Nama Penumpang
+                            <span class="pull-right">
+                                <b>{{tiketSingle.Nama}}</b>
+                             </span>
+                        </a>
+                        <a class="list-group-item" href="" ng-hide="tiketSingle.PrintedOutAt == null">
+                            <i class="fa fa-print fa-fw text-muted"></i> Tgl Print Out
+                            <span class="pull-right">
+                                <b>{{getDayFromTime(tiketSingle.PrintedOutAt)}}</b>
+                             </span>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4" ng-hide="tiketSingle.CreatedAt == null">
+                <div class="panel panel-info">
+                    <div class="panel-heading" style="background-color: #d9edf7;">
+                        <div class="clearfix">
+                            <a href="" class="pull-left thumb-md avatar b-3x m-r">
+                                <img ng-src="https://graph.facebook.com/{{getUserByUid(tiketSingle.CreatedBy).facebook.id}}/picture?type=square">
+                            </a>
+                            <div class="clear">
+                                <div class="h3 m-t-xs m-b-xs">
+                                    {{tiketSingle.NoTiket}}
+                                    <i class="fa fa-circle text-info pull-right text-xs m-t-sm"></i>
+                                </div>
+                                <small>Status: <b>{{getStatusName(tiketSingle.Status)}}</b>
+                                        <b class="pull-right">STOCK TIKET</b>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group no-radius alt">
+                        <a class="list-group-item" href="">
+                            <i class="fa fa-calendar-o fa-fw text-muted"></i> Tgl Stock
+                            <span class="pull-right">
+                                <b>{{getDayFromTime(tiketSingle.CreatedAt)}}</b>
+                             </span>
+                        </a>
+                        <a class="list-group-item" href="">
+                            <i class="fa fa-download fa-fw text-muted"></i> Stock Oleh
+                            <span class="pull-right">
+                                <b>{{getUserByUid(tiketSingle.CreatedBy).facebook.displayName}}</b>
+                             </span>
+                        </a>
+                        <a class="list-group-item" href="">
+                            <i class="fa fa-tags fa-fw text-user"></i> Jenis Tiket
+                            <span class="pull-right">
+                                <b>Single Tiket</b>
+                            </span>
+                        </a>
+                        <a class="list-group-item" href="">
+                            <i class="fa fa-share-alt fa-fw text-muted"></i> Tiket Dari
+                            <span class="pull-right">
+                                <b>PT. Pelni Cabang Bitung</b>
+                            </span>
+                        </a>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4" ng-hide="tiketSingle.VoidAt == null">
+                <div class="panel panel-danger">
+                    <div class="panel-heading" style="background-color: #f2dede;">
+                        <div class="clearfix">
+                            <a href="" class="pull-left thumb-md avatar b-3x m-r">
+                                <img ng-src="https://graph.facebook.com/{{getUserByUid(tiketSingle.VoidBy).facebook.id}}/picture?type=square">
+                            </a>
+                            <div class="clear">
+                                <div class="h3 m-t-xs m-b-xs">
+                                    {{tiketSingle.NoTiket}}
+                                    <i class="fa fa-circle text-primary pull-right text-xs m-t-sm"></i>
+                                </div>
+                                <small>Status: <b>{{getStatusName(tiketSingle.Status)}}</b>
+                                        <b class="pull-right">TIKET RUSAK</b>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group no-radius alt">
+                        <a class="list-group-item" href="">
+                            <i class="fa fa-calendar-o fa-fw text-muted"></i> Tgl Rusak
+                            <span class="pull-right">
+                                <b>{{getDayFromTime(tiketSingle.VoidAt)}}</b>
+                             </span>
+                        </a>
+                        <a class="list-group-item" href="">
+                            <i class="fa fa-times fa-fw text-muted"></i> Penanggungjawab
+                            <span class="pull-right">
+                                <b>{{getUserByUid(tiketSingle.VoidBy).facebook.displayName}}</b>
+                             </span>
+                        </a>
+                        <a class="list-group-item" href="">
+                            <i class="fa fa-tags fa-fw text-user"></i> Jenis Tiket
+                            <span class="pull-right">
+                                <b>Single Tiket</b>
+                            </span>
+                        </a>
+                        <a class="list-group-item" href="">
+                            <i class="fa fa-share-alt fa-fw text-muted"></i> Tiket Dari
+                            <span class="pull-right">
+                                <b>PT. Pelni Cabang Bitung</b>
+                            </span>
+                        </a>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4" ng-hide="tiketSingle.CancelAt == null">
+                <div class="panel panel-warning">
+                    <div class="panel-heading" style="background-color: #fcf8e3;">
+                        <div class="clearfix">
+                            <a href="" class="pull-left thumb-md avatar b-3x m-r">
+                                <img ng-src="https://graph.facebook.com/{{getUserByUid(tiketSingle.CancelBy).facebook.id}}/picture?type=square">
+                            </a>
+                            <div class="clear">
+                                <div class="h3 m-t-xs m-b-xs">
+                                    {{tiketSingle.NoTiket}}
+                                    <i class="fa fa-circle text-warning pull-right text-xs m-t-sm"></i>
+                                </div>
+                                <small>Status: <b>{{getStatusName(tiketSingle.Status)}}</b>
+                                        <span class="pull-right">TIKET BATAL</span>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group no-radius alt">
+                        <a class="list-group-item" href="">
+                            <i class="fa fa-calendar-o fa-fw text-muted"></i> Tgl Batal
+                            <span class="pull-right">
+                                <b>{{getDayFromTime(tiketSingle.CancelAt)}}</b>
+                             </span>
+                        </a>
+                        <a class="list-group-item" href="">
+                            <i class="fa fa-times fa-fw text-muted"></i> Penanggungjawab
+                            <span class="pull-right">
+                                <b>{{getUserByUid(tiketSingle.CancelBy).facebook.displayName}}</b>
+                             </span>
+                        </a>
+                        <a class="list-group-item" href="">
+                            <i class="fa fa-tags fa-fw text-user"></i> Jenis Tiket
+                            <span class="pull-right">
+                                <b>Single Tiket</b>
+                            </span>
+                        </a>
+                        <a class="list-group-item" href="">
+                            <i class="fa fa-share-alt fa-fw text-muted"></i> Tiket Dari
+                            <span class="pull-right">
+                                <b>PT. Pelni Cabang Bitung</b>
+                            </span>
+                        </a>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4" ng-hide="tiketSingle.MissingAt == null">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="clearfix">
+                            <a href="" class="pull-left thumb-md avatar b-3x m-r">
+                                <img ng-src="https://graph.facebook.com/{{getUserByUid(tiketSingle.MissingBy).facebook.id}}/picture?type=square">
+                            </a>
+                            <div class="clear">
+                                <div class="h3 m-t-xs m-b-xs">
+                                    {{tiketSingle.NoTiket}}
+                                    <i class="fa fa-circle text-default pull-right text-xs m-t-sm"></i>
+                                </div>
+                                <small>Status: <b>{{getStatusName(tiketSingle.Status)}}</b>
+                                        <span class="pull-right">Tiket Hilang</span>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group no-radius alt">
+                        <a class="list-group-item" href="">
+                            <i class="fa fa-calendar-o fa-fw text-muted"></i> Tgl Hilang
+                            <span class="pull-right">
+                                <b>{{getDayFromTime(tiketSingle.MissingAt)}}</b>
+                             </span>
+                        </a>
+                        <a class="list-group-item" href="">
+                            <i class="fa fa-times fa-fw text-muted"></i> Penanggungjawab
+                            <span class="pull-right">
+                                <b>{{getUserByUid(tiketSingle.MissingBy).facebook.displayName}}</b>
+                             </span>
+                        </a>
+                        <a class="list-group-item" href="">
+                            <i class="fa fa-tags fa-fw text-user"></i> Jenis Tiket
+                            <span class="pull-right">
+                                <b>Single Tiket</b>
+                            </span>
+                        </a>
+                        <a class="list-group-item" href="">
+                            <i class="fa fa-share-alt fa-fw text-muted"></i> Tiket Dari
+                            <span class="pull-right">
+                                <b>PT. Pelni Cabang Bitung</b>
+                            </span>
+                        </a>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="panel-footer">
+
+        </footer>
+    </div>
+</div>

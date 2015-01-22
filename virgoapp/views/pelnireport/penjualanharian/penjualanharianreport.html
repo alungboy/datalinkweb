@@ -1,33 +1,28 @@
 <div class=" hbox hbox-auto-xs bg-light ">
     <div class="panel panel-default">
         <div class="panel-heading">
-            List Penjualan Harian <span class="pull-right"></span>
+            Penjualan Harian Pelni - <b>{{getDayDateYear()}}</b>
+             Total: <b> {{listIssuedDay.length}}</b>
+
         </div>
         <div class="row wrapper">
-            <div class="col-sm-4 m-b-xs">
-                <form ng-submit="tambahStock($event)">
+            <div class="col-sm-3 m-b-xs">
+              
                     <div class="input-group">
-                        <input class="form-control input-sm" type="text" ng-model="tiketBaru" placeholder="Scan Barcode">
+                        <input class="form-control input-sm" type="date" ng-model="calendar">
                         <span class="input-group-btn">
-                            <button class="btn btn-sm btn-default" type="submit">
-                                Tambah Stock
+                            <button class="btn btn-sm btn-default" type="button" ng-click="search()">
+                                Search
                             </button>
                         </span>
                     </div>
-                </form>
+            
 
             </div>
 
-            <div class="col-sm-5">
+            <div class="col-sm-6">
 
-                <div ng-show="errMsg" class="alert alert-danger">
-                    {{errMsg}}
-                </div>
-
-                <div ng-show="okMsg" class="alert alert-success">
-                    {{okMsg}}
-                </div>
-
+                
             </div>
             <div class="col-sm-3">
                 
@@ -45,7 +40,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="fadeInRight animated" ng-repeat="(key ,value) in listTiketBaik | orderBy:'CreatedAt':true |filter: search">
+                    <tr class="fadeInRight animated" ng-repeat="(key ,value) in listIssuedDay | orderBy:'CreatedAt':true ">
                         <td>{{key + 1}}</td>
                         <td>{{value.NoTiket}}</td>
 

@@ -15,14 +15,11 @@ app.controller('StockTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
         };
         
         $scope.getStatusName = function(input) {
-            if (input == 0) {
+            if (input == 1) {
                 return 'Baik'
             }
-            if (input == 1) {
-                return 'Issued'
-            }
             if (input == 2) {
-                return 'Print'
+                return 'Issued'
             }
             if (input == 3) {
                 return 'Batal'
@@ -51,7 +48,6 @@ app.controller('StockTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
             } else {
                 return false;
             }
-
         };
 
         $scope.loadMore = function() {
@@ -132,8 +128,8 @@ app.controller('StockTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
                     '.sv': 'timestamp'
                 },
                 CreatedBy: $rootScope.User.uid,
-                Status: 0,
-                StatusTgl: '0' + dateStr,
+                Status: 1,
+                StatusTgl: parseInt('1' + dateStr),
             }
 
             var fbDb = $scope.listTiketBaik.$inst();
@@ -152,8 +148,6 @@ app.controller('StockTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
                 $scope.tiketBaru = '';
                 return;
             });
-
-
         };
 
     }

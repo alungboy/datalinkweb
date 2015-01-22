@@ -1,11 +1,8 @@
 'use strict';
-app.controller('StockPenjualanPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'tiketBaik', 'tiketIssuedDay', 'tiketPrintDay', 'tiketIssuedMonth', 'tiketPrintMonth',
-    function($scope, $rootScope, $stateParams, $state, tiketBaik, tiketIssuedDay, tiketPrintDay, tiketIssuedMonth, tiketPrintMonth) {
+app.controller('StockTiketReportPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'tiketBaik',
+    function($scope, $rootScope, $stateParams, $state, tiketBaik) {
         $scope.sumTiketBaik = tiketBaik.length;
-        $scope.sumTiketIssuedMonth = tiketIssuedMonth.length + tiketPrintMonth.length;
-        $scope.sumTiketIssuedDay = tiketIssuedDay.length + tiketPrintDay.length;
 
-        $scope.besok = 
         $scope.hariSelanjutnya = function() {
             $state.transitionTo('app.pelni.stocktiket', {
                 startDate: null,
@@ -17,6 +14,9 @@ app.controller('StockPenjualanPelniCtrl', ['$scope', '$rootScope', '$stateParams
         $scope.timeFromNow = function(input) {
             return moment(input).fromNow();
         };
+        $scope.getDayDateYear = function(input) {
+            return moment(input, 'YYYYMMDDHHmm').format('dddd, DD MMMM YYYY HH:mm');
+        }
 
         $scope.getUserByUid = function(uid) {
             var user = null;

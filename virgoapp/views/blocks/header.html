@@ -1,5 +1,5 @@
 <!-- navbar header -->
-<div class="navbar-header {{app.settings.navbarHeaderColor}}">
+<div class="navbar-header {{app.settings.navbarHeaderColor}}" ng-hide="app.settings.navbarHeaderHide">
     <button class="pull-right visible-xs dk" ui-toggle-class="show" data-target=".navbar-collapse">
         <i class="glyphicon glyphicon-align-justify"></i>
     </button>
@@ -13,16 +13,16 @@
 <!-- / navbar header -->
 
 <!-- navbar collapse -->
-<div class="collapse pos-rlt navbar-collapse box-shadow {{app.settings.navbarCollapseColor}}">
-
+<div class="collapse pos-rlt navbar-collapse box-shadow {{app.settings.navbarCollapseColor}}" ng-hide="true">
 
     <!-- link and dropdown -->
-    <ul class="nav navbar-nav hidden-sm">
+    <ul class="nav navbar-nav hidden-sm" ng-hide="app.settings.navbarHeaderHide">
         <li ui-sref-active="active">
             <a ui-sref="app.home">
                 <span>Home</span>
             </a>
         </li>
+
         <li ui-sref-active="active" class="dropdown" dropdown>
             <a href class="dropdown-toggle" dropdown-toggle>
               Pelni <b class="caret"></b>
@@ -36,10 +36,10 @@
                     <a ui-sref="app.pelni.search">Search Jadwal</a>
                 </li>
                 <li>
-                    <a ui-sref="app.pelni.issuedtiket">Issued Tiket</a>
+                    <a ui-sref="app.pelni.invoice.list">List Invoice</a>
                 </li>
                 <li>
-                    <a ui-sref="app.pelni.printtiket">Print Tiket</a>
+                    <a ui-sref="app.pelni.issuedtiket">Issued Tiket</a>
                 </li>
                 <li>
                     <a ui-sref="app.pelni.rusaktiket">Tiket Rusak</a>
@@ -55,21 +55,59 @@
                 </li>
             </ul>
         </li>
-        <li ui-sref-active="active">
-            <a ui-sref="app.pelni.stockpenjualan">
-                <span>Stock &amp; Penjualan Pelni</span>
+
+        <li ui-sref-active="active" class="dropdown" dropdown>
+            <a href class="dropdown-toggle" dropdown-toggle>
+              Invoice &amp; Tiket Pelni <b class="caret"></b>
             </a>
+
+            <ul class="dropdown-menu animated fadeInRight w">
+                <li>
+                    <a ui-sref="app.pelni.searchtiket">Search Data Tiket</a>
+                </li>
+                <li>
+                    <a ui-sref="app.pelni.searchinvoice">Search Data Invoice</a>
+                </li>
+
+
+            </ul>
         </li>
-        <li ui-sref-active="active">
-            <a ui-sref="printinvoicepelni" target="_blank">
-                <span>Tampilan Print Invoice</span>
+
+        <li ui-sref-active="active" class="dropdown" dropdown>
+            <a href class="dropdown-toggle" dropdown-toggle>
+              Laporan Tiket Pelni <b class="caret"></b>
             </a>
+            <ul class="dropdown-menu animated fadeInRight w">
+                <li>
+                    <a ui-sref="app.pelni.stocktiketreport">Stock Tiket</a>
+                </li>
+
+                <li>
+                    <a ui-sref="app.pelni.penjualanharianreport">Penjualan Harian</a>
+                </li>
+                <li>
+                    <a ui-sref="app.pelni.penjualanbulananreport">Penjualan Bulanan</a>
+                </li>
+
+                <li>
+                    <a ui-sref="app.pelni.rusakbulananreport">Rusak Bulanan</a>
+                </li>
+
+                <li>
+                    <a ui-sref="app.pelni.batalbulananreport">Batal Bulanan</a>
+                </li>
+
+                <li>
+                    <a ui-sref="app.pelni.hilangbulananreport">Hilang Bulanan</a>
+                </li>
+            </ul>
         </li>
+
     </ul>
     <!-- / link and dropdown -->
 
     <!-- nabar right -->
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-right" ng-hide="app.settings.navbarHeaderHide">
         <!-- <li class="dropdown hidden-sm" is-open="lang.isopen" dropdown>
             <a href class="dropdown-toggle" dropdown-toggle>
               {{selectLang}} <b class="caret"></b>

@@ -1,11 +1,12 @@
 'use strict';
-app.controller('InvoiceDetailPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'JadwalPelniSingleObj', 'invoicePelni', 'InvoicePelniRef',
+app.controller('InvoicePrintPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'JadwalPelniSingleObj', 'invoicePelni', 'InvoicePelniRef',
     function($scope, $rootScope, $stateParams, $state, JadwalPelniSingleObj, invoicePelni, InvoicePelniRef) {
 
         $scope.User = $rootScope.User;
         if (invoicePelni && invoicePelni.$value === null) {
             alert('Tidak Ada Data Invoice');
         } else {
+            $scope.IdInvoice = $stateParams.idInvoice;
             $scope.selectedInvoice = invoicePelni;
 
             $scope.selectedJadwal = JadwalPelniSingleObj($scope.selectedInvoice.IdJadwal);
@@ -20,6 +21,18 @@ app.controller('InvoiceDetailPelniCtrl', ['$scope', '$rootScope', '$stateParams'
         }
 
         var serviceFee = 20000;
+        
+        $scope.getDayDateYear = function(input) {
+            return moment(input).format('dddd, DD MMMM YYYY HH:mm');
+        }
+
+        $scope.getUserByUid = function(uid) {
+            var user = null;
+            if (uid) {
+                user = $rootScope.Users[uid];
+            }
+            return user;
+        };
 
         $scope.getNoUrut = function(inKey) {
             if ($scope.selectedInvoice) {
@@ -81,22 +94,6 @@ app.controller('InvoiceDetailPelniCtrl', ['$scope', '$rootScope', '$stateParams'
                 return total;
             }
         }
-
-        $scope.toEdit = function() {
-            $state.transitionTo('app.pelni.invoice.edit', {
-                idInvoice: $stateParams.idInvoice,
-            });
-        };
-
-        $scope.toPrint = function(){
-
-            var params = {
-                idInvoice: $stateParams.idInvoice,
-            }
-            var statePrintInvoiceKapal = $state.href('app.pelni.invoice.print', params);
-            window.open(statePrintInvoiceKapal, '_blank');
-        }
-
 
     }
 ]);

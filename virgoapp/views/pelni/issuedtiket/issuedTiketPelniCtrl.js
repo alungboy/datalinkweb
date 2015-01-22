@@ -13,14 +13,11 @@ app.controller('IssuedTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
         };
 
         $scope.getStatusName = function(input) {
-            if (input == 0) {
+            if (input == 1) {
                 return 'Baik'
             }
-            if (input == 1) {
-                return 'Issued'
-            }
             if (input == 2) {
-                return 'Print'
+                return 'Issued'
             }
             if (input == 3) {
                 return 'Batal'
@@ -104,8 +101,8 @@ app.controller('IssuedTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
                     '.sv': 'timestamp'
                 },
                 IssuedBy: $rootScope.User.uid,
-                Status: 1,
-                StatusTgl: '1' + dateStr,
+                Status: 2,
+                StatusTgl: ParseInt('2' + dateStr),
             }
 
             ReqIssuedPelniRef().$push({
@@ -123,7 +120,7 @@ app.controller('IssuedTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
                         $scope.tiketBaru = '';
                         return;
                     }
-                    if (findTiket.Status > 0) {
+                    if (findTiket.Status > 1) {
                         $scope.errMsg = 'Tiket Sudah Diisued';
                         $scope.tiketBaru = '';
                         return;

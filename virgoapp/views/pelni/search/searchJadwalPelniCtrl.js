@@ -1,5 +1,5 @@
 'use strict';
-app.controller('SearchTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'ReqJadwalPelniRef', 'listPelabuhanPelni',
+app.controller('SearchJadwalPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'ReqJadwalPelniRef', 'listPelabuhanPelni',
     function($scope, $rootScope, $stateParams, $state, ReqJadwalPelniRef, listPelabuhanPelni) {
 
 

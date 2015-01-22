@@ -1,7 +1,36 @@
-<div class="hbox hbox-auto-xs bg-light ">
+<div class="hbox hbox-auto-xs bg-light">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Invoice Detail
+            Search Invoice Pelni
+        </div>
+        <div class="row wrapper">
+            <div class="col-sm-4 m-b-xs">
+                <form ng-submit="tampilkanData($event)">
+                    <div class="input-group">
+                        <input class="form-control input-sm" type="text" ng-model="invoiceBaru" placeholder="Scan Barcode Invoice">
+                        <span class="input-group-btn">
+                            <button class="btn btn-sm btn-default" type="submit" ng-hide="showDetail">
+                                Tampilkan Data Invoice
+                            </button>
+            
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-4">
+
+                <div ng-show="errMsg" class="alert alert-danger">
+                    {{errMsg}}
+                </div>
+
+                <div ng-show="okMsg" class="alert alert-success">
+                    {{okMsg}}
+                </div>
+
+            </div>
+            <div class="col-sm-3">
+
+            </div>
         </div>
         <div class="row wrapper" ng-show="selectedInvoice">
             <img src="img/virgo.png" class="center-block">
@@ -130,12 +159,13 @@
                         <div class="input-group">
                             <span class="text-danger " ng-show="errMsg">{{errMsg}}</span>
                         </div>
-                        <a class="btn btn-primary btn-sm pull-right" ng-click="toPrint()">Print</a>
+
                     </th>
                     <th>
                         <div class="btn-group btn-group-justified">
-                            <a class="btn btn-sm btn-default" ui-sref="app.pelni.invoice.list">Back</a>
+                            <a class="btn btn-sm btn-default">Back</a>
                             <a ng-click="toEdit()" class="btn btn-sm btn-success">Edit</a>
+
                         </div>
                     </th>
                     <th>
@@ -148,5 +178,4 @@
             </tfoot>
         </table>
     </div>
-
 </div>

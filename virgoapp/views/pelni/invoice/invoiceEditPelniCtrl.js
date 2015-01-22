@@ -5,7 +5,7 @@ app.controller('InvoiceEditPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
         $scope.User = $rootScope.User;
         $scope.selectedInvoice = invoicePelni;
 
-     
+
         $scope.selectedJadwal = JadwalPelniSingleObj($scope.selectedInvoice.IdJadwal);
         $scope.selectedJadwal.$loaded(
             function(data) {
@@ -15,7 +15,7 @@ app.controller('InvoiceEditPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
                 console.error("Error:", error);
             }
         );
-       
+
 
 
 
@@ -124,7 +124,7 @@ app.controller('InvoiceEditPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
                 $scope.errMsg = 'No HP Harus terdiri dari angka';
                 return;
             }
-            if ($scope.selectedInvoice.MobilePemesan.length < 9  ) {
+            if ($scope.selectedInvoice.MobilePemesan.length < 9) {
                 $scope.errMsg = 'Panjang no Hp Harus Tepat';
                 return;
             }
@@ -139,6 +139,10 @@ app.controller('InvoiceEditPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
             };
             $scope.selectedInvoice.UpdatedBy = $scope.User.uid;
             $scope.selectedInvoice.$save().then(function(ref) {
+                
+                $state.transitionTo('app.pelni.invoice.detail', {
+                    idInvoice: $stateParams.idInvoice,
+                });
 
             }, function(error) {
                 console.log("Error:", error);
@@ -148,7 +152,7 @@ app.controller('InvoiceEditPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
 
         }
 
-        $scope.toDetail = function(){
+        $scope.toDetail = function() {
             $state.transitionTo('app.pelni.invoice.detail', {
                 idInvoice: $stateParams.idInvoice,
             });

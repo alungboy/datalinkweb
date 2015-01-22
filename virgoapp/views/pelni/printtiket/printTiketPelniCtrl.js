@@ -18,14 +18,11 @@ app.controller('PrintTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
         }
 
         $scope.getStatusName = function(input) {
-            if (input == 0) {
+            if (input == 1) {
                 return 'Baik'
             }
-            if (input == 1) {
-                return 'Issued'
-            }
             if (input == 2) {
-                return 'Print'
+                return 'Issued'
             }
             if (input == 3) {
                 return 'Batal'
@@ -61,9 +58,7 @@ app.controller('PrintTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
             if ($scope.listTiketIssued.length >= paramSize) {
 
                 $state.transitionTo('app.pelni.printtiket', {
-                    startDate: null,
                     pageSize: paramSize + 10,
-                    asc: null
 
                 });
             }
@@ -151,6 +146,7 @@ app.controller('PrintTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
         };
 
         $scope.print = function(e) {
+            $scope.barcodePrint = $scope.barcodePrint.toUpperCase();
             if ($scope.barcodePrint != 'TMU950P-2' && $scope.barcodePrint != 'TMU950P-1') {
                 $scope.errMsg = "Tidak ada nama printer dalam sistem!";
                 return;
@@ -162,7 +158,7 @@ app.controller('PrintTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
                 journal: $scope.tiketBaru,
                 receipt: ""
             };
-            console.log(dataPrint);
+
             $.post("http://127.0.0.1:81/print", dataPrint).done(function(data) {
 
             });;

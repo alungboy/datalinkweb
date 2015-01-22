@@ -1,36 +1,29 @@
 <div class=" hbox hbox-auto-xs bg-light ">
     <div class="panel panel-default">
         <div class="panel-heading">
-            List Penjualan Harian <span class="pull-right"></span>
+            Tiket Batal Bulanan - <b>{{getMonthName()}}</b> Total: <b> {{listCancelMonth.length}}</b>
+
         </div>
         <div class="row wrapper">
-            <div class="col-sm-4 m-b-xs">
-                <form ng-submit="tambahStock($event)">
+            <div class="col-sm-3 m-b-xs">
+              
                     <div class="input-group">
-                        <input class="form-control input-sm" type="text" ng-model="tiketBaru" placeholder="Scan Barcode">
+                        <input class="form-control input-sm" type="date" ng-model="calendar">
                         <span class="input-group-btn">
-                            <button class="btn btn-sm btn-default" type="submit">
-                                Tambah Stock
+                            <button class="btn btn-sm btn-default" type="button" ng-click="search()">
+                                Search
                             </button>
                         </span>
                     </div>
-                </form>
+               
 
             </div>
 
-            <div class="col-sm-5">
-
-                <div ng-show="errMsg" class="alert alert-danger">
-                    {{errMsg}}
-                </div>
-
-                <div ng-show="okMsg" class="alert alert-success">
-                    {{okMsg}}
-                </div>
+            <div class="col-sm-6">
 
             </div>
             <div class="col-sm-3">
-                
+
             </div>
         </div>
         <div class="table-responsive">
@@ -45,7 +38,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="fadeInRight animated" ng-repeat="(key ,value) in listTiketBaik | orderBy:'CreatedAt':true |filter: search">
+                    <tr class="fadeInRight animated" ng-repeat="(key ,value) in listCancelMonth | orderBy:'CreatedAt':true ">
                         <td>{{key + 1}}</td>
                         <td>{{value.NoTiket}}</td>
 
@@ -54,7 +47,7 @@
                             <span title="{{value.CreatedAt | date:'dd-MM-yyyy HH:mm:ss'}}">
                             {{timeFromNow(value.CreatedAt)}}
                             </span>
-                       
+
                         </td>
                         <td>
                             <span class="thumb-sm avatar m-t-n-sm m-b-n-sm m-l-sm">
@@ -62,7 +55,7 @@
                             <img ng-src="https://graph.facebook.com/{{getUserByUid(value.CreatedBy).facebook.id}}/picture?type=square" tooltip="{{getUserByUid(value.CreatedBy).facebook.displayName}}" style="width:80%;">
                             </a>
                             </span>
-                             
+
                         </td>
 
                     </tr>
@@ -70,14 +63,8 @@
             </table>
         </div>
         <footer class="panel-footer">
-            <div class="row">
-                <div class="col-sm-4 hidden-xs">
-                </div>
-                <div class="col-sm-4 text-center">
-                    <a ng-click="loadMore()" ng-show="showLoadMore()"><small class="text-info inline m-t-sm m-b-sm">Load more...</small></a>
-                </div>
-            </div>
+           
         </footer>
     </div>
-    
+
 </div>

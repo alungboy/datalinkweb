@@ -13,14 +13,11 @@ app.controller('BatalTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
         };
 
         $scope.getStatusName = function(input) {
-            if (input == 0) {
+            if (input == 1) {
                 return 'Baik'
             }
-            if (input == 1) {
-                return 'Issued'
-            }
             if (input == 2) {
-                return 'Print'
+                return 'Issued'
             }
             if (input == 3) {
                 return 'Batal'
@@ -33,6 +30,7 @@ app.controller('BatalTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
             }
             return '';
         };
+
 
         $scope.getUserByUid = function(uid) {
             var user = null;

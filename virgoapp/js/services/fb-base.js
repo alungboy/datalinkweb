@@ -83,22 +83,38 @@ angular.module('Fbase', ['app', 'firebase'])
     return get;
 }])
 
+.service("TiketPelniSingleObj", ['Fbase', "$firebase", function(Fbase, $firebase) {
+    var get = function(noTiket) {
+
+        var sync = Fbase.child('tiketpelni');
+        if (!noTiket || noTiket.length !== 10) {
+            sync = sync.orderByChild('NoTiket').equalTo(1000468731);
+        } else {
+            sync = sync.orderByChild('NoTiket').equalTo(parseInt(noTiket));
+        }
+
+        return $firebase(sync).$asObject();
+    }
+
+    return get;
+}])
+
 .service("TiketPelniBaikArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
     var get = function(startDate, pageSize, asc) {
         if (!pageSize) {
             pageSize = 10;
         }
         var sync = Fbase.child('tiketpelni');
-        if (!startDate || startDate.length !== 15) {
-            sync = sync.orderByChild('StatusTgl').startAt('000000000000000').endAt('09999999999999');
+        if (!startDate || startDate.length !== 14) {
+            sync = sync.orderByChild('StatusTgl').startAt(100000000000000).endAt(199999999999999);
         } else {
-            sync = sync.orderByChild('StatusTgl').startAt('0' + startDate).endAt('09999999999999');
+            sync = sync.orderByChild('StatusTgl').startAt(parseInt('1' + startDate)).endAt(199999999999999);
         }
 
         if (!asc || asc == '' || asc == 0) {
-            sync = sync.limitToLast(pageSize);
+            sync = sync.limitToLast(parseInt(pageSize));
         } else {
-            sync = sync.limitToFirst(pageSize);
+            sync = sync.limitToFirst(parseInt(pageSize));
         }
 
         return $firebase(sync).$asArray();
@@ -114,16 +130,16 @@ angular.module('Fbase', ['app', 'firebase'])
             pageSize = 10;
         }
         var sync = Fbase.child('tiketpelni');
-        if (!startDate || startDate.length !== 15) {
-            sync = sync.orderByChild('StatusTgl').startAt('100000000000000').endAt('19999999999999');
+        if (!startDate || startDate.length !== 14) {
+            sync = sync.orderByChild('StatusTgl').startAt(200000000000000).endAt(299999999999999);
         } else {
-            sync = sync.orderByChild('StatusTgl').startAt('1' + startDate).endAt('19999999999999');
+            sync = sync.orderByChild('StatusTgl').startAt(parseInt('2' + startDate)).endAt(299999999999999);
         }
 
         if (!asc || asc == '' || asc == 0) {
-            sync = sync.limitToLast(pageSize);
+            sync = sync.limitToLast(parseInt(pageSize));
         } else {
-            sync = sync.limitToFirst(pageSize);
+            sync = sync.limitToFirst(parseInt(pageSize));
         }
 
         return $firebase(sync).$asArray();
@@ -133,18 +149,22 @@ angular.module('Fbase', ['app', 'firebase'])
 }])
 
 .service("TiketPelniIssuedDayArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
-    var get = function(date) {
+    var get = function(date, pageSize) {
         var sync = Fbase.child('tiketpelni');
 
-        if (date == null || date == '' || date.length < 6) {
+        if (date == null || date == '' || date.length !== 8) {
             date = moment().format('YYYYMMDD');
 
         }
+        pageSize = parseInt(pageSize);
+        if (!pageSize || pageSize < 50) {
+            pageSize = 50;
+        }
 
-        var dStart = '1' + date + '000000';
-        var dEnd = '1' + date + '999999';
-        console.log(dStart, dEnd);
-        sync = sync.orderByChild('StatusTgl').startAt(dStart).endAt(dEnd).limitToFirst(500);
+        var dStart = parseInt('2' + date + '000000');
+        var dEnd = parseInt('2' + date + '999999');
+        sync = sync.orderByChild('StatusTgl').startAt(dStart).endAt(dEnd).limitToLast(pageSize);
+
         return $firebase(sync).$asArray();
     }
 
@@ -156,7 +176,7 @@ angular.module('Fbase', ['app', 'firebase'])
         var sync = Fbase.child('tiketpelni');
 
 
-        if (date == null || date == '' || date.length < 6) {
+        if (date == null || date == '' || date.length !== 8) {
             var monthYear = moment().format('YYYYMM');
             var endDate = moment().endOf('month').format('DD');
         } else {
@@ -165,32 +185,26 @@ angular.module('Fbase', ['app', 'firebase'])
         }
 
 
-        var dStart = '1' + monthYear + '01' + '000000';
-        var dEnd = '1' + monthYear + endDate + '999999';
-        console.log(dStart, dEnd);
-        sync = sync.orderByChild('StatusTgl').startAt(dStart).endAt(dEnd).limitToFirst(500);
+        var dStart = parseInt('2' + monthYear + '01' + '000000');
+        var dEnd = parseInt('2' + monthYear + endDate + '999999');
+        sync = sync.orderByChild('StatusTgl').startAt(dStart).endAt(dEnd);
         return $firebase(sync).$asArray();
     }
     return get;
 }])
 
 .service("TiketPelniPrintedArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
-    var get = function(startDate, pageSize, asc) {
+    var get = function(pageSize) {
         if (!pageSize) {
             pageSize = 10;
         }
         var sync = Fbase.child('tiketpelni');
-        if (!startDate || startDate.length !== 15) {
-            sync = sync.orderByChild('StatusTgl').startAt('200000000000000').endAt('29999999999999');
-        } else {
-            sync = sync.orderByChild('StatusTgl').startAt('2' + startDate).endAt('29999999999999');
-        }
 
-        if (!asc || asc == '' || asc == 0) {
-            sync = sync.limitToLast(pageSize);
-        } else {
-            sync = sync.limitToFirst(pageSize);
-        }
+        sync = sync.orderByChild('PrintedOutAt').startAt(1).endAt(9999999999999);
+
+
+        sync = sync.limitToLast(parseInt(pageSize));
+
 
         return $firebase(sync).$asArray();
     }
@@ -198,29 +212,12 @@ angular.module('Fbase', ['app', 'firebase'])
     return get;
 }])
 
-.service("TiketPelniPrintDayArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
+.service("TiketPelniVoidMonthArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
     var get = function(date) {
         var sync = Fbase.child('tiketpelni');
 
-        if (date == null || date == '' || date.length < 6) {
-            date = moment().format('YYYYMMDD');
-        }
 
-        var dStart = '2' + date + '000000';
-        var dEnd = '2' + date + '999999';
-
-        sync = sync.orderByChild('StatusTgl').startAt(dStart).endAt(dEnd);
-        return $firebase(sync).$asArray();
-    }
-
-    return get;
-}])
-
-.service("TiketPelniPrintMonthArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
-    var get = function(date) {
-        var sync = Fbase.child('tiketpelni');
-
-        if (date == null || date == '' || date.length < 6) {
+        if (date == null || date == '' || date.length !== 8) {
             var monthYear = moment().format('YYYYMM');
             var endDate = moment().endOf('month').format('DD');
         } else {
@@ -228,15 +225,58 @@ angular.module('Fbase', ['app', 'firebase'])
             var endDate = moment(date, 'YYYYMMDD').endOf('month').format('DD');
         }
 
-        var dStart = '2' + monthYear + '01' + '000000';
-        var dEnd = '2' + monthYear + endDate + '999999';
+
+        var dStart = parseInt('4' + monthYear + '01' + '000000');
+        var dEnd = parseInt('4' + monthYear + endDate + '999999');
         sync = sync.orderByChild('StatusTgl').startAt(dStart).endAt(dEnd);
         return $firebase(sync).$asArray();
     }
-
     return get;
 }])
 
+.service("TiketPelniCancelMonthArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
+    var get = function(date) {
+        var sync = Fbase.child('tiketpelni');
+
+
+        if (date == null || date == '' || date.length !== 8) {
+            var monthYear = moment().format('YYYYMM');
+            var endDate = moment().endOf('month').format('DD');
+        } else {
+            var monthYear = moment(date, 'YYYYMMDD').format('YYYYMM');
+            var endDate = moment(date, 'YYYYMMDD').endOf('month').format('DD');
+        }
+
+
+        var dStart = parseInt('3' + monthYear + '01' + '000000');
+        var dEnd = parseInt('3' + monthYear + endDate + '999999');
+        sync = sync.orderByChild('StatusTgl').startAt(dStart).endAt(dEnd);
+        return $firebase(sync).$asArray();
+    }
+    return get;
+}])
+
+.service("TiketPelniMissingMonthArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
+    var get = function(date) {
+        var sync = Fbase.child('tiketpelni');
+
+
+        if (date == null || date == '' || date.length !== 8) {
+            var monthYear = moment().format('YYYYMM');
+            var endDate = moment().endOf('month').format('DD');
+        } else {
+            var monthYear = moment(date, 'YYYYMMDD').format('YYYYMM');
+            var endDate = moment(date, 'YYYYMMDD').endOf('month').format('DD');
+        }
+
+
+        var dStart = parseInt('5' + monthYear + '01' + '000000');
+        var dEnd = parseInt('5' + monthYear + endDate + '999999');
+        sync = sync.orderByChild('StatusTgl').startAt(dStart).endAt(dEnd);
+        return $firebase(sync).$asArray();
+    }
+    return get;
+}])
 
 .factory("ReqJadwalPelniRef", ['Fbase', 'FbAuth', "$firebase", function(Fbase, FbAuth, $firebase) {
     var objRef = null
@@ -337,14 +377,37 @@ angular.module('Fbase', ['app', 'firebase'])
     return getRef;
 }])
 
+.service("InvoicePelniObj", ['Fbase', "$firebase", function(Fbase, $firebase) {
+
+    var get = function(pageSize) {
+
+        if (!pageSize || pageSize == '') {
+            var obj = Fbase.child('invoicepelni').orderByChild('CreatedAt').startAt(1).endAt(9999999999999);
+            obj = obj.limitToLast(10);
+        } else {
+            var obj = Fbase.child('invoicepelni').orderByChild('CreatedAt').startAt(1).endAt(9999999999999);
+            obj = obj.limitToLast(parseInt(pageSize));
+        }
+
+        return $firebase(obj).$asObject();
+    };
+
+
+    return get;
+}])
+
 .service("InvoicePelniSingleObj", ['Fbase', "$firebase", function(Fbase, $firebase) {
 
     var get = function(idInvoicePelni) {
 
-        var obj = $firebase(Fbase.child('invoicepelni').child(idInvoicePelni));
-
-        return obj.$asObject();
+        if (!idInvoicePelni || idInvoicePelni == '') {
+            var obj = Fbase.child('invoicepelni').child('-Jfh4rsvTaCz9FOVhFvf');
+        } else {
+            var obj = Fbase.child('invoicepelni').child(idInvoicePelni);
+        }
+        return $firebase(obj).$asObject();
     };
+
 
     return get;
 }])

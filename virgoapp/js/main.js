@@ -16,7 +16,7 @@ angular.module('app')
 
             // config
             $scope.app = {
-                name: 'VirgoTravel-Re',
+                name: 'VirgoTravel-App',
                 version: '1.0.0',
                 // for chart colors
                 color: {
@@ -32,6 +32,7 @@ angular.module('app')
                 settings: {
                     themeID: 8,
                     navbarHeaderColor: 'bg-info dker',
+                    navbarHeaderHide: false,
                     navbarCollapseColor: 'bg-info dker',
                     asideColor: 'bg-light dker b-r',
                     headerFixed: true,

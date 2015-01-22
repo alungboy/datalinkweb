@@ -1,4 +1,4 @@
-<div class="hbox hbox-auto-xs bg-light">
+<div class="hbox hbox-auto-xs bg-light" ng-init="app.settings.navbarHeaderHide = true;">
     <div class="panel panel-default">
         <div class="panel-heading">
             Print Tiket - List
@@ -40,10 +40,7 @@
 
 
             <div class="col-sm-3">
-                <div class="input-group">
-                    <span class="input-group-addon input-sm"><i class="fa fa-search"></i></span>
-                    <input type="text" class="form-control input-sm" placeholder="Search" ng-model="search">
-                </div>
+                
             </div>
         </div>
         <span ng-show="showDetail">
@@ -69,7 +66,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="fadeInRight animated" ng-repeat="(key ,value) in listTiketIssued | orderBy:'PrintedOutAt':true | filter: search">
+                    <tr class="fadeInRight animated" ng-repeat="(key ,value) in listTiketIssued | orderBy:'PrintedOutAt':true">
                         <td>{{key + 1}}</td>
                         <td>{{value.NoTiket}}</td>
                         <td>{{value.Nama}}</td>

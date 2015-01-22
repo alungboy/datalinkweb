@@ -1,30 +1,44 @@
 <div class=" hbox hbox-auto-xs bg-light ">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Invoice - List 
+            Invoice - List
         </div>
         <div class="table-responsive">
             <table class="table table-striped b-t b-light">
                 <thead>
+
                     <tr>
                         <th>No Invoice</th>
-                        <th>Kapal</th>
-                        <th>Tanggal Berangkat</th>
                         <th>Nama Pemesan</th>
-                        <th></th>
+                        <th>No HP</th>
+                        <th>Kapal</th>
+                        <th>Tgl Berangkat</th>
+                        <th>Pelayaran</th>
+                        <th>Kelas</th>
+                        <th>Tgl Buat</th>
+                        <th>Dibuat Oleh</th>
+                        <!--  <th>Tgl Edit</th>
+                        <th>Diedit Oleh</th> -->
                     </tr>
+
                 </thead>
                 <tbody>
-                    <tr class="fadeInRight animated" ng-repeat="(key ,value) in listTiketBaik | orderBy:'CreatedAt':true |filter: search">
-                        <td>{{key + 1}}</td>
-                        <td>{{value.NoTiket}}</td>
-
-                        <td>{{getStatusName(value.Status)}}</td>
+                    <tr class="fadeInRight animated" ng-repeat="(key ,value) in listInvoice | orderBy:'CreatedAt':true">
+                        <td><a ng-click="detailInvoice(key)">{{key}}</a></td>
+                        <td>{{value.Pemesan}}</td>
+                        <td>{{value.MobilePemesan}}</td>
+                        <td>{{value.KapalNama}}</td>
+                        <td>{{value.TglBerangkat}}</td>
+                        <td>
+                            {{value.EmbarNama}} <i class="fa fa-arrow-right"></i> {{value.DebarNama}}
+                        </td>
+                        <td>
+                            {{value.KelasNama}}
+                        </td>
                         <td>
                             <span title="{{value.CreatedAt | date:'dd-MM-yyyy HH:mm:ss'}}">
                             {{timeFromNow(value.CreatedAt)}}
                             </span>
-                       
                         </td>
                         <td>
                             <span class="thumb-sm avatar m-t-n-sm m-b-n-sm m-l-sm">
@@ -32,10 +46,23 @@
                             <img ng-src="https://graph.facebook.com/{{getUserByUid(value.CreatedBy).facebook.id}}/picture?type=square" tooltip="{{getUserByUid(value.CreatedBy).facebook.displayName}}" style="width:80%;">
                             </a>
                             </span>
-                             
-                        </td>
 
+                        </td>
+                        <!--    <td>
+                            <span title="{{value.UpdatedAt | date:'dd-MM-yyyy HH:mm:ss'}}">
+                            {{timeFromNow(value.UpdatedAt)}}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="thumb-sm avatar m-t-n-sm m-b-n-sm m-l-sm">
+                            <a ng-href="https://www.facebook.com/{{getUserByUid(value.UpdatedBy).facebook.id}}" target="_blank">
+                            <img ng-src="https://graph.facebook.com/{{getUserByUid(value.UpdatedBy).facebook.id}}/picture?type=square" tooltip="{{getUserByUid(value.UpdatedBy).facebook.displayName}}" style="width:80%;">
+                            </a>
+                            </span>
+
+                        </td> -->
                     </tr>
+
                 </tbody>
             </table>
         </div>
@@ -51,5 +78,5 @@
             </div>
         </footer>
     </div>
-    
+
 </div>
