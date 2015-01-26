@@ -8,7 +8,9 @@
     padding: 0px;
     border: 1px solid black;
 }
+
 </style>
+
 
 
 
@@ -56,9 +58,8 @@
                     <th> Nama Penumpang</th>
                     <th width="140"> Status</th>
                     <th width="60"> Umur</th>
-                    <th width="90"> Harga</th>
-                    <th width="90"> Service Fee</th>
-                    <th width="90"> SubTotal</th>
+                    <th width="100"> Harga + Adm Travel</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -67,20 +68,18 @@
                     <td>{{value.Nama}}</td>
                     <td>{{value.Status}}</td>
                     <td>{{value.Umur}} {{value.Tipe}}</td>
-                    <td class="text-right">Rp.{{value.Harga | number :0}},-</td>
-                    <td class="text-right">Rp.{{value.ServiceFee | number :0}},-</td>
                     <td class="text-right">Rp.{{value.SubTotal | number :0}},-</td>
                 </tr>
-             
+
             </tbody>
             <tfoot>
                 <tr>
-                    <th colspan="5">
-                       
+                    <th colspan="3">
+
                     </th>
-                
+
                     <th class="text-right">
-                        Grand Total : 
+                        Total :
                     </th>
                     <th class="text-right">
                         Rp.{{grandTotal() | number :0}},-
@@ -113,8 +112,8 @@
                     <br>( <u><b>{{selectedInvoice.Pemesan}}</b></u> )
                 </small>
             </div>
-            <div class="col-xs-6">
-
+            <div class="col-xs-6 text-center">
+                <qrcode version="2" error-correction-level="Q" size="80" data="{{selectedInvoice.$id}}"></qrcode>
             </div>
             <div class="col-xs-3 text-center">
                 <p class="h5" style="font-size:12px;">Tiketing</p>
@@ -124,7 +123,9 @@
                     <u><b>{{getUserByUid(selectedInvoice.CreatedBy).facebook.displayName}}</b></u> )
                 </small>
             </div>
+
         </div>
+        
     </div>
     <hr style="border-top: dotted 1px; margin-top:0px; margin-bottom:5px;" />
     <div style=" margin-right: auto; margin-left: auto; height:430px;">
@@ -170,9 +171,7 @@
                     <th> Nama Penumpang</th>
                     <th width="140"> Status</th>
                     <th width="60"> Umur</th>
-                    <th width="90"> Harga</th>
-                    <th width="90"> Service Fee</th>
-                    <th width="90"> SubTotal</th>
+                    <th width="100"> Harga + Adm Travel</th>
                 </tr>
             </thead>
             <tbody>
@@ -181,20 +180,18 @@
                     <td>{{value.Nama}}</td>
                     <td>{{value.Status}}</td>
                     <td>{{value.Umur}} {{value.Tipe}}</td>
-                    <td class="text-right">Rp.{{value.Harga | number :0}},-</td>
-                    <td class="text-right">Rp.{{value.ServiceFee | number :0}},-</td>
                     <td class="text-right">Rp.{{value.SubTotal | number :0}},-</td>
                 </tr>
-             
+
             </tbody>
             <tfoot>
                 <tr>
-                    <th colspan="5">
-                       
+                    <th colspan="3">
+
                     </th>
-                
+
                     <th class="text-right">
-                        Grand Total : 
+                        Grand Total :
                     </th>
                     <th class="text-right">
                         Rp.{{grandTotal() | number :0}},-
@@ -227,8 +224,8 @@
                     <br>( <u><b>{{selectedInvoice.Pemesan}}</b></u> )
                 </small>
             </div>
-            <div class="col-xs-6">
-
+            <div class="col-xs-6 text-center">
+                <qrcode version="2" error-correction-level="Q" size="80" data="{{selectedInvoice.$id}}"></qrcode>
             </div>
             <div class="col-xs-3 text-center">
                 <p class="h5" style="font-size:12px;">Tiketing</p>
@@ -239,5 +236,6 @@
                 </small>
             </div>
         </div>
+       
     </div>
 </div>

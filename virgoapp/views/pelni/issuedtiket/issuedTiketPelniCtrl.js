@@ -5,6 +5,7 @@ app.controller('IssuedTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
             $stateParams.pageSize = '10';
         };
         $scope.listTiketIssued = tiketIssued;
+        console.log(tiketIssued);
         $scope.errMsg = null;
         $scope.okMsg = null;
 

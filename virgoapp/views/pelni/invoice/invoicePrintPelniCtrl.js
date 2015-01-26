@@ -9,19 +9,10 @@ app.controller('InvoicePrintPelniCtrl', ['$scope', '$rootScope', '$stateParams',
             $scope.IdInvoice = $stateParams.idInvoice;
             $scope.selectedInvoice = invoicePelni;
 
-            $scope.selectedJadwal = JadwalPelniSingleObj($scope.selectedInvoice.IdJadwal);
-            $scope.selectedJadwal.$loaded(
-                function(data) {
-                    $scope.dataKelas = $scope.selectedJadwal.seatharga.Kelas[$scope.selectedInvoice.IdKelas];
-                },
-                function(error) {
-                    console.error("Error:", error);
-                }
-            );
         }
 
         var serviceFee = 20000;
-        
+
         $scope.getDayDateYear = function(input) {
             return moment(input).format('dddd, DD MMMM YYYY HH:mm');
         }
@@ -37,52 +28,18 @@ app.controller('InvoicePrintPelniCtrl', ['$scope', '$rootScope', '$stateParams',
         $scope.getNoUrut = function(inKey) {
             if ($scope.selectedInvoice) {
                 var noUrut = 0;
-
-                _.each($scope.selectedInvoice.ListPng, function(value, key, list) {
-
+                _.find($scope.selectedInvoice.ListPng, function(value, key, list) {
                     noUrut++;
-                    if (key == inKey) {
-                        return;
-                    }
-
+                    return key == inKey;
                 });
+
                 return noUrut;
             }
         };
         // Fungsi Hitung Harga
 
 
-        $scope.hitungHarga = function(value) {
-            if (value.Status == '') {
-                value.Harga = 0;
-                value.ServiceFee = 0;
-                value.SubTotal = 0;
-                value.Tipe = 'Thn';
-                return;
-            }
-            if (value.Status == 'Pria' || value.Status == 'Wanita') {
-                value.Harga = $scope.dataKelas.HargaDewasa + 10000;
-                value.ServiceFee = serviceFee;
-                value.SubTotal = value.Harga + value.ServiceFee;
-                value.Tipe = 'Thn';
-                return;
-            }
 
-            if (value.Status == 'Anak') {
-                value.Harga = $scope.dataKelas.HargaAnak + 10000;
-                value.ServiceFee = serviceFee;
-                value.SubTotal = value.Harga + value.ServiceFee;
-                value.Tipe = 'Thn';
-                return;
-            }
-            if (value.Status == 'Bayi') {
-                value.Harga = $scope.dataKelas.HargaBayi + 10000;
-                value.ServiceFee = serviceFee;
-                value.SubTotal = value.Harga + value.ServiceFee;
-                value.Tipe = 'Bln';
-                return;
-            }
-        }
         $scope.grandTotal = function() {
             if ($scope.selectedInvoice) {
                 var total = 0;

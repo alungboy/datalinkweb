@@ -1,0 +1,32 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3 text-center">Penjualan Bulanan Pelni
+    	<div class="center-block" style="width:270px;">
+		<div class="input-group" >
+            <input type="date" class="form-control input-sm" ng-model="calendar">
+	            <span class="input-group-btn">
+	            <button class="btn btn-sm btn-info" type="button" ng-click="search()"> Search
+	            </button>
+        	</span>
+        </div>
+        </div>
+    </h1>
+
+
+
+</div>
+<div class="wrapper-md ">
+    <div class="container w-xxl w-auto-xs">
+        <div class="text-center m-b-lg">
+            <h1 class="text-shadow text-white">{{sumIssuedMonth}}</h1>
+        </div>
+    </div>
+    <div class="center-block" style="width:270px;">
+        <div class="list-group bg-info auto m-b-sm m-b-lg">
+            <a class="list-group-item">
+                <i class="fa fa-fw fa-calendar m-r-xs"></i> Penjualan Bulan <b>{{getMonthName()}}</b>
+            </a>
+        </div>
+    </div>
+
+
+</div>

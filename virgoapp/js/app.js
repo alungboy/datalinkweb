@@ -16,5 +16,9 @@ angular.module('app', [
     'Fbase',
     'validation',
     'validation.rule',
-    'angucomplete'
+    'angucomplete',
+    'barcodeGenerator',
+    'monospaced.qrcode'
+
+
 ]);

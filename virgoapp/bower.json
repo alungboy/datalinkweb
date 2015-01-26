@@ -53,7 +53,8 @@
     "chance": "~0.7.0",
     "lodash": ">=2.4.1",
     "angular-validation": "~1.2.6",
-    "angucomplete": "*"
+    "angucomplete": "*",
+    "angular-qrcode": "monospaced/angular-qrcode#~5.1.0"
   },
   "resolutions": {
     "firebase": "~2.0.6",

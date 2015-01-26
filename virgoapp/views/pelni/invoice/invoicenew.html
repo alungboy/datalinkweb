@@ -23,11 +23,11 @@
                 <label class="label bg-success" id="_id175" name="_id175">{{selectedInvoice.KelasNama}}</label>
                 <input type="checkbox" ng-model="selectedInvoice.NonSeat"> Non Seat
                 <br>
-                <br> Dewasa: <b>Rp.{{dataKelas.HargaDewasa | number :0}},-</b>
-                <br> Anak &nbsp;&nbsp;&nbsp;&nbsp; : <b>Rp.{{dataKelas.HargaAnak | number :0}},-</b>
-                <br> Bayi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <b>Rp.{{dataKelas.HargaBayi | number :0}},-</b>
+                <br> Dewasa: <b>Rp.{{dataKelas.Dewasa | number :0}},-</b>
+                <br> Anak &nbsp;&nbsp;&nbsp;&nbsp; : <b>Rp.{{dataKelas.Anak | number :0}},-</b>
+                <br> Bayi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <b>Rp.{{dataKelas.Bayi | number :0}},-</b>
 
-                <br>Seat Netral : <b>{{dataKelas.SeatNetral}}</b> &nbsp;&nbsp; Seat Pria : <b>{{dataKelas.SeatPria}}</b> &nbsp;&nbsp; Seat Wanita : <b>{{dataKelas.SeatWanita}}</b> &nbsp;&nbsp; Non Seat : <b>{{selectedJadwal.seatharga.NonSeat}}</b>
+              
             </div>
 
             <div class="col-sm-6">
@@ -83,7 +83,7 @@
                     <th style="width:130px;">Umur </th>
 
                     <th style="width:190px;">Harga</th>
-                    <th style="width:190px;">Service Fee</th>
+                    <th style="width:190px;">Adm Travel</th>
                     <th style="width:190px;">Sub Total</th>
                 </tr>
             </thead>

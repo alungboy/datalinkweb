@@ -35,6 +35,8 @@
                         <th style="width:20px;">No</th>
                         <th>No Tiket </th>
                         <th>Status</th>
+                        <th>Nama Penumpang</th>
+                        <th>Harga</th>
                         <th>Tgl Issued</th>
                         <th>Diissued Oleh</th>
                     </tr>
@@ -45,6 +47,8 @@
                         <td>{{value.NoTiket}}</td>
 
                         <td>{{getStatusName(value.Status)}}</td>
+                        <td>{{value.Nama}}</td>
+                        <td>{{value.HargaTiket | number :0}}</td>
                         <td>
                             <span title="{{value.IssuedAt | date:'dd-MM-yyyy HH:mm:ss'}}">
                             {{timeFromNow(value.IssuedAt)}}

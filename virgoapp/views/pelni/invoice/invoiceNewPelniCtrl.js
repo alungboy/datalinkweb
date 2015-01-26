@@ -1,9 +1,26 @@
 'use strict';
-app.controller('InvoiceNewPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'singleJadwal', 'InvoicePelniRef',
-    function($scope, $rootScope, $stateParams, $state, singleJadwal, InvoicePelniRef) {
+app.controller('InvoiceNewPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'singleJadwal', 'InvoicePelniRef', 'HargaFac',
+    function($scope, $rootScope, $stateParams, $state, singleJadwal, InvoicePelniRef, HargaFac) {
 
         $scope.selectedJadwal = singleJadwal;
-        $scope.dataKelas = $scope.selectedJadwal.seatharga.Kelas[$stateParams.idKelas];
+        var kapal = $scope.selectedJadwal.Kapal;
+        var pelayaran = $scope.selectedJadwal.Embar + '-' + $scope.selectedJadwal.EmbarCall + '-' + $scope.selectedJadwal.Debar + '-' + $scope.selectedJadwal.DebarCall;
+        if (!HargaFac.pelni[kapal]) {
+            $scope.dataKelas = null;
+        } else {
+            if (!HargaFac.pelni[kapal][pelayaran]) {
+                $scope.dataKelas = null;
+            } else {
+                if (!HargaFac.pelni[kapal][pelayaran][$stateParams.idKelas]) {
+                    $scope.dataKelas = null;
+                } else {
+                    $scope.dataKelas = HargaFac.pelni[kapal][pelayaran][$stateParams.idKelas];
+                }
+            }
+        }
+
+
+
         $scope.User = $rootScope.User;
 
         // doesn't need if anymore
@@ -23,8 +40,8 @@ app.controller('InvoiceNewPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
             Debar: $scope.selectedJadwal.Debar,
             DebarNama: $scope.selectedJadwal.DebarNama,
             DebarCall: $scope.selectedJadwal.DebarCall,
-            Kelas: $scope.dataKelas.Kode,
-            KelasNama: $scope.dataKelas.Nama,
+            Kelas: $stateParams.idKelas,
+            KelasNama: $stateParams.idKelas,
             IdKelas: $stateParams.idKelas,
             NonSeat: false,
             CreatedBy: $rootScope.User.uid,
@@ -77,14 +94,15 @@ app.controller('InvoiceNewPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
         };
 
         $scope.getNoUrut = function(inKey) {
-            var noUrut = 0;
-            _.each($scope.selectedInvoice.ListPng, function(value, key, list) {
-                noUrut++;
-                if (key == inKey)
-                    return noUrut;
-            });
+            if ($scope.selectedInvoice) {
+                var noUrut = 0;
+                _.find($scope.selectedInvoice.ListPng, function(value, key, list) {
+                    noUrut++;
+                    return key == inKey;
+                });
 
-            return noUrut;
+                return noUrut;
+            }
         };
         // Fungsi Hitung Harga
 
@@ -98,7 +116,7 @@ app.controller('InvoiceNewPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
                 return;
             }
             if (value.Status == 'Pria' || value.Status == 'Wanita') {
-                value.Harga = $scope.dataKelas.HargaDewasa + 10000;
+                value.Harga = $scope.dataKelas.Dewasa - serviceFee;
                 value.ServiceFee = serviceFee;
                 value.SubTotal = value.Harga + value.ServiceFee;
                 value.Tipe = 'Thn';
@@ -106,20 +124,20 @@ app.controller('InvoiceNewPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
             }
 
             if (value.Status == 'Anak') {
-                value.Harga = $scope.dataKelas.HargaAnak + 10000;
+                value.Harga = $scope.dataKelas.Anak - serviceFee;
                 value.ServiceFee = serviceFee;
                 value.SubTotal = value.Harga + value.ServiceFee;
                 value.Tipe = 'Thn';
                 return;
             }
             if (value.Status == 'Bayi') {
-                value.Harga = $scope.dataKelas.HargaBayi + 10000;
+                value.Harga = $scope.dataKelas.Bayi - serviceFee;
                 value.ServiceFee = serviceFee;
                 value.SubTotal = value.Harga + value.ServiceFee;
                 value.Tipe = 'Bln';
                 return;
             }
-        }
+        };
         $scope.grandTotal = function() {
             var total = 0;
             _.each($scope.selectedInvoice.ListPng, function(value, key, list) {
@@ -128,7 +146,7 @@ app.controller('InvoiceNewPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
                 }
             });
             return total;
-        }
+        };
 
         $scope.save = function() {
             $scope.errMsg = '';
@@ -154,7 +172,45 @@ app.controller('InvoiceNewPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
                 $scope.errMsg = 'Alamat Harus Diisi';
                 return;
             }
+            _.each($scope.selectedInvoice.ListPng, function(value, key, list) {
+                if (!value.Nama || value.Nama == '') {
+                    $scope.errMsg = 'Nama Penumpang Harus Diisi';
+                    return;
+                }
+                if (!value.Status || value.Status == '') {
+                    $scope.errMsg = 'Silahkan Pilih Status';
+                    return;
+                }
+                if (!value.Umur || value.Umur == '') {
+                    $scope.errMsg = 'Umur Harus Diisi';
+                    return;
+                }
+                if (value.Status == 'Pria' || value.Status == 'Wanita') {
+                    if (parseInt(value.Umur) < 12) {
+                        $scope.errMsg = 'Umur Dewasa 12 Tahun Keatas';
+                        return;
+                    }
+                }
+                if (value.Status == 'Anak') {
+                    if (parseInt(value.Umur) < 2 || parseInt(value.Umur) > 11) {
+                        $scope.errMsg = 'Umur Anak Diantara 2-11 Tahun';
+                        return;
+                    }
+                }
+                if (value.Status == 'Bayi') {
+                    if (parseInt(value.Umur) < 1 || parseInt(value.Umur) > 23) {
+                        $scope.errMsg = 'Umur Bayi Diantara 1-23 Bulan';
+                        return;
+                    }
+                }
 
+
+            });
+
+
+            if ($scope.errMsg) {
+                return;
+            }
             InvoicePelniRef().$push($scope.selectedInvoice).then(function(ref) {
                 $state.transitionTo('app.pelni.invoice.detail', {
                     idInvoice: ref.key()

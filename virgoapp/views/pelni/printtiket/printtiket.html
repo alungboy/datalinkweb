@@ -58,7 +58,8 @@
                     <tr>
                         <th style="width:20px;">No</th>
                         <th>No Tiket</th>
-                        <th>Nama</th>
+                        <th>Nama Penumpang</th>
+                        <th>Harga</th>
                         <th>Tgl Print Out</th>
                         <th>Status</th>
                         <th>Tgl Issued</th>
@@ -70,6 +71,7 @@
                         <td>{{key + 1}}</td>
                         <td>{{value.NoTiket}}</td>
                         <td>{{value.Nama}}</td>
+                        <td>{{value.HargaTiket | number :0}}</td>
                         <td>
                             <span title="{{value.PrintedOutAt | date:'dd-MM-yyyy HH:mm:ss'}}">
                             {{timeFromNow(value.PrintedOutAt)}}

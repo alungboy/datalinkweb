@@ -5,6 +5,7 @@ app.controller('PrintTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
             $stateParams.pageSize = '10';
         };
         $scope.listTiketIssued = tiketPrinted;
+
         $scope.errMsg = null;
         $scope.okMsg = null;
 

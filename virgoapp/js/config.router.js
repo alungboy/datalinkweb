@@ -397,6 +397,33 @@ angular.module('app')
                         }
                     })
 
+                // STATE ADMIN
+                .state('app.adminpenjualanharianreport', {
+                        url: '/admin/penjualanharianreport/:date/:pageSize',
+                        templateUrl: 'views/admin/penjualanharianpelni/penjualanharianreport.html',
+                        controller: 'PenujualanHarianReportPelniAdminCtrl',
+                        resolve: {
+                            issuedDay: ['$stateParams', 'TiketPelniIssuedDayArr',
+                                function($stateParams, TiketPelniIssuedDayArr) {
+                                    return TiketPelniIssuedDayArr($stateParams.date, $stateParams.pageSize)
+                                        .$loaded();
+                                }
+                            ]
+                        }
+                    })
+                    .state('app.adminpenjualanbulananreport', {
+                        url: '/admin/penjualanbulananreport/:date',
+                        templateUrl: 'views/admin/penjualanbulananpelni/penjualanbulananreport.html',
+                        controller: 'PenujualanBulananReportPelniAdminCtrl',
+                        resolve: {
+                            issuedMonth: ['$stateParams', 'TiketPelniIssuedMonthArr',
+                                function($stateParams, TiketPelniIssuedMonthArr) {
+                                    return TiketPelniIssuedMonthArr($stateParams.date)
+                                        .$loaded();
+                                }
+                            ]
+                        }
+                    })
 
 
 
