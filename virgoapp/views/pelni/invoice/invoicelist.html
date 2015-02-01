@@ -8,7 +8,7 @@
                 <thead>
 
                     <tr>
-                        <th>No Invoice</th>
+
                         <th>Nama Pemesan</th>
                         <th>No HP</th>
                         <th>Kapal</th>
@@ -17,18 +17,18 @@
                         <th>Kelas</th>
                         <th>Tgl Buat</th>
                         <th>Dibuat Oleh</th>
-                        <!--  <th>Tgl Edit</th>
-                        <th>Diedit Oleh</th> -->
+                        <th>Diedit Oleh</th>
+                        <th>Keterangan Edit</th>
                     </tr>
 
                 </thead>
                 <tbody>
                     <tr class="fadeInRight animated" ng-repeat="(key ,value) in listInvoice | orderBy:'CreatedAt':true">
-                        <td><a ng-click="detailInvoice(key)">{{key}}</a></td>
-                        <td>{{value.Pemesan}}</td>
+                        <td><a ng-click="detailInvoice(key)">{{value.Pemesan}}</a>
+                        </td>
                         <td>{{value.MobilePemesan}}</td>
                         <td>{{value.KapalNama}}</td>
-                        <td>{{value.TglBerangkat}}</td>
+                        <td>{{value.TglBerangkat | date:'dd-MM-yyyy HH:mm:ss'}}</td>
                         <td>
                             {{value.EmbarNama}} <i class="fa fa-arrow-right"></i> {{value.DebarNama}}
                         </td>
@@ -48,19 +48,21 @@
                             </span>
 
                         </td>
-                        <!--    <td>
-                            <span title="{{value.UpdatedAt | date:'dd-MM-yyyy HH:mm:ss'}}">
-                            {{timeFromNow(value.UpdatedAt)}}
-                            </span>
-                        </td>
                         <td>
                             <span class="thumb-sm avatar m-t-n-sm m-b-n-sm m-l-sm">
                             <a ng-href="https://www.facebook.com/{{getUserByUid(value.UpdatedBy).facebook.id}}" target="_blank">
-                            <img ng-src="https://graph.facebook.com/{{getUserByUid(value.UpdatedBy).facebook.id}}/picture?type=square" tooltip="{{getUserByUid(value.UpdatedBy).facebook.displayName}}" style="width:80%;">
+                            <img ng-src="https://graph.facebook.com/{{getUserByUid(value.UpdatedBy).facebook.id}}/picture?type=square" tooltip="{{value.UpdatedAt | date:'dd-MM-yyyy HH:mm:ss'}}" style="width:80%;">
                             </a>
                             </span>
+                        </td>
+                        <td>
+                            <span><i class="fa fa-phone-square" title="Pemesan"></i>  </span>
+                            <span><i class="fa fa-users" title="Jlh Penumpang"></i> </span>
+                            <span><i class="fa fa-user" title="Penumpang"></i>  </span>
+                            <span><i class="fa fa-check-square" title="Status"></i>  </span>
+                            <span><i class="fa fa-child" title="Umur"></i>  </span>
 
-                        </td> -->
+                        </td>
                     </tr>
 
                 </tbody>

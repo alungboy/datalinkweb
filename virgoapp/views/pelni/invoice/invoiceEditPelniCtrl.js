@@ -6,7 +6,10 @@ app.controller('InvoiceEditPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
         if (invoicePelni && invoicePelni.$value === null) {
             alert('Tidak Ada Data Invoice');
         } else {
+
             $scope.selectedInvoice = invoicePelni;
+            var beforeChange = $.extend(true, {}, invoicePelni);
+
             var kapal = $scope.selectedInvoice.Kapal;
             var pelayaran = $scope.selectedInvoice.Embar + '-' + $scope.selectedInvoice.EmbarCall + '-' + $scope.selectedInvoice.Debar + '-' + $scope.selectedInvoice.DebarCall;
 
@@ -176,7 +179,7 @@ app.controller('InvoiceEditPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
                         return;
                     }
                 }
-                
+
 
             });
 
@@ -185,10 +188,26 @@ app.controller('InvoiceEditPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
                 return;
             }
 
+            // Add History Harga
+
+
+
+
             $scope.selectedInvoice.UpdatedAt = {
                 '.sv': 'timestamp'
             };
             $scope.selectedInvoice.UpdatedBy = $scope.User.uid;
+            // Get Index TotalHistory
+            var size = 0
+            _.each($scope.selectedInvoice.TotalHistory, function(value, key, list) {
+                size++
+            });
+            $scope.selectedInvoice.TotalHistory[size] = {
+                Harga: $scope.grandTotal(),
+                HargaAt: $scope.selectedInvoice.UpdatedAt,
+                HargaBy: $scope.selectedInvoice.UpdatedBy,
+            };
+
             $scope.selectedInvoice.$save().then(function(ref) {
 
                 $state.transitionTo('app.pelni.invoice.detail', {

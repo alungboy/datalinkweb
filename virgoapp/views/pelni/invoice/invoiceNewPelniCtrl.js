@@ -49,6 +49,7 @@ app.controller('InvoiceNewPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
                 '.sv': 'timestamp'
             },
             ListPng: {},
+            TotalHistory : {}
         };
         InvoicePelniRef().$push().then(function(ref) {
             $scope.selectedInvoice.ListPng[ref.key()] = {
@@ -211,6 +212,16 @@ app.controller('InvoiceNewPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
             if ($scope.errMsg) {
                 return;
             }
+
+            // Add History Harga
+
+            
+            $scope.selectedInvoice.TotalHistory['0'] = {
+                Harga: $scope.grandTotal(),
+                HargaAt: $scope.selectedInvoice.CreatedAt,
+                HargaBy: $scope.selectedInvoice.CreatedBy,
+            };
+
             InvoicePelniRef().$push($scope.selectedInvoice).then(function(ref) {
                 $state.transitionTo('app.pelni.invoice.detail', {
                     idInvoice: ref.key()
