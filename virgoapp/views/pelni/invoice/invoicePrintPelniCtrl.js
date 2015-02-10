@@ -14,7 +14,8 @@ app.controller('InvoicePrintPelniCtrl', ['$scope', '$rootScope', '$stateParams',
         var serviceFee = 20000;
 
         $scope.getDayDateYear = function(input) {
-            return moment(input).format('dddd, DD MMMM YYYY HH:mm');
+
+            return moment(parseInt(input)).format('dddd, DD MMMM YYYY HH:mm');
         }
 
         $scope.getUserByUid = function(uid) {
