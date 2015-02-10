@@ -1,7 +1,8 @@
 'use strict';
-app.controller('InvoiceNewPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'singleJadwal', 'InvoicePelniRef', 'HargaFac',
-    function($scope, $rootScope, $stateParams, $state, singleJadwal, InvoicePelniRef, HargaFac) {
-
+app.controller('InvoiceNewPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'singleJadwal', 'InvoicePelniRef', 'HargaFac', 'invoices',
+    function($scope, $rootScope, $stateParams, $state, singleJadwal, InvoicePelniRef, HargaFac, invoices) {
+        var d = new Date();
+        var Dibuat = d.valueOf();
         $scope.selectedJadwal = singleJadwal;
         var kapal = $scope.selectedJadwal.Kapal;
         var pelayaran = $scope.selectedJadwal.Embar + '-' + $scope.selectedJadwal.EmbarCall + '-' + $scope.selectedJadwal.Debar + '-' + $scope.selectedJadwal.DebarCall;
@@ -45,11 +46,9 @@ app.controller('InvoiceNewPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
             IdKelas: $stateParams.idKelas,
             NonSeat: false,
             CreatedBy: $rootScope.User.uid,
-            CreatedAt: {
-                '.sv': 'timestamp'
-            },
+            CreatedAt: Dibuat,
             ListPng: {},
-            TotalHistory : {}
+            TotalHistory: {}
         };
         InvoicePelniRef().$push().then(function(ref) {
             $scope.selectedInvoice.ListPng[ref.key()] = {
@@ -215,21 +214,36 @@ app.controller('InvoiceNewPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
 
             // Add History Harga
 
-            
+
             $scope.selectedInvoice.TotalHistory['0'] = {
                 Harga: $scope.grandTotal(),
                 HargaAt: $scope.selectedInvoice.CreatedAt,
                 HargaBy: $scope.selectedInvoice.CreatedBy,
             };
 
-            InvoicePelniRef().$push($scope.selectedInvoice).then(function(ref) {
+            var fbDb = invoices.$inst();;
+            fbDb.$update('' + Dibuat, $scope.selectedInvoice).then(function(ref) {
                 $state.transitionTo('app.pelni.invoice.detail', {
-                    idInvoice: ref.key()
+                    idInvoice: Dibuat
                 });
+                return;
+            }, function(error) {
 
-            }, function(err) {
-                $scope.errMsg = err;
+                $scope.errMsg = error;
+
+                return;
             });
+
+            // Cara Lama Generate ID Otomatis
+
+            // InvoicePelniRef().$push($scope.selectedInvoice).then(function(ref) {
+            //     $state.transitionTo('app.pelni.invoice.detail', {
+            //         idInvoice: ref.key()
+            //     });
+
+            // }, function(err) {
+            //     $scope.errMsg = err;
+            // });
 
 
         }

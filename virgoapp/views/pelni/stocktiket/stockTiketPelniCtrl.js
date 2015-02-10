@@ -11,7 +11,12 @@ app.controller('StockTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
 
 
         $scope.timeFromNow = function(input) {
-            return moment(input).fromNow();
+            if (input) {
+                return moment(input).fromNow();
+            }else{
+                return null;
+            }
+            
         };
         
         $scope.getStatusName = function(input) {
@@ -133,7 +138,7 @@ app.controller('StockTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
             }
 
             var fbDb = $scope.listTiketBaik.$inst();
-            console.log(tiketPost);
+
             fbDb.$update('' + noTiketInt, tiketPost).then(function(ref) {
                 $scope.okMsg = "No Tiket " + noTiketInt + " berhasil ditambahkan!";
                 $scope.tiketBaru = '';

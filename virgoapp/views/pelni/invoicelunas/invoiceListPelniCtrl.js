@@ -1,5 +1,5 @@
 'use strict';
-app.controller('InvoiceListPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'invoices',
+app.controller('InvoiceLunasListPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'invoices',
     function($scope, $rootScope, $stateParams, $state, invoices) {
 
         if (!$stateParams.pageSize || $stateParams.pageSize == '') {
@@ -7,7 +7,6 @@ app.controller('InvoiceListPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
         };
 
         $scope.listInvoice = invoices;
-
        
         $scope.errMsg = null;
         $scope.okMsg = null;
@@ -20,14 +19,6 @@ app.controller('InvoiceListPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
             }
             
         };
-
-        $scope.lunasBool = function(input){
-            if (input) {
-                return 'Ya';
-            }else{
-                return 'Tidak';
-            }
-        }
       
         $scope.getUserByUid = function(uid) {
             var user = null;
@@ -62,11 +53,8 @@ app.controller('InvoiceListPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
 
         $scope.detailInvoice = function(input) {
             if (input) {
-
-                $state.transitionTo('app.pelni.invoice.detail', {
+                $state.transitionTo('app.pelni.invoicelunas.detail', {
                     idInvoice: input,
-                    
-
                 });
             }
         };

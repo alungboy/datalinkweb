@@ -10,7 +10,12 @@ app.controller('IssuedTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
         $scope.okMsg = null;
 
         $scope.timeFromNow = function(input) {
-            return moment(input).fromNow();
+            if (input) {
+                return moment(input).fromNow();
+            }else{
+                return null;
+            }
+            
         };
 
         $scope.getStatusName = function(input) {

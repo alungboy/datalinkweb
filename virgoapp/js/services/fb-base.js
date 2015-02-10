@@ -389,6 +389,25 @@ angular.module('Fbase', ['app', 'firebase'])
     return get;
 }])
 
+.service("InvoicePelniArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
+
+    var get = function(pageSize) {
+
+        if (!pageSize || pageSize == '') {
+            var obj = Fbase.child('invoicepelni').orderByChild('CreatedAt').startAt(1).endAt(9999999999999);
+            obj = obj.limitToLast(10);
+        } else {
+            var obj = Fbase.child('invoicepelni').orderByChild('CreatedAt').startAt(1).endAt(9999999999999);
+            obj = obj.limitToLast(parseInt(pageSize));
+        }
+
+        return $firebase(obj).$asArray();
+    };
+
+
+    return get;
+}])
+
 .service("InvoicePelniSingleObj", ['Fbase', "$firebase", function(Fbase, $firebase) {
 
     var get = function(idInvoicePelni) {

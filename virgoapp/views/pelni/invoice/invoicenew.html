@@ -7,7 +7,6 @@
             <img src="img/virgo.png" class="center-block">
             <hr style="margin-top:0px; margin-bottom:0px;">
             <h4 class="text-center"><b>INVOICE KAPAL</b></h4>
-
             <div class="col-sm-6 m-b-xs" style="font-size:15px;">
 
                 <br> Kapal: <b id="_id88" name="_id88">{{selectedInvoice.Kapal}} {{selectedInvoice.KapalNama}}</b>
@@ -26,13 +25,9 @@
                 <br> Dewasa: <b>Rp.{{dataKelas.Dewasa | number :0}},-</b>
                 <br> Anak &nbsp;&nbsp;&nbsp;&nbsp; : <b>Rp.{{dataKelas.Anak | number :0}},-</b>
                 <br> Bayi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : <b>Rp.{{dataKelas.Bayi | number :0}},-</b>
-
-              
             </div>
 
             <div class="col-sm-6">
-
-
                 <div class="form-group input-sm">
                     <label class="col-lg-3 control-label">Nama Pemesan</label>
                     <div class="col-lg-8">
@@ -70,7 +65,6 @@
                         </select>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -81,7 +75,6 @@
                     <th>Nama Penumpang</th>
                     <th style="width:120px;">Status</th>
                     <th style="width:130px;">Umur </th>
-
                     <th style="width:190px;">Harga</th>
                     <th style="width:190px;">Adm Travel</th>
                     <th style="width:190px;">Sub Total</th>
@@ -105,7 +98,6 @@
                         </select>
                     </td>
                     <td>
-
                         <div class="input-group">
                             <input type="text" class="form-control input-sm" ng-model="value.Umur" maxlength="3">
                             <span class="input-group-btn">
@@ -133,16 +125,11 @@
                             &nbsp;
                             <span class="text-danger " ng-show="errMsg">{{errMsg}}</span>
                         </div>
-
                     </th>
                     <th>
                         <div class="btn-group btn-group-justified">
-        
                             <a ng-click="save()"  class="btn btn-sm btn-success">Save</a>
-                           
                         </div>
-                       
-
                     </th>
                     <th>
                         Total Harga

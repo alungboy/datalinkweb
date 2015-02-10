@@ -1,5 +1,5 @@
 'use strict';
-app.controller('InvoiceDetailPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'JadwalPelniSingleObj', 'invoicePelni', 'InvoicePelniRef', 'HargaFac',
+app.controller('InvoiceLunasDetailPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'JadwalPelniSingleObj', 'invoicePelni', 'InvoicePelniRef', 'HargaFac',
     function($scope, $rootScope, $stateParams, $state, JadwalPelniSingleObj, invoicePelni, InvoicePelniRef, HargaFac) {
 
         $scope.User = $rootScope.User;
@@ -7,7 +7,7 @@ app.controller('InvoiceDetailPelniCtrl', ['$scope', '$rootScope', '$stateParams'
             alert('Tidak Ada Data Invoice');
         } else {
             $scope.selectedInvoice = invoicePelni;
-
+            $scope.selectedInvoice.LunasMethod = 'Cash';
             var kapal = $scope.selectedInvoice.Kapal;
             var pelayaran = $scope.selectedInvoice.Embar + '-' + $scope.selectedInvoice.EmbarCall + '-' + $scope.selectedInvoice.Debar + '-' + $scope.selectedInvoice.DebarCall;
 
@@ -27,14 +27,6 @@ app.controller('InvoiceDetailPelniCtrl', ['$scope', '$rootScope', '$stateParams'
 
         }
         var serviceFee = 20000;
-
-        $scope.lunasBool = function(input){
-            if (input) {
-                return 'Ya';
-            }else{
-                return 'Tidak';
-            }
-        }
 
         $scope.getNoUrut = function(inKey) {
             if ($scope.selectedInvoice) {
@@ -99,13 +91,25 @@ app.controller('InvoiceDetailPelniCtrl', ['$scope', '$rootScope', '$stateParams'
             });
         };
 
-        $scope.toPrint = function() {
+        $scope.lunas = function() {
+            if (confirm('Lunaskan Invoice a.n: ' + $scope.selectedInvoice.Pemesan + ' ?') == true) {
+                $scope.selectedInvoice.LunasAt = {
+                    '.sv': 'timestamp'
+                };
+                $scope.selectedInvoice.LunasBy = $scope.User.uid;
 
-            var params = {
-                idInvoice: $stateParams.idInvoice,
+                $scope.selectedInvoice.$save().then(function(ref) {
+
+                    $state.transitionTo('app.pelni.invoicelunas.list', {
+                        idInvoice: $stateParams.idInvoice,
+                    });
+
+                }, function(error) {
+                    console.log("Error:", error);
+                });
+            } else{
+                return;
             }
-            var statePrintInvoiceKapal = $state.href('app.pelni.invoice.print', params);
-            window.open(statePrintInvoiceKapal, '_blank');
         }
 
 

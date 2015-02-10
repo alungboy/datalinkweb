@@ -1,15 +1,14 @@
 <div class="hbox hbox-auto-xs bg-light ">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Invoice Edit
+            Invoice Lunas - Detail
         </div>
-        <div class="row wrapper">
+        <div class="row wrapper" ng-show="selectedInvoice">
             <img src="img/virgo.png" class="center-block">
             <hr style="margin-top:0px; margin-bottom:0px;">
             <h4 class="text-center"><b>INVOICE KAPAL</b></h4>
 
             <div class="col-sm-6 m-b-xs" style="font-size:15px;">
-                LUNAS? : <b>{{lunasBool(selectedInvoice.LunasAt)}}</b>
                 <br> Kapal: <b id="_id88" name="_id88">{{selectedInvoice.Kapal}} {{selectedInvoice.KapalNama}}</b>
                 <br> Tanggal Berangkat: <b id="_id96" name="_id96"> {{selectedInvoice.TglBerangkat}} </b>
                 <br> Pelayaran:
@@ -32,29 +31,28 @@
 
             <div class="col-sm-6">
 
-
                 <div class="form-group input-sm">
                     <label class="col-lg-3 control-label">Nama Pemesan</label>
                     <div class="col-lg-8">
-                        <input id="_id212" name="_id212" type="text" class="form-control input-sm" placeholder="Nama Pemesan" ng-model="selectedInvoice.Pemesan" maxlength="50">
+                        <input id="_id212" name="_id212" type="text" class="form-control input-sm" placeholder="Nama Pemesan" ng-model="selectedInvoice.Pemesan" maxlength="50" disabled>
                     </div>
                 </div>
                 <div class="form-group input-sm">
                     <label class="col-lg-3 control-label">No HP</label>
                     <div class="col-lg-8">
-                        <input id="_id217" name="_id217" type="text" class="form-control input-sm" placeholder="No HP" ng-model="selectedInvoice.MobilePemesan" maxlength="15">
+                        <input id="_id217" name="_id217" type="text" class="form-control input-sm" placeholder="No HP" ng-model="selectedInvoice.MobilePemesan" maxlength="15" disabled>
                     </div>
                 </div>
                 <div class="form-group input-sm">
                     <label class="col-lg-3 control-label">Alamat</label>
                     <div class="col-lg-8">
-                        <input id="_id222" name="_id222" type="text" class="form-control input-sm" placeholder="Alamat" ng-model="selectedInvoice.AlamatPemesan" maxlength="50">
+                        <input id="_id222" name="_id222" type="text" class="form-control input-sm" placeholder="Alamat" ng-model="selectedInvoice.AlamatPemesan" maxlength="50" disabled>
                     </div>
                 </div>
                 <div class="form-group input-sm">
                     <label class="col-lg-3 control-label">Tipe Booking</label>
                     <div class="col-lg-8">
-                        <select class="form-control input-sm" ng-model="selectedInvoice.TipeBooking" id="_id158" name="_id158">
+                        <select class="form-control input-sm" ng-model="selectedInvoice.TipeBooking" id="_id158" name="_id158" disabled>
                             <option value="0">Partial</option>
                             <option value="1">Full</option>
                         </select>
@@ -63,7 +61,7 @@
                 <div class="form-group input-sm">
                     <label class="col-lg-3 control-label">Jenis Booking</label>
                     <div class="col-lg-8">
-                        <select class="form-control input-sm" ng-model="selectedInvoice.JenisBooking" id="_id158" name="_id158">
+                        <select class="form-control input-sm" ng-model="selectedInvoice.JenisBooking" id="_id158" name="_id158" disabled>
                             <option value="0">Umum</option>
                             <option value="1">Keluarga</option>
                             <option value="2">Single Of Ocupancy</option>
@@ -74,7 +72,7 @@
             </div>
         </div>
 
-        <table class="table table-bordered b-t b-dark" style="font-size:12px;">
+        <table class="table table-bordered b-t b-dark" style="font-size:12px;" ng-show="selectedInvoice">
             <thead style="background-color: #F6F8F8;">
                 <tr>
                     <th style="width:75px;">No</th>
@@ -90,13 +88,13 @@
             <tbody>
                 <tr ng-repeat="(key, value) in selectedInvoice.ListPng">
                     <td>
-                        <button class="btn btn-default btn-sm" type="button" ng-click="rmPng(key)" ng-hide="countPng() < 2">-</button>&nbsp;&nbsp;{{getNoUrut(key)}}
+                        &nbsp;&nbsp;{{getNoUrut(key)}}
                     </td>
                     <td>
-                        <input type="text" class="form-control input-sm" placeholder="Nama Penumpang" ng-model="value.Nama" maxlength="50">
+                        <input type="text" class="form-control input-sm" placeholder="Nama Penumpang" ng-model="value.Nama" maxlength="50" disabled>
                     </td>
                     <td>
-                        <select class="form-control input-sm" ng-model="value.Status" ng-change="hitungHarga(value)">
+                        <select class="form-control input-sm" ng-model="value.Status" ng-change="hitungHarga(value)" disabled>
                             <option value="">-Status-</option>
                             <option value="Pria">Pria</option>
                             <option value="Wanita">Wanita</option>
@@ -107,7 +105,7 @@
                     <td>
 
                         <div class="input-group">
-                            <input type="text" class="form-control input-sm" ng-model="value.Umur" maxlength="3">
+                            <input type="text" class="form-control input-sm" ng-model="value.Umur" maxlength="3" disabled>
                             <span class="input-group-btn">
                                 <button class="btn btn-sm btn-default" disabled>{{value.Tipe}}
                                 </button>
@@ -129,20 +127,29 @@
                 <tr>
                     <th colspan="4">
                         <div class="input-group">
-                            <button class="btn btn-default btn-sm" type="button" ng-click="tambahPng()" ng-hide="countPng() > 9">Tambah</button>
-                            &nbsp;
                             <span class="text-danger " ng-show="errMsg">{{errMsg}}</span>
+                        </div>
+                        <div class="pull-right">
+                            <div class="input-group">
+                                <select class="form-control input-sm" ng-model="selectedInvoice.LunasMethod">
+                                    <option value="Cash">Cash</option>
+                                    <option value="Transfer">Transfer</option>
+                                    <option value="EDC">EDC</option>
+                                </select>
+                                 <span class="input-group-btn">
+                                <a class="btn btn-primary btn-sm" ng-click="lunas()">Lunas</a>
+                                </span>
+                            </div>
+
+
                         </div>
 
                     </th>
                     <th>
                         <div class="btn-group btn-group-justified">
-                            <a ng-click="toDetail()" class="btn btn-sm btn-default">Back</a>
-                            <a ng-click="save()" class="btn btn-sm btn-success">Save</a>
 
+                            <a class="btn btn-sm btn-default" ui-sref="app.pelni.invoicelunas.list">Back</a>
                         </div>
-
-
                     </th>
                     <th>
                         Total Harga

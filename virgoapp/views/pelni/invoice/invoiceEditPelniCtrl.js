@@ -40,6 +40,13 @@ app.controller('InvoiceEditPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
 
         var serviceFee = 20000;
 
+        $scope.lunasBool = function(input){
+            if (input) {
+                return 'Ya';
+            }else{
+                return 'Tidak';
+            }
+        }
 
 
         $scope.tambahPng = function() {
@@ -125,6 +132,10 @@ app.controller('InvoiceEditPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
 
         $scope.save = function() {
             $scope.errMsg = '';
+            if ($scope.selectedInvoice.LunasAt) {
+                $scope.errMsg = 'Invoice Yang Sudah Lunas Tidak Dapat di EDIT!';
+                return;
+            }
             if ($scope.selectedInvoice.Pemesan == '' || $scope.selectedInvoice.Pemesan == null) {
                 $scope.errMsg = 'Nama Pemesan Harus Diisi';
                 return;

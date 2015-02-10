@@ -64,8 +64,14 @@ app.controller('PenujualanHarianReportPelniCtrl', ['$scope', '$rootScope', '$sta
 
 
         $scope.timeFromNow = function(input) {
-            return moment(input).fromNow();
+            if (input) {
+                return moment(input).fromNow();
+            }else{
+                return null;
+            }
+            
         };
+        
         $scope.getDayDateYear = function(input) {
             return moment($stateParams.date, 'YYYYMMDD').format('dddd, DD MMMM YYYY');
         }

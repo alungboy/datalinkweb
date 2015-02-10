@@ -148,6 +148,12 @@ angular.module('app')
                                 return JadwalPelniSingleObj($stateParams.idJadwal).$loaded();
                             }
                         ],
+                        invoices: ['$stateParams', 'InvoicePelniArr',
+                            function($stateParams, InvoicePelniArr) {
+                                return InvoicePelniArr(10)
+                                    .$loaded();
+                            }
+                        ],
                     }
                 })
 
@@ -210,6 +216,39 @@ angular.module('app')
 
                         }
 
+                    })
+
+                // State Invoice Lunas
+                .state('app.pelni.invoicelunas', {
+                        url: '/invoicelunas',
+                        abstract: true,
+                        template: '<div class="fade-in-right" ui-view></div>',
+
+                    })
+                    .state('app.pelni.invoicelunas.list', {
+                        url: '/list/:pageSize',
+                        templateUrl: 'views/pelni/invoicelunas/invoicelist.html',
+                        controller: 'InvoiceLunasListPelniCtrl',
+                        resolve: {
+                            invoices: ['$stateParams', 'InvoicePelniObj',
+                                function($stateParams, InvoicePelniObj) {
+                                    return InvoicePelniObj(parseInt($stateParams.pageSize))
+                                        .$loaded();
+                                }
+                            ],
+                        }
+                    })
+                    .state('app.pelni.invoicelunas.detail', {
+                        url: '/detail/:idInvoice',
+                        templateUrl: 'views/pelni/invoicelunas/invoicedetail.html',
+                        controller: 'InvoiceLunasDetailPelniCtrl',
+                        resolve: {
+                            invoicePelni: ['$stateParams', 'InvoicePelniSingleObj',
+                                function($stateParams, InvoicePelniSingleObj) {
+                                    return InvoicePelniSingleObj($stateParams.idInvoice).$loaded();
+                                }
+                            ],
+                        }
                     })
 
                 // STATE ISSUED

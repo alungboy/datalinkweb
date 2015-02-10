@@ -95,7 +95,12 @@ app.controller('SearchResultsTiketPelniCtrl', ['$scope', '$rootScope', '$statePa
         };
 
         $scope.timeFromNow = function(input) {
-            return moment(input).fromNow();
+            if (input) {
+                return moment(input).fromNow();
+            }else{
+                return null;
+            }
+            
         };
 
         $scope.kapalSearch = function(idKapal) {
@@ -137,7 +142,12 @@ app.controller('SearchResultsKapalPelniCtrl', ['$scope', '$rootScope', '$statePa
         }
 
         $scope.timeFromNow = function(input) {
-            return moment(input).fromNow();
+            if (input) {
+                return moment(input).fromNow();
+            }else{
+                return null;
+            }
+            
         };
 
         $scope.createInvoce = function(idJadwal, idKelas) {

@@ -12,7 +12,12 @@ app.controller('PrintTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
 
 
         $scope.timeFromNow = function(input) {
-            return moment(input).fromNow();
+            if (input) {
+                return moment(input).fromNow();
+            }else{
+                return null;
+            }
+            
         };
         $scope.getDayFromTime = function(input) {
             return moment(input, 'DD-MM-YYYY hh:mm').format('dddd, DD-MMMM-YYYY hh:mm')

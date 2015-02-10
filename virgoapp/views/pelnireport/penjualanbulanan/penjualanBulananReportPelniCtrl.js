@@ -16,8 +16,14 @@ app.controller('PenujualanBulananReportPelniCtrl', ['$scope', '$rootScope', '$st
         };
 
         $scope.timeFromNow = function(input) {
-            return moment(input).fromNow();
+            if (input) {
+                return moment(input).fromNow();
+            }else{
+                return null;
+            }
+            
         };
+        
         $scope.getDayDateYear = function(input) {
             return moment(input, 'YYYYMMDDHHmm').format('dddd, DD MMMM YYYY HH:mm');
         }

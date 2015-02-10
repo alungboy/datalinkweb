@@ -13,8 +13,14 @@ app.controller('SearchTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
         $scope.okMsg = null;
 
         $scope.timeFromNow = function(input) {
-            return moment(input).fromNow();
+            if (input) {
+                return moment(input).fromNow();
+            }else{
+                return null;
+            }
+            
         };
+        
         $scope.getDayFromTime = function(input) {
             if (input) {
                 return moment(input).format('dddd, DD-MMMM-YYYY hh:mm');

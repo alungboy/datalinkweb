@@ -9,6 +9,7 @@
             <h4 class="text-center"><b>INVOICE KAPAL</b></h4>
 
             <div class="col-sm-6 m-b-xs" style="font-size:15px;">
+                LUNAS? : <b>{{lunasBool(selectedInvoice.LunasAt)}}</b>
                 <br> Kapal: <b id="_id88" name="_id88">{{selectedInvoice.Kapal}} {{selectedInvoice.KapalNama}}</b>
                 <br> Tanggal Berangkat: <b id="_id96" name="_id96"> {{selectedInvoice.TglBerangkat}} </b>
                 <br> Pelayaran:
@@ -130,12 +131,12 @@
                         <div class="input-group">
                             <span class="text-danger " ng-show="errMsg">{{errMsg}}</span>
                         </div>
-                        <a class="btn btn-primary btn-sm pull-right" ng-click="toPrint()">Print</a>
+                        <a class="btn btn-primary btn-sm pull-right" ng-hide="lunasBool(selectedInvoice.LunasAt) == 'Ya' " ng-click="toPrint()">Print</a>
                     </th>
                     <th>
                         <div class="btn-group btn-group-justified">
                             <a class="btn btn-sm btn-default" ui-sref="app.pelni.invoice.list">Back</a>
-                            <a ng-click="toEdit()" class="btn btn-sm btn-success">Edit</a>
+                            <a ng-hide="lunasBool(selectedInvoice.LunasAt) == 'Ya' " ng-click="toEdit()" class="btn btn-sm btn-success">Edit</a>
                         </div>
                     </th>
                     <th>
