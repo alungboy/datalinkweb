@@ -130,7 +130,7 @@
                             <span class="text-danger " ng-show="errMsg">{{errMsg}}</span>
                         </div>
                         <div class="pull-right">
-                            <div class="input-group">
+                            <div class="input-group" ng-hide="lunasBool(selectedInvoice.LunasAt) == 'Ya' ">
                                 <select class="form-control input-sm" ng-model="selectedInvoice.LunasMethod">
                                     <option value="Cash">Cash</option>
                                     <option value="Transfer">Transfer</option>

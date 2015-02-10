@@ -28,6 +28,14 @@ app.controller('InvoiceLunasDetailPelniCtrl', ['$scope', '$rootScope', '$statePa
         }
         var serviceFee = 20000;
 
+        $scope.lunasBool = function(input){
+            if (input) {
+                return 'Ya';
+            }else{
+                return 'Tidak';
+            }
+        }
+
         $scope.getNoUrut = function(inKey) {
             if ($scope.selectedInvoice) {
                 var noUrut = 0;
