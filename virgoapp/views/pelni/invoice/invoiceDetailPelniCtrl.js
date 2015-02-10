@@ -36,6 +36,12 @@ app.controller('InvoiceDetailPelniCtrl', ['$scope', '$rootScope', '$stateParams'
             }
         }
 
+        $scope.getBerangkatDate = function(input) {
+
+            return moment(input, 'YYYYMMDDHHmm').format('dddd, DD MMMM YYYY HH:mm');
+        }
+
+
         $scope.getNoUrut = function(inKey) {
             if ($scope.selectedInvoice) {
                 var noUrut = 0;

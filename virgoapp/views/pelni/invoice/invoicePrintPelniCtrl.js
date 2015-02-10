@@ -15,7 +15,12 @@ app.controller('InvoicePrintPelniCtrl', ['$scope', '$rootScope', '$stateParams',
 
         $scope.getDayDateYear = function(input) {
 
-            return moment(parseInt(input)).format('dddd, DD MMMM YYYY HH:mm');
+            return moment(input).format('dddd, DD MMMM YYYY HH:mm');
+        }
+
+        $scope.getBerangkatDate = function(input) {
+
+            return moment(input, 'YYYYMMDDHHmm').format('dddd, DD MMMM YYYY HH:mm');
         }
 
         $scope.getUserByUid = function(uid) {

@@ -48,6 +48,10 @@ app.controller('InvoiceEditPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
             }
         }
 
+        $scope.getBerangkatDate = function(input) {
+
+            return moment(input, 'YYYYMMDDHHmm').format('dddd, DD MMMM YYYY HH:mm');
+        }
 
         $scope.tambahPng = function() {
             InvoicePelniRef().$push().then(function(ref) {

@@ -11,7 +11,7 @@
             <div class="col-sm-6 m-b-xs" style="font-size:15px;">
                 LUNAS? : <b>{{lunasBool(selectedInvoice.LunasAt)}}</b>
                 <br> Kapal: <b id="_id88" name="_id88">{{selectedInvoice.Kapal}} {{selectedInvoice.KapalNama}}</b>
-                <br> Tanggal Berangkat: <b id="_id96" name="_id96"> {{selectedInvoice.TglBerangkat}} </b>
+                <br> Tanggal Berangkat: <b id="_id96" name="_id96"> {{getBerangkatDate(selectedInvoice.TglBerangkat)}} </b>
                 <br> Pelayaran:
                 <b id="_id132" name="_id132">{{selectedInvoice.Embar}} {{selectedInvoice.EmbarNama}} - {{selectedInvoice.EmbarCall}}</b>
                 <i class="fa fa-arrow-right"></i>
