@@ -8,6 +8,14 @@ app.controller('InvoiceLunasListPelniCtrl', ['$scope', '$rootScope', '$statePara
 
         $scope.listInvoice = invoices;
        
+        // Get Object Length Function
+        $scope.listInvoice = invoices;
+        var len = 0;
+        _.each($scope.listInvoice, function(value, key, list){
+           len++;
+        });
+        $scope.listInvoiceLength = len;
+
         $scope.errMsg = null;
         $scope.okMsg = null;
 
@@ -30,7 +38,7 @@ app.controller('InvoiceLunasListPelniCtrl', ['$scope', '$rootScope', '$statePara
 
         $scope.showLoadMore = function() {
             var paramSize = parseInt($stateParams.pageSize);
-            if ($scope.listInvoice.length >= paramSize) {
+            if ($scope.listInvoiceLength >= paramSize) {
                 return true;
             } else {
                 return false;
@@ -40,11 +48,11 @@ app.controller('InvoiceLunasListPelniCtrl', ['$scope', '$rootScope', '$statePara
         $scope.loadMore = function() {
             var paramSize = parseInt($stateParams.pageSize);
 
-            if ($scope.listInvoice.length >= paramSize) {
+            if ($scope.listInvoiceLength >= paramSize) {
 
-                $state.transitionTo('app.pelni.invoice.list', {
+                $state.transitionTo('app.pelni.invoicelunas.list', {
                     startDate: null,
-                    pageSize: paramSize + 10,
+                    pageSize:  parseInt($stateParams.pageSize) + 10,
                     asc: null
 
                 });
@@ -52,8 +60,10 @@ app.controller('InvoiceLunasListPelniCtrl', ['$scope', '$rootScope', '$statePara
         };
 
         $scope.detailInvoice = function(input) {
+            var paramSize = parseInt($stateParams.pageSize);
             if (input) {
                 $state.transitionTo('app.pelni.invoicelunas.detail', {
+                    pageSize: paramSize,
                     idInvoice: input,
                 });
             }

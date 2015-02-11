@@ -107,9 +107,9 @@ app.controller('InvoiceLunasDetailPelniCtrl', ['$scope', '$rootScope', '$statePa
                 $scope.selectedInvoice.LunasBy = $scope.User.uid;
 
                 $scope.selectedInvoice.$save().then(function(ref) {
-
+                    var paramSize = parseInt($stateParams.pageSize);
                     $state.transitionTo('app.pelni.invoicelunas.list', {
-                        idInvoice: $stateParams.idInvoice,
+                        pageSize: paramSize,
                     });
 
                 }, function(error) {
@@ -119,6 +119,16 @@ app.controller('InvoiceLunasDetailPelniCtrl', ['$scope', '$rootScope', '$statePa
                 return;
             }
         }
+
+        $scope.toListInvoice = function() {
+            var paramSize = parseInt($stateParams.pageSize);
+
+                $state.transitionTo('app.pelni.invoicelunas.list', {
+                    pageSize: paramSize,
+
+                });
+          
+        };
 
 
     }

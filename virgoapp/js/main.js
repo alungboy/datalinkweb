@@ -42,7 +42,16 @@ angular.module('app')
                     container: false
                 }
             };
-            
+
+            $scope.app.admin = function(input){
+                if (!input || input == '') {
+                    return false;
+                }
+                if (input == 1158274528) {
+                    return true;
+                }
+            };
+
             // Moment Local
             moment.locale('id');
 

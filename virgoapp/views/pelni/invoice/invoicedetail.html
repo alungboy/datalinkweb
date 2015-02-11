@@ -135,7 +135,7 @@
                     </th>
                     <th>
                         <div class="btn-group btn-group-justified">
-                            <a class="btn btn-sm btn-default" ui-sref="app.pelni.invoice.list">Back</a>
+                            <a class="btn btn-sm btn-default" ng-click="toListInvoice()">Back</a>
                             <a ng-hide="lunasBool(selectedInvoice.LunasAt) == 'Ya' " ng-click="toEdit()" class="btn btn-sm btn-success">Edit</a>
                         </div>
                     </th>

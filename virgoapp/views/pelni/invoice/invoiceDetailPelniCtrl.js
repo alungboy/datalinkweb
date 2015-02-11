@@ -100,8 +100,10 @@ app.controller('InvoiceDetailPelniCtrl', ['$scope', '$rootScope', '$stateParams'
         }
 
         $scope.toEdit = function() {
+            var paramSize = parseInt($stateParams.pageSize);
             $state.transitionTo('app.pelni.invoice.edit', {
                 idInvoice: $stateParams.idInvoice,
+                pageSize: paramSize,
             });
         };
 
@@ -114,6 +116,15 @@ app.controller('InvoiceDetailPelniCtrl', ['$scope', '$rootScope', '$stateParams'
             window.open(statePrintInvoiceKapal, '_blank');
         }
 
+        $scope.toListInvoice = function() {
+            var paramSize = parseInt($stateParams.pageSize);
+
+                $state.transitionTo('app.pelni.invoice.list', {
+                    pageSize: paramSize,
+
+                });
+          
+        };
 
     }
 ]);

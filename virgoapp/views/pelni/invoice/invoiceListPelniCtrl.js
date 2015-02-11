@@ -6,7 +6,13 @@ app.controller('InvoiceListPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
             $stateParams.pageSize = '10';
         };
 
+        // Get Object Length Function
         $scope.listInvoice = invoices;
+        var len = 0;
+        _.each($scope.listInvoice, function(value, key, list){
+           len++;
+        });
+        $scope.listInvoiceLength = len;
 
        
         $scope.errMsg = null;
@@ -39,7 +45,7 @@ app.controller('InvoiceListPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
 
         $scope.showLoadMore = function() {
             var paramSize = parseInt($stateParams.pageSize);
-            if ($scope.listInvoice.length >= paramSize) {
+            if ($scope.listInvoiceLength >= paramSize) {
                 return true;
             } else {
                 return false;
@@ -49,7 +55,7 @@ app.controller('InvoiceListPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
         $scope.loadMore = function() {
             var paramSize = parseInt($stateParams.pageSize);
 
-            if ($scope.listInvoice.length >= paramSize) {
+            if ($scope.listInvoiceLength >= paramSize) {
 
                 $state.transitionTo('app.pelni.invoice.list', {
                     startDate: null,
@@ -61,11 +67,12 @@ app.controller('InvoiceListPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
         };
 
         $scope.detailInvoice = function(input) {
+            var paramSize = parseInt($stateParams.pageSize);
             if (input) {
 
                 $state.transitionTo('app.pelni.invoice.detail', {
                     idInvoice: input,
-                    
+                    pageSize: paramSize,
 
                 });
             }

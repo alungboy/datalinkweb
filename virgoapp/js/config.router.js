@@ -178,7 +178,7 @@ angular.module('app')
                         }
                     })
                     .state('app.pelni.invoice.detail', {
-                        url: '/detail/:idInvoice',
+                        url: '/detail/:pageSize/:idInvoice',
                         templateUrl: 'views/pelni/invoice/invoicedetail.html',
                         controller: 'InvoiceDetailPelniCtrl',
                         resolve: {
@@ -190,7 +190,7 @@ angular.module('app')
                         }
                     })
                     .state('app.pelni.invoice.edit', {
-                        url: '/edit/:idInvoice',
+                        url: '/edit/:pageSize/:idInvoice',
                         templateUrl: 'views/pelni/invoice/invoiceedit.html',
                         controller: 'InvoiceEditPelniCtrl',
                         resolve: {
@@ -204,7 +204,7 @@ angular.module('app')
 
                     })
                     .state('app.pelni.invoice.print', {
-                        url: '/print/:idInvoice',
+                        url: '/print/:pageSize/:idInvoice',
                         templateUrl: 'views/pelni/invoice/invoiceprint.html',
                         controller: 'InvoicePrintPelniCtrl',
                         resolve: {
@@ -223,7 +223,6 @@ angular.module('app')
                         url: '/invoicelunas',
                         abstract: true,
                         template: '<div class="fade-in-right" ui-view></div>',
-
                     })
                     .state('app.pelni.invoicelunas.list', {
                         url: '/list/:pageSize',
@@ -239,7 +238,7 @@ angular.module('app')
                         }
                     })
                     .state('app.pelni.invoicelunas.detail', {
-                        url: '/detail/:idInvoice',
+                        url: '/detail/:pageSize/:idInvoice',
                         templateUrl: 'views/pelni/invoicelunas/invoicedetail.html',
                         controller: 'InvoiceLunasDetailPelniCtrl',
                         resolve: {

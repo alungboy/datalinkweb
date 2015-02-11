@@ -228,9 +228,7 @@ app.controller('InvoiceNewPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
                 });
                 return;
             }, function(error) {
-
                 $scope.errMsg = error;
-
                 return;
             });
 

@@ -114,9 +114,9 @@
             </ul>
         </li>
 
-        <li ui-sref-active="active" class="dropdown" dropdown ng-show="User.facebook.id == 1158274528">
+        <li ui-sref-active="active" class="dropdown" dropdown ng-show="app.admin(User.facebook.id)">
             <a href class="dropdown-toggle" dropdown-toggle>
-              Admin<b class="caret"></b>
+                Admin<b class="caret"></b>
             </a>
 
             <ul class="dropdown-menu animated fadeInRight w">
@@ -126,8 +126,6 @@
                 <li>
                     <a ui-sref="app.adminpenjualanbulananreport">Penjualan Bulanan Pelni</a>
                 </li>
-
-
             </ul>
         </li>
 
@@ -168,6 +166,5 @@
         </li>
     </ul>
     <!-- / navbar right -->
-
 </div>
 <!-- / navbar collapse -->
