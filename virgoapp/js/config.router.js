@@ -204,7 +204,7 @@ angular.module('app')
 
                     })
                     .state('app.pelni.invoice.print', {
-                        url: '/print/:pageSize/:idInvoice',
+                        url: '/print/:idInvoice',
                         templateUrl: 'views/pelni/invoice/invoiceprint.html',
                         controller: 'InvoicePrintPelniCtrl',
                         resolve: {
