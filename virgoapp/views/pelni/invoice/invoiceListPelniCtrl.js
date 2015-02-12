@@ -3,8 +3,11 @@ app.controller('InvoiceListPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
     function($scope, $rootScope, $stateParams, $state, invoices) {
 
         if (!$stateParams.pageSize || $stateParams.pageSize == '') {
-            $stateParams.pageSize = '10';
+            $stateParams.pageSize = '20';
         };
+
+        // Cocokan Login ama Invoice
+        $scope.loginUser = $rootScope.User.$id;
 
         // Get Object Length Function
         $scope.listInvoice = invoices;
@@ -63,7 +66,7 @@ app.controller('InvoiceListPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
 
                 $state.transitionTo('app.pelni.invoice.list', {
                     startDate: null,
-                    pageSize: paramSize + 10,
+                    pageSize: paramSize + 20,
                     asc: null
 
                 });

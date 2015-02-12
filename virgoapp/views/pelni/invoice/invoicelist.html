@@ -17,15 +17,14 @@
                         <th>Kelas</th>
                         <th>Tgl Buat</th>
                         <th>Dibuat Oleh</th>
-                        <th>Diedit Oleh</th>
-                        <th>History Harga</th>
+                        <th>History Edit</th>
                         <th>Lunas?</th>
                     </tr>
 
                 </thead>
                 <tbody>
-                    <tr class="fadeInRight animated" ng-repeat="(key, value) in listInvoice |  orderObjectBy:'CreatedAt':true">
-                        <td><a ng-click="detailInvoice(value.CreatedAt)">{{value.CreatedAt}}</a>
+                    <tr class="fadeInRight animated" ng-repeat="(key, value) in listInvoice |  orderObjectBy:'CreatedAt':true" ng-show="loginUser == value.CreatedBy">
+                        <td><a ng-click="detailInvoice(value.CreatedAt)">{{User.facebook.id}}</a>
                         </td>
                         <td><a ng-click="detailInvoice(value.CreatedAt)">{{value.Pemesan}}</a>
                         </td>
@@ -50,13 +49,6 @@
                             </a>
                             </span>
 
-                        </td>
-                        <td>
-                            <span class="thumb-sm avatar m-t-n-sm m-b-n-sm m-l-sm">
-                            <a ng-href="https://www.facebook.com/{{getUserByUid(value.UpdatedBy).facebook.id}}" target="_blank">
-                            <img ng-src="https://graph.facebook.com/{{getUserByUid(value.UpdatedBy).facebook.id}}/picture?type=square" tooltip="{{value.UpdatedAt | date:'dd-MM-yyyy HH:mm:ss'}}" style="width:80%;">
-                            </a>
-                            </span>
                         </td>
                         <td>
                             <ol style="margin-left: -20px;">

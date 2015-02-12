@@ -376,7 +376,7 @@ angular.module('Fbase', ['app', 'firebase'])
 
         if (!pageSize || pageSize == '') {
             var obj = Fbase.child('invoicepelni').orderByChild('CreatedAt').startAt(1).endAt(9999999999999);
-            obj = obj.limitToLast(10);
+            obj = obj.limitToLast(20);
         } else {
             var obj = Fbase.child('invoicepelni').orderByChild('CreatedAt').startAt(1).endAt(9999999999999);
             obj = obj.limitToLast(parseInt(pageSize));
