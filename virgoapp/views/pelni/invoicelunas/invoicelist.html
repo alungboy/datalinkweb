@@ -7,6 +7,7 @@
             <table class="table table-striped b-t b-light">
                 <thead>
                     <tr>
+                        <th>No Invoice</th>
                         <th>Nama Pemesan</th>
                         <th>No HP</th>
                         <th>Tgl Berangkat</th>
@@ -21,10 +22,11 @@
                 </thead>
                 <tbody>
                     <tr class="fadeInRight animated" ng-repeat="(key, value) in listInvoice |  orderObjectBy:'CreatedAt':true">
+                        <td><a ng-click="detailInvoice(value.CreatedAt)">{{value.CreatedAt}}</a></td>
                         <td><a ng-click="detailInvoice(value.CreatedAt)">{{value.Pemesan}}</a>
                         </td>
                         <td>{{value.MobilePemesan}}</td>
-                        <td>{{value.TglBerangkat | date:'dd-MM-yyyy HH:mm:ss'}}</td>
+                        <td title="{{value.KapalNama}}">{{getBerangkatDate(value.TglBerangkat)}}</td>
 
                         <td>
                             <span title="{{value.CreatedAt | date:'dd-MM-yyyy HH:mm:ss'}}">

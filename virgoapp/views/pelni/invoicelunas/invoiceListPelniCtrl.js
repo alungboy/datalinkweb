@@ -7,27 +7,33 @@ app.controller('InvoiceLunasListPelniCtrl', ['$scope', '$rootScope', '$statePara
         };
 
         $scope.listInvoice = invoices;
-       
+
         // Get Object Length Function
         $scope.listInvoice = invoices;
         var len = 0;
-        _.each($scope.listInvoice, function(value, key, list){
-           len++;
+        _.each($scope.listInvoice, function(value, key, list) {
+            len++;
         });
         $scope.listInvoiceLength = len;
 
         $scope.errMsg = null;
         $scope.okMsg = null;
 
+        $scope.getBerangkatDate = function(input) {
+
+            return moment(input, 'YYYYMMDDHHmm').format('dddd, DD MMMM HH:mm');
+        }
+
+
         $scope.timeFromNow = function(input) {
             if (input) {
                 return moment(input).fromNow();
-            }else{
+            } else {
                 return null;
             }
-            
+
         };
-      
+
         $scope.getUserByUid = function(uid) {
             var user = null;
             if (uid) {
@@ -52,7 +58,7 @@ app.controller('InvoiceLunasListPelniCtrl', ['$scope', '$rootScope', '$statePara
 
                 $state.transitionTo('app.pelni.invoicelunas.list', {
                     startDate: null,
-                    pageSize:  parseInt($stateParams.pageSize) + 10,
+                    pageSize: parseInt($stateParams.pageSize) + 10,
                     asc: null
 
                 });

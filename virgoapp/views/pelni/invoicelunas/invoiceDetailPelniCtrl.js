@@ -28,12 +28,17 @@ app.controller('InvoiceLunasDetailPelniCtrl', ['$scope', '$rootScope', '$statePa
         }
         var serviceFee = 20000;
 
-        $scope.lunasBool = function(input){
+        $scope.lunasBool = function(input) {
             if (input) {
                 return 'Ya';
-            }else{
+            } else {
                 return 'Tidak';
             }
+        }
+
+        $scope.getBerangkatDate = function(input) {
+
+            return moment(input, 'YYYYMMDDHHmm').format('dddd, DD MMMM YYYY HH:mm');
         }
 
         $scope.getNoUrut = function(inKey) {
@@ -115,7 +120,7 @@ app.controller('InvoiceLunasDetailPelniCtrl', ['$scope', '$rootScope', '$statePa
                 }, function(error) {
                     console.log("Error:", error);
                 });
-            } else{
+            } else {
                 return;
             }
         }
@@ -123,11 +128,11 @@ app.controller('InvoiceLunasDetailPelniCtrl', ['$scope', '$rootScope', '$statePa
         $scope.toListInvoice = function() {
             var paramSize = parseInt($stateParams.pageSize);
 
-                $state.transitionTo('app.pelni.invoicelunas.list', {
-                    pageSize: paramSize,
+            $state.transitionTo('app.pelni.invoicelunas.list', {
+                pageSize: paramSize,
 
-                });
-          
+            });
+
         };
 
 
