@@ -3,6 +3,16 @@ app.controller('PenujualanHarianReportPelniCtrl', ['$scope', '$rootScope', '$sta
     function($scope, $rootScope, $stateParams, $state, issuedDay) {
         $scope.listIssuedDay = issuedDay;
 
+        $scope.TotalHarga = function(){
+            var sumHarga = 0;
+            _.each(issuedDay, function(value, key, list){
+            
+                sumHarga += value.HargaTiket;
+            
+            });
+            return sumHarga
+        };
+
         if (!$stateParams.date || $stateParams.date.length !== 8) {
             $stateParams.date = moment().format('YYYYMMDD');
 

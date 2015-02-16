@@ -3,7 +3,7 @@
         <div class="panel-heading">
             Penjualan Harian Pelni - <b>{{getDayDateYear()}}</b>
              Total: <b> {{listIssuedDay.length}}</b>
-            Issued Om Hendje: <b>{{issuedPerUser('facebook:100003554621471')}}</b>
+            <!-- Issued Om Hendje: <b>{{issuedPerUser('facebook:100003554621471')}}</b> -->
         </div>
         <div class="row wrapper">
             <div class="col-sm-3 m-b-xs">
@@ -37,6 +37,7 @@
                         <th>Status</th>
                         <th>Tgl Issued</th>
                         <th>Diissued Oleh</th>
+                        <th>Harga</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,9 +60,19 @@
                             </span>
                              
                         </td>
-
+                        <td>Rp.{{value.HargaTiket | number :0}},-</td>
                     </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">
+                            <b><span class="pull-right">Total: </span></b>
+                        </td>
+                        <td>
+                            <b>Rp.{{TotalHarga() | number : 0}},-</b>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
         <footer class="panel-footer">

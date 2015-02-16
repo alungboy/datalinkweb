@@ -36,9 +36,10 @@
                         <th>No Tiket </th>
                         <th>Status</th>
                         <th>Nama Penumpang</th>
-                        <th>Harga</th>
+                       
                         <th>Tgl Issued</th>
                         <th>Diissued Oleh</th>
+                         <th>Harga</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,7 +49,7 @@
 
                         <td>{{getStatusName(value.Status)}}</td>
                         <td>{{value.Nama}}</td>
-                        <td>{{value.HargaTiket | number :0}}</td>
+                        
                         <td>
                             <span title="{{value.IssuedAt | date:'dd-MM-yyyy HH:mm:ss'}}">
                             {{timeFromNow(value.IssuedAt)}}
@@ -63,9 +64,20 @@
                             </span>
                              
                         </td>
+                        <td><span class="pull-right">Rp {{value.HargaTiket | number :0}},-</span></td>
 
                     </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="6">
+                            <b><span class="pull-right">TOTAL </span></b>
+                        </td>
+                        <td>
+                            <span class="pull-right">Rp {{TotalHarga() | number : 0}},-</span>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
         <footer class="panel-footer">

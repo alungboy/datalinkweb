@@ -3,6 +3,15 @@ app.controller('PenujualanHarianReportPelniAdminCtrl', ['$scope', '$rootScope', 
     function($scope, $rootScope, $stateParams, $state, issuedDay) {
         $scope.listIssuedDay = issuedDay;
 
+        $scope.TotalHarga = function(){
+            var sumHarga = 0;
+            _.each(issuedDay, function(value, key, list){
+            
+                sumHarga += value.HargaTiket;
+            
+            });
+            return sumHarga
+        };
 
         if (!$stateParams.date || $stateParams.date.length !== 8) {
             $stateParams.date = moment().format('YYYYMMDD');
@@ -61,7 +70,7 @@ app.controller('PenujualanHarianReportPelniAdminCtrl', ['$scope', '$rootScope', 
 
             if ($scope.listIssuedDay.length >= paramSize) {
 
-                $state.transitionTo('app.pelni.penjualanharianreport', {
+                $state.transitionTo('app.adminpenjualanharianreport', {
                     date: $stateParams.date,
                     pageSize: paramSize + 2000
                 });
@@ -70,7 +79,7 @@ app.controller('PenujualanHarianReportPelniAdminCtrl', ['$scope', '$rootScope', 
 
 
         $scope.search = function() {
-            $state.transitionTo('app.pelni.penjualanharianreport', {
+            $state.transitionTo('app.adminpenjualanharianreport', {
                 date: moment($scope.calendar).format('YYYYMMDD'),
                 pageSize: 2000
             });
@@ -87,7 +96,6 @@ app.controller('PenujualanHarianReportPelniAdminCtrl', ['$scope', '$rootScope', 
         $scope.getMonthName = function() {
             return moment($stateParams.date, 'YYYYMMDD').format('MMMM YYYY');
         }
-
         $scope.getUserByUid = function(uid) {
             var user = null;
             if (uid) {
