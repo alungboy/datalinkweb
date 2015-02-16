@@ -82,7 +82,7 @@ angular.module('app')
 
                 })
 
-                // STATE STOCK TIKET
+                // TIKET PELNI > STOCK TIKET
                 .state('app.pelni.stocktiket', {
                     url: '/stocktiket/:startDate/:pageSize/:asc',
                     templateUrl: 'views/pelni/stocktiket/stocktiket.html',
@@ -97,7 +97,7 @@ angular.module('app')
                     }
                 })
 
-                // STATE SEARCH JADWAL 
+                // INVOICE PELNI > SEARCH JADWAL 
                 .state('app.pelni.search', {
                         url: '/search/:embar/:debar',
                         templateUrl: 'views/pelni/search/search.html',
@@ -137,7 +137,7 @@ angular.module('app')
 
                     })
 
-                // STATE INVOICE CREATE ONLY
+                // INVOICE PELNI > CREATE
                 .state('app.pelni.invoicenew', {
                     url: '/invoicenew/:idJadwal/:idKelas/',
                     templateUrl: 'views/pelni/invoice/invoicenew.html',

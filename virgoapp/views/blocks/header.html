@@ -13,7 +13,7 @@
 <!-- / navbar header -->
 
 <!-- navbar collapse -->
-<div class="navbar-collapse collapse pos-rlt box-shadow {{app.settings.navbarCollapseColor}}" >
+<div class="navbar-collapse collapse pos-rlt box-shadow {{app.settings.navbarCollapseColor}}">
 
     <!-- link and dropdown -->
     <ul class="nav navbar-nav hidden-sm" ng-hide="app.settings.navbarHeaderHide">
@@ -24,19 +24,10 @@
         </li>
         <li ui-sref-active="active" class="dropdown" dropdown>
             <a href class="dropdown-toggle" dropdown-toggle>
-              Pelni <b class="caret"></b>
+              Tiket Pelni <b class="caret"></b>
             </a>
 
             <ul class="dropdown-menu animated fadeInRight w">
-              <!--   <li>
-                    <a href="/Travel/faces/HomeMenu.jspx" target="_blank">Aplikasi Pelni</a>
-                </li> -->
-                <li>
-                    <a ui-sref="app.pelni.search">Search Jadwal</a>
-                </li>
-                <li>
-                    <a ui-sref="app.pelni.invoice.list">List Invoice</a>
-                </li>
                 <li>
                     <a ui-sref="app.pelni.issuedtiket">Issued Tiket</a>
                 </li>
@@ -52,18 +43,24 @@
                 <li>
                     <a ui-sref="app.pelni.stocktiket">Stock Tiket</a>
                 </li>
+                <li>
+                    <a ui-sref="app.pelni.searchtiket">Search Data Tiket</a>
+                </li>
             </ul>
         </li>
-
         <li ui-sref-active="active" class="dropdown" dropdown>
             <a href class="dropdown-toggle" dropdown-toggle>
-              Invoice &amp; Tiket Pelni <b class="caret"></b>
+              Invoice Pelni <b class="caret"></b>
             </a>
 
             <ul class="dropdown-menu animated fadeInRight w">
                 <li>
-                    <a ui-sref="app.pelni.searchtiket">Search Data Tiket</a>
+                    <a ui-sref="app.pelni.search">Search Jadwal</a>
                 </li>
+                <li>
+                    <a ui-sref="app.pelni.invoice.list">List Invoice</a>
+                </li>
+
                 <li>
                     <a ui-sref="app.pelni.searchinvoice">Search Data Invoice</a>
                 </li>
@@ -71,10 +68,42 @@
 
             </ul>
         </li>
-
         <li ui-sref-active="active" class="dropdown" dropdown>
             <a href class="dropdown-toggle" dropdown-toggle>
-              Laporan Tiket Pelni <b class="caret"></b>
+              Invoice Pesawat <b class="caret"></b>
+            </a>
+
+            <ul class="dropdown-menu animated fadeInRight w">
+                <li>
+                    <a ui-sref="app.pelni.search">Invoice Baru</a>
+                </li>
+                <li>
+                    <a ui-sref="app.pelni.invoice.list">List Invoice</a>
+                </li>
+
+                <li>
+                    <a ui-sref="app.pelni.searchinvoice">Search Data Invoice</a>
+                </li>
+
+
+            </ul>
+        </li>
+        <li ui-sref-active="active" class="dropdown" dropdown>
+            <a href class="dropdown-toggle" dropdown-toggle>
+              Kasir <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu animated fadeInRight w">
+                <li>
+                    <a ui-sref="app.pelni.invoicelunas.list">Invoice Kapal Lunas</a>
+                </li>
+                <li>
+                    <a ui-sref="app.pelni.invoicelunas.list">Invoice Pesawat Lunas</a>
+                </li>
+            </ul>
+        </li>
+        <li ui-sref-active="active" class="dropdown" dropdown>
+            <a href class="dropdown-toggle" dropdown-toggle>
+              Laporan Pelni <b class="caret"></b>
             </a>
             <ul class="dropdown-menu animated fadeInRight w">
                 <li>
@@ -101,18 +130,6 @@
                 </li>
             </ul>
         </li>
-
-        <li ui-sref-active="active" class="dropdown" dropdown>
-            <a href class="dropdown-toggle" dropdown-toggle>
-              Kasir <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu animated fadeInRight w">
-                <li>
-                    <a ui-sref="app.pelni.invoicelunas.list">Invoice Kapal Lunas</a>
-                </li>
-            </ul>
-        </li>
-
         <li ui-sref-active="active" class="dropdown" dropdown ng-show="app.admin(User.facebook.id)">
             <a href class="dropdown-toggle" dropdown-toggle>
                 Admin<b class="caret"></b>
