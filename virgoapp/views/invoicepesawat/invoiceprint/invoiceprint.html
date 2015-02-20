@@ -1,0 +1,235 @@
+<style>
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+    padding: 0px;
+    border: 1px solid black;
+}
+
+</style>
+
+
+
+
+<div class="hbox hbox-auto-xs bg-light" ng-init="app.settings.navbarHeaderHide = true; app.settings.container = true;">
+    <div style=" margin-right: auto; margin-left: auto; margin-top:-50px; height:430px;">
+        <div class="row">
+            <div class="col-xs-4">
+                <small class="m-t m-b" style="font-size:10px;">
+                    <p>
+                    <br>Invoice Pesawat: <b>{{selectedInvoice.$id}}</b> 
+                    <br>Airlines:
+                    <strong>{{selectedInvoice.Airlines}}</strong>
+                    <span class="label bg-info">{{selectedInvoice.KelasNama}}</span>
+                    <br>Tanggal Berangkat: <i class="fa fa-check-square-o"></i>&nbsp;<b>{{getBerangkatDate(selectedInvoice.TglBerangkat)}}</b>
+                    <br>Penerbangan:
+                    <strong>{{selectedInvoice.Berangkat}}<i class="fa fa-arrow-right"></i>{{selectedInvoice.Tujuan}}</strong>
+                    </p>
+                </small>
+            </div>
+            <div class="col-xs-4 text-center">
+                <small class="m-t m-b" style="font-size:10px;">
+                <img src="img/virgo.png" alt="Virgo Travel" style="display:block; margin-left:auto; margin-right:auto;">
+                <p>
+                    <b>Telepon Kantor: 0852-2072-1520</b> <br>
+                </p>
+                </small>
+            </div>
+            <div class="col-xs-4 text-right">
+                <small class="m-t m-b" style="font-size:10px;">
+                    <p>
+                    <br>Invoice Dibuat: <b>{{getDayDateYear(selectedInvoice.CreatedAt)}}</b>
+                    <br>Nama Pemesan : {{selectedInvoice.Pemesan}}
+                    <br>No HP : <b>{{selectedInvoice.MobilePemesan}}</b>
+                    <br>Alamat : {{selectedInvoice.AlamatPemesan}}
+                    </p>
+                </small>
+            </div>
+        </div>
+        <table class="table table-bordered" style="font-size:10px; margin-bottom:0px; border: 1px solid black;">
+            <thead>
+                <tr>
+                    <th width="20"> NO</th>
+                    <th> Nama Penumpang</th>
+                    <th width="140"> Status</th>
+                    <th width="200"> Harga</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="(key, value) in selectedInvoice.ListPng">
+                    <td>{{getNoUrut(key)}}</td>
+                    <td>{{value.Nama}}</td>
+                    <td>{{value.Status}}</td>
+                    <td class="text-right">Rp.{{value.Harga | number :0}},-</td>
+                </tr>
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="2">
+
+                    </th>
+
+                    <th class="text-right">
+                        Total :
+                    </th>
+                    <th class="text-right">
+                        Rp.{{grandTotal() | number :0}},-
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="row">
+            <div class="col-xs-1 text-right">
+                <small class="m-t m-b" style="font-size:10px;">
+                    <p>
+                    <b>Keterangan:</b>
+                    </p>
+                </small>
+            </div>
+            <div class="col-xs-11">
+                <small class="m-t m-b" style="font-size:10px;">
+                    <p>
+                    *Tiket yang sudah dibeli tidak bisa dibatalkan/ditukar
+                    <br>*Nama penumpang harus sesuai KTP/Kartu identitas Resmi
+                    <br>*KTP /Kartu identitas Resmi Harus Dibawa Pada saat keberangkatan Pesawat
+                    <br>*Penumpang Tiba di Bandara 2(dua) jam sebelum Keberangkatan
+                    </p>
+                </small>
+            </div>
+            <div class="col-xs-3 text-center">
+                <p class="h5" style="font-size:12px;">Menyetujui Pemesan</p>
+                <small>
+                    <br>
+                    <br>( <u><b>{{selectedInvoice.Pemesan}}</b></u> )
+                </small>
+            </div>
+            <div class="col-xs-6 text-center">
+                <qrcode version="2" error-correction-level="Q" size="80" data="{{selectedInvoice.$id}}"></qrcode>
+            </div>
+            <div class="col-xs-3 text-center">
+                <p class="h5" style="font-size:12px;">Tiketing</p>
+                <small>
+                    <br>
+                    <br>(
+                    <u><b>{{getUserByUid(selectedInvoice.CreatedBy).facebook.displayName}}</b></u> )
+                </small>
+            </div>
+
+        </div>
+        
+    </div>
+    <hr style="border-top: dotted 1px; margin-top:0px; margin-bottom:5px;" />
+    <div style=" margin-right: auto; margin-left: auto; height:430px;">
+        <div class="row">
+            <div class="col-xs-4">
+                <small class="m-t m-b" style="font-size:10px;">
+                    <p>
+                    <br>Invoice Pesawat: <b>{{selectedInvoice.$id}}</b> 
+                    <br>Airlines:
+                    <strong>{{selectedInvoice.Airlines}}</strong>
+                    <span class="label bg-info">{{selectedInvoice.KelasNama}}</span>
+                    <br>Tanggal Berangkat: <i class="fa fa-check-square-o"></i>&nbsp;<b>{{getBerangkatDate(selectedInvoice.TglBerangkat)}}</b>
+                    <br>Penerbangan:
+                    <strong>{{selectedInvoice.Berangkat}}<i class="fa fa-arrow-right"></i>{{selectedInvoice.Tujuan}}</strong>
+                    </p>
+                </small>
+            </div>
+            <div class="col-xs-4 text-center">
+                <small class="m-t m-b" style="font-size:10px;">
+                <img src="img/virgo.png" alt="Virgo Travel" style="display:block; margin-left:auto; margin-right:auto;">
+                <p>
+                    <b>Telepon Kantor: 0852-2072-1520</b> <br>
+                </p>
+                </small>
+            </div>
+            <div class="col-xs-4 text-right">
+                <small class="m-t m-b" style="font-size:10px;">
+                    <p>
+                    <br>Invoice Dibuat: <b>{{getDayDateYear(selectedInvoice.CreatedAt)}}</b>
+                    <br>Nama Pemesan : {{selectedInvoice.Pemesan}}
+                    <br>No HP : <b>{{selectedInvoice.MobilePemesan}}</b>
+                    <br>Alamat : {{selectedInvoice.AlamatPemesan}}
+                    </p>
+                </small>
+            </div>
+        </div>
+        <table class="table table-bordered" style="font-size:10px; margin-bottom:0px; border: 1px solid black;">
+            <thead>
+                <tr>
+                    <th width="20"> NO</th>
+                    <th> Nama Penumpang</th>
+                    <th width="140"> Status</th>
+                    <th width="200"> Harga</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="(key, value) in selectedInvoice.ListPng">
+                    <td>{{getNoUrut(key)}}</td>
+                    <td>{{value.Nama}}</td>
+                    <td>{{value.Status}}</td>
+                    <td class="text-right">Rp.{{value.Harga | number :0}},-</td>
+                </tr>
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="2">
+
+                    </th>
+
+                    <th class="text-right">
+                        Total :
+                    </th>
+                    <th class="text-right">
+                        Rp.{{grandTotal() | number :0}},-
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="row">
+            <div class="col-xs-1 text-right">
+                <small class="m-t m-b" style="font-size:10px;">
+                    <p>
+                    <b>Keterangan:</b>
+                    </p>
+                </small>
+            </div>
+            <div class="col-xs-11">
+                <small class="m-t m-b" style="font-size:10px;">
+                    <p>
+                    *Tiket yang sudah dibeli tidak bisa dibatalkan/ditukar
+                    <br>*Nama penumpang harus sesuai KTP/Kartu identitas Resmi
+                    <br>*KTP /Kartu identitas Resmi Harus Dibawa Pada saat keberangkatan Pesawat
+                    <br>*Penumpang Tiba di Bandara 2(dua) jam sebelum Keberangkatan
+                    </p>
+                </small>
+            </div>
+            <div class="col-xs-3 text-center">
+                <p class="h5" style="font-size:12px;">Menyetujui Pemesan</p>
+                <small>
+                    <br>
+                    <br>( <u><b>{{selectedInvoice.Pemesan}}</b></u> )
+                </small>
+            </div>
+            <div class="col-xs-6 text-center">
+                <qrcode version="2" error-correction-level="Q" size="80" data="{{selectedInvoice.$id}}"></qrcode>
+            </div>
+            <div class="col-xs-3 text-center">
+                <p class="h5" style="font-size:12px;">Tiketing</p>
+                <small>
+                    <br>
+                    <br>(
+                    <u><b>{{getUserByUid(selectedInvoice.CreatedBy).facebook.displayName}}</b></u> )
+                </small>
+            </div>
+
+        </div>
+       
+    </div>
+</div>

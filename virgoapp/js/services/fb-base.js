@@ -370,6 +370,7 @@ angular.module('Fbase', ['app', 'firebase'])
     return getRef;
 }])
 
+
 .service("InvoicePelniObj", ['Fbase', "$firebase", function(Fbase, $firebase) {
 
     var get = function(pageSize) {
@@ -416,6 +417,77 @@ angular.module('Fbase', ['app', 'firebase'])
             var obj = Fbase.child('invoicepelni').child('-JgUoFSaOSNKdtPIEfRC');
         } else {
             var obj = Fbase.child('invoicepelni').child(idInvoicePelni);
+        }
+        return $firebase(obj).$asObject();
+    };
+    return get;
+}])
+
+.factory("InvoicePesawatRef", ['Fbase', 'FbAuth', "$firebase", function(Fbase, FbAuth, $firebase) {
+    var objRef = null
+
+    var getRef = function() {
+        if (!objRef) {
+
+
+            objRef = $firebase(Fbase.child('invoicepesawat'));
+
+
+        }
+        return objRef;
+    };
+
+    return getRef;
+}])
+
+
+
+.service("InvoicePesawatObj", ['Fbase', "$firebase", function(Fbase, $firebase) {
+
+    var get = function(pageSize) {
+
+        if (!pageSize || pageSize == '') {
+            var obj = Fbase.child('invoicepesawat').orderByChild('CreatedAt').startAt(1).endAt(9999999999999);
+            obj = obj.limitToLast(20);
+        } else {
+            var obj = Fbase.child('invoicepesawat').orderByChild('CreatedAt').startAt(1).endAt(9999999999999);
+            obj = obj.limitToLast(parseInt(pageSize));
+        }
+
+        return $firebase(obj).$asObject();
+    };
+
+
+    return get;
+}])
+
+.service("InvoicePesawatArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
+
+    var get = function(pageSize) {
+
+        if (!pageSize || pageSize == '') {
+            var obj = Fbase.child('invoicepesawat').orderByChild('CreatedAt').startAt(1).endAt(9999999999999);
+            obj = obj.limitToLast(10);
+        } else {
+            var obj = Fbase.child('invoicepesawat').orderByChild('CreatedAt').startAt(1).endAt(9999999999999);
+            obj = obj.limitToLast(parseInt(pageSize));
+        }
+
+        return $firebase(obj).$asArray();
+    };
+
+
+    return get;
+}])
+
+.service("InvoicePesawatSingleObj", ['Fbase', "$firebase", function(Fbase, $firebase) {
+
+    var get = function(idInvoicePelni) {
+
+        if (!idInvoicePelni || idInvoicePelni == '') {
+            var obj = Fbase.child('invoicepesawat').child('-JgUoFSaOSNKdtPIEfRC');
+        } else {
+            var obj = Fbase.child('invoicepesawat').child(idInvoicePelni);
         }
         return $firebase(obj).$asObject();
     };

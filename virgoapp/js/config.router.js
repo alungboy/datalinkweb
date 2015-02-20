@@ -85,7 +85,7 @@ angular.module('app')
                 // TIKET PELNI > ISSUED TIKET
                 .state('app.pelni.issuedtiket', {
                     url: '/issuedtiket/:startDate/:pageSize/:asc',
-                    templateUrl: 'views/pelni/issuedtiket/issuedtiket.html',
+                    templateUrl: 'views/tiketpelni/issuedtiket/issuedtiket.html',
                     controller: 'IssuedTiketPelniCtrl',
                     resolve: {
                         tiketIssued: ['$stateParams', 'TiketPelniIssuedArr',
@@ -100,7 +100,7 @@ angular.module('app')
                 // TIKET PELNI > PRINT TIKET
                 .state('app.pelni.printtiket', {
                     url: '/printtiket/:pageSize',
-                    templateUrl: 'views/pelni/printtiket/printtiket.html',
+                    templateUrl: 'views/tiketpelni/printtiket/printtiket.html',
                     controller: 'PrintTiketPelniCtrl',
                     resolve: {
                         tiketPrinted: ['$stateParams', 'TiketPelniPrintedArr',
@@ -115,7 +115,7 @@ angular.module('app')
                 // TIKET PELNI > TIKET RUSAK
                 .state('app.pelni.rusaktiket', {
                     url: '/rusaktiket/:startDate/:pageSize/:asc',
-                    templateUrl: 'views/pelni/rusaktiket/rusaktiket.html',
+                    templateUrl: 'views/tiketpelni/rusaktiket/rusaktiket.html',
                     controller: 'RusakTiketPelniCtrl',
                     resolve: {
                         tiketIssued: ['$stateParams', 'TiketPelniIssuedArr',
@@ -131,7 +131,7 @@ angular.module('app')
                 // TIKET PELNI > TIKET BATAL
                 .state('app.pelni.bataltiket', {
                     url: '/bataltiket/:startDate/:pageSize/:asc',
-                    templateUrl: 'views/pelni/bataltiket/bataltiket.html',
+                    templateUrl: 'views/tiketpelni/bataltiket/bataltiket.html',
                     controller: 'BatalTiketPelniCtrl',
                     resolve: {
                         tiketIssued: ['$stateParams', 'TiketPelniIssuedArr',
@@ -147,7 +147,7 @@ angular.module('app')
                 // TIKET PELNI > TIKET HILANG
                 .state('app.pelni.hilangtiket', {
                     url: '/hilangtiket/:startDate/:pageSize/:asc',
-                    templateUrl: 'views/pelni/hilangtiket/hilangtiket.html',
+                    templateUrl: 'views/tiketpelni/hilangtiket/hilangtiket.html',
                     controller: 'HilangTiketPelniCtrl',
                     resolve: {
                         tiketIssued: ['$stateParams', 'TiketPelniIssuedArr',
@@ -162,7 +162,7 @@ angular.module('app')
                 // TIKET PELNI > STOCK TIKET
                 .state('app.pelni.stocktiket', {
                     url: '/stocktiket/:startDate/:pageSize/:asc',
-                    templateUrl: 'views/pelni/stocktiket/stocktiket.html',
+                    templateUrl: 'views/tiketpelni/stocktiket/stocktiket.html',
                     controller: 'StockTiketPelniCtrl',
                     resolve: {
                         tiketBaik: ['$stateParams', 'TiketPelniBaikArr',
@@ -177,7 +177,7 @@ angular.module('app')
                 // TIKET PELNI > SEARCH DATA TIKET
                 .state('app.pelni.searchtiket', {
                     url: '/searchtiket/:noTiket',
-                    templateUrl: 'views/pelniinvoicetiket/searchtiket/searchtiket.html',
+                    templateUrl: 'views/tiketpelni/stocktiket/stocktiket.html',
                     controller: 'SearchTiketPelniCtrl',
                     resolve: {
                         tiketSing: ['$stateParams', 'TiketPelniSingleObj',
@@ -200,7 +200,7 @@ angular.module('app')
                 // INVOICE PELNI > SEARCH JADWAL 
                 .state('app.pelni.search', {
                         url: '/search/:embar/:debar',
-                        templateUrl: 'views/pelni/search/search.html',
+                        templateUrl: 'views/invoicepelni/searchjadwal/search.html',
                         controller: 'SearchJadwalPelniCtrl',
                         resolve: {
                             listPelabuhanPelni: ['$stateParams', 'PelabuhanPelniArr',
@@ -212,7 +212,7 @@ angular.module('app')
                     })
                     .state('app.pelni.search.results', {
                         url: '/results',
-                        templateUrl: 'views/pelni/search/results.html',
+                        templateUrl: 'views/invoicepelni/searchjadwal/results.html',
                         controller: 'SearchResultsTiketPelniCtrl',
                         resolve: {
                             listJadwalPelni: ['$stateParams', 'JadwalPelniArr',
@@ -225,7 +225,7 @@ angular.module('app')
                     })
                     .state('app.pelni.search.reskapal', {
                         url: '/reskapal/:idKapal',
-                        templateUrl: 'views/pelni/search/reskapal.html',
+                        templateUrl: 'views/invoicepelni/searchjadwal/reskapal.html',
                         controller: 'SearchResultsKapalPelniCtrl',
                         resolve: {
                             listKapalPelni: ['$stateParams', 'JadwalPelniKapalArr',
@@ -240,7 +240,7 @@ angular.module('app')
                 // INVOICE PELNI > CREATE
                 .state('app.pelni.invoicenew', {
                     url: '/invoicenew/:idJadwal/:idKelas/',
-                    templateUrl: 'views/pelni/invoice/invoicenew.html',
+                    templateUrl: 'views/invoicepelni/invoicenew/invoicenew.html',
                     controller: 'InvoiceNewPelniCtrl',
                     resolve: {
                         singleJadwal: ['$stateParams', 'JadwalPelniSingleObj',
@@ -266,7 +266,7 @@ angular.module('app')
                     })
                     .state('app.pelni.invoice.list', {
                         url: '/list/:pageSize',
-                        templateUrl: 'views/pelni/invoice/invoicelist.html',
+                        templateUrl: 'views/invoicepelni/invoicelist/invoicelist.html',
                         controller: 'InvoiceListPelniCtrl',
                         resolve: {
                             invoices: ['$stateParams', 'InvoicePelniObj',
@@ -279,7 +279,7 @@ angular.module('app')
                     })
                     .state('app.pelni.invoice.detail', {
                         url: '/detail/:pageSize/:idInvoice',
-                        templateUrl: 'views/pelni/invoice/invoicedetail.html',
+                        templateUrl: 'views/invoicepelni/invoicedetail/invoicedetail.html',
                         controller: 'InvoiceDetailPelniCtrl',
                         resolve: {
                             invoicePelni: ['$stateParams', 'InvoicePelniSingleObj',
@@ -291,7 +291,7 @@ angular.module('app')
                     })
                     .state('app.pelni.invoice.edit', {
                         url: '/edit/:pageSize/:idInvoice',
-                        templateUrl: 'views/pelni/invoice/invoiceedit.html',
+                        templateUrl: 'views/invoicepelni/invoiceedit/invoiceedit.html',
                         controller: 'InvoiceEditPelniCtrl',
                         resolve: {
                             invoicePelni: ['$stateParams', 'InvoicePelniSingleObj',
@@ -305,7 +305,7 @@ angular.module('app')
                     })
                     .state('app.pelni.invoice.print', {
                         url: '/print/:idInvoice',
-                        templateUrl: 'views/pelni/invoice/invoiceprint.html',
+                        templateUrl: 'views/invoicepelni/invoiceprint/invoiceprint.html',
                         controller: 'InvoicePrintPelniCtrl',
                         resolve: {
                             invoicePelni: ['$stateParams', 'InvoicePelniSingleObj',
@@ -321,7 +321,7 @@ angular.module('app')
                 // INVOICE PELNI > SEARCH DATA INVOICE
                 .state('app.pelni.searchinvoice', {
                     url: '/searchinvoice/:idInvoice',
-                    templateUrl: 'views/pelniinvoicetiket/searchinvoice/searchinvoice.html',
+                    templateUrl: 'views/invoicepelni/searchinvoice/searchinvoice.html',
                     controller: 'SearchInvoicePelniCtrl',
                     resolve: {
                         invoicePelni: ['$stateParams', 'InvoicePelniSingleObj',
@@ -333,8 +333,81 @@ angular.module('app')
                 })
 
 
+                // INVOICE PESAWAT
+                .state('app.invoicepesawat', {
+                        url: '/invoice-pesawat',
+                        abstract: true,
+                        template: '<div class="fade-in-right" ui-view></div>',
 
+                    })
+                    // INVOICE PESAWAT > INVOICE BARU
+                    .state('app.invoicepesawat.new', {
+                        url: '/new',
+                        templateUrl: 'views/invoicepesawat/invoicenew/invoicenew.html',
+                        controller: 'InvoicePesawatNewCtrl',
+                        resolve: {
+                            invoices: ['$stateParams', 'InvoicePesawatArr',
+                                function($stateParams, InvoicePesawatArr) {
+                                    return InvoicePesawatArr(10)
+                                        .$loaded();
+                                }
+                            ],
+                        }
+                    })
+                    // INVOICE PESAWAT > LIST INVOICE
+                    .state('app.invoicepesawat.list', {
+                        url: '/list/:pageSize',
+                        templateUrl: 'views/invoicepesawat/invoicelist/invoicelist.html',
+                        controller: 'InvoicePesawatListCtrl',
+                        resolve: {
+                            invoices: ['$stateParams', 'InvoicePesawatObj',
+                                function($stateParams, InvoicePesawatObj) {
+                                    return InvoicePesawatObj(parseInt($stateParams.pageSize))
+                                        .$loaded();
+                                }
+                            ],
+                        }
+                    })
+                    .state('app.invoicepesawat.detail', {
+                        url: '/detail/:pageSize/:idInvoice',
+                        templateUrl: 'views/invoicepesawat/invoicedetail/invoicedetail.html',
+                        controller: 'InvoicePesawatDetailCtrl',
+                        resolve: {
+                            invoices: ['$stateParams', 'InvoicePesawatSingleObj',
+                                function($stateParams, InvoicePesawatSingleObj) {
+                                    return InvoicePesawatSingleObj($stateParams.idInvoice).$loaded();
+                                }
+                            ],
+                        }
+                    })
+                    .state('app.invoicepesawat.edit', {
+                        url: '/edit/:pageSize/:idInvoice',
+                        templateUrl: 'views/invoicepesawat/invoiceedit/invoiceedit.html',
+                        controller: 'InvoicePesawatEditCtrl',
+                        resolve: {
+                            invoices: ['$stateParams', 'InvoicePesawatSingleObj',
+                                function($stateParams, InvoicePesawatSingleObj) {
+                                    return InvoicePesawatSingleObj($stateParams.idInvoice).$loaded();
+                                }
+                            ],
 
+                        }
+
+                    })
+                    .state('app.invoicepesawat.print', {
+                        url: '/print/:idInvoice',
+                        templateUrl: 'views/invoicepesawat/invoiceprint/invoiceprint.html',
+                        controller: 'InvoicePesawatPrintCtrl',
+                        resolve: {
+                            invoices: ['$stateParams', 'InvoicePesawatSingleObj',
+                                function($stateParams, InvoicePesawatSingleObj) {
+                                    return InvoicePesawatSingleObj($stateParams.idInvoice).$loaded();
+                                }
+                            ],
+
+                        }
+
+                    })
 
 
 
@@ -348,7 +421,7 @@ angular.module('app')
                     })
                     .state('app.pelni.invoicelunas.list', {
                         url: '/list/:pageSize',
-                        templateUrl: 'views/pelni/invoicelunas/invoicelist.html',
+                        templateUrl: 'views/kasir/invoicepelni/invoicelist.html',
                         controller: 'InvoiceLunasListPelniCtrl',
                         resolve: {
                             invoices: ['$stateParams', 'InvoicePelniObj',
@@ -361,7 +434,7 @@ angular.module('app')
                     })
                     .state('app.pelni.invoicelunas.detail', {
                         url: '/detail/:pageSize/:idInvoice',
-                        templateUrl: 'views/pelni/invoicelunas/invoicedetail.html',
+                        templateUrl: 'views/kasir/invoicepelni/invoicedetail.html',
                         controller: 'InvoiceLunasDetailPelniCtrl',
                         resolve: {
                             invoicePelni: ['$stateParams', 'InvoicePelniSingleObj',
