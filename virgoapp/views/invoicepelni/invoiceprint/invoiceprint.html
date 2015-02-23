@@ -34,7 +34,7 @@
             </div>
             <div class="col-xs-4 text-center">
                 <small class="m-t m-b" style="font-size:10px;">
-                <img src="img/virgo.png" alt="Virgo Travel" style="display:block; margin-left:auto; margin-right:auto;">
+                <img src="img/virgo-ships.png" alt="Virgo Travel" style="display:block; margin-left:auto; margin-right:auto;">
                 <p>
                     <b>Telepon Kantor: 0852-2072-1520</b> <br>
                 </p>
@@ -91,36 +91,38 @@
             <div class="col-xs-1 text-right">
                 <small class="m-t m-b" style="font-size:10px;">
                     <p>
-                    <b>Keterangan:</b>
+                    <b>Ketentuan:</b>
                     </p>
                 </small>
             </div>
             <div class="col-xs-11">
                 <small class="m-t m-b" style="font-size:10px;">
                     <p>
-                    *Tiket yang sudah dibeli tidak bisa dibatalkan/ditukar
-                    <br>*Nama penumpang harus sesuai KTP/Kartu identitas Resmi
+                    *Nama penumpang harus sesuai KTP/Kartu identitas Resmi
                     <br>*KTP /Kartu identitas Resmi Harus Dibawa Pada saat keberangkatan kapal
-                    <br>*Pengurusan Pembatalan Tiket Langsung Ke Kantor Pelni Bitung
+                    <br>*Penumpang harus tiba di Pelabuhan 2(dua) jam sebelum waktu keberangkatan
+                    <br>*Tiket yg dibatalkan mengikuti ketentuan dari PT Pelni
                     </p>
                 </small>
             </div>
-            <div class="col-xs-3 text-center">
-                <p class="h5" style="font-size:12px;">Menyetujui Pemesan</p>
+            <div class="col-xs-4 text-center">
+                <p class="h5" style="font-size:12px;">Menyetujui ketentuan invoice ini,</p>
                 <small>
                     <br>
                     <br>( <u><b>{{selectedInvoice.Pemesan}}</b></u> )
+                    <br>PEMBELI
                 </small>
             </div>
-            <div class="col-xs-6 text-center">
+            <div class="col-xs-4 text-center">
                 <qrcode version="2" error-correction-level="Q" size="80" data="{{selectedInvoice.$id}}"></qrcode>
             </div>
-            <div class="col-xs-3 text-center">
-                <p class="h5" style="font-size:12px;">Tiketing</p>
+            <div class="col-xs-4 text-center">
+                <p class="h5" style="font-size:12px;">Virgo Travel</p>
                 <small>
                     <br>
                     <br>(
                     <u><b>{{getUserByUid(selectedInvoice.CreatedBy).facebook.displayName}}</b></u> )
+                    <br>TICKETING
                 </small>
             </div>
 
@@ -147,7 +149,7 @@
             </div>
             <div class="col-xs-4 text-center">
                 <small class="m-t m-b" style="font-size:10px;">
-                <img src="img/virgo.png" alt="Virgo Travel" style="display:block; margin-left:auto; margin-right:auto;">
+                <img src="img/virgo-ships.png" alt="Virgo Travel" style="display:block; margin-left:auto; margin-right:auto;">
                 <p>
                     <b>Telepon Kantor: 0852-2072-1520</b> <br>
                 </p>
@@ -203,36 +205,38 @@
             <div class="col-xs-1 text-right">
                 <small class="m-t m-b" style="font-size:10px;">
                     <p>
-                    <b>Keterangan:</b>
+                    <b>Ketentuan:</b>
                     </p>
                 </small>
             </div>
             <div class="col-xs-11">
                 <small class="m-t m-b" style="font-size:10px;">
                     <p>
-                    *Tiket yang sudah dibeli tidak bisa dibatalkan/ditukar
-                    <br>*Nama penumpang harus sesuai KTP/Kartu identitas Resmi
+                    *Nama penumpang harus sesuai KTP/Kartu identitas Resmi
                     <br>*KTP /Kartu identitas Resmi Harus Dibawa Pada saat keberangkatan kapal
-                    <br>*Pengurusan Pembatalan Tiket Langsung Ke Kantor Pelni Bitung
+                    <br>*Penumpang harus tiba di Pelabuhan 2(dua) jam sebelum waktu keberangkatan
+                    <br>*Tiket yg dibatalkan mengikuti ketentuan dari PT Pelni
                     </p>
                 </small>
             </div>
-            <div class="col-xs-3 text-center">
-                <p class="h5" style="font-size:12px;">Menyetujui Pemesan</p>
+            <div class="col-xs-4 text-center">
+                <p class="h5" style="font-size:12px;">Menyetujui ketentuan invoice ini,</p>
                 <small>
                     <br>
                     <br>( <u><b>{{selectedInvoice.Pemesan}}</b></u> )
+                    <br>PEMBELI
                 </small>
             </div>
-            <div class="col-xs-6 text-center">
+            <div class="col-xs-4 text-center">
                 <qrcode version="2" error-correction-level="Q" size="80" data="{{selectedInvoice.$id}}"></qrcode>
             </div>
-            <div class="col-xs-3 text-center">
-                <p class="h5" style="font-size:12px;">Tiketing</p>
+            <div class="col-xs-4 text-center">
+                <p class="h5" style="font-size:12px;">Virgo Travel</p>
                 <small>
                     <br>
                     <br>(
                     <u><b>{{getUserByUid(selectedInvoice.CreatedBy).facebook.displayName}}</b></u> )
+                    <br>TICKETING
                 </small>
             </div>
         </div>
