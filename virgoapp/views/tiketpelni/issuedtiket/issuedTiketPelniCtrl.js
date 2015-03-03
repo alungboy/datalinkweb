@@ -59,7 +59,7 @@ app.controller('IssuedTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
 
             if ($scope.listTiketIssued.length >= paramSize) {
 
-                $state.transitionTo('app.pelni.issuedtiket', {
+                $state.transitionTo('app.tiketpelni.issuedtiket', {
                     startDate: null,
                     pageSize: paramSize + 10,
                     asc: null

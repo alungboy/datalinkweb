@@ -14,7 +14,6 @@ app.controller('RusakTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
             }else{
                 return null;
             }
-            
         };
 
         $scope.getStatusName = function(input) {
@@ -51,19 +50,16 @@ app.controller('RusakTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
             } else {
                 return false;
             }
-
         };
 
         $scope.loadMore = function() {
             var paramSize = parseInt($stateParams.pageSize);
 
             if ($scope.listTiketIssued.length >= paramSize) {
-
-                $state.transitionTo('app.pelni.stocktiket', {
+                $state.transitionTo('app.tiketpelni.rusaktiket', {
                     startDate: null,
                     pageSize: paramSize + 10,
                     asc: null
-
                 });
             }
         };

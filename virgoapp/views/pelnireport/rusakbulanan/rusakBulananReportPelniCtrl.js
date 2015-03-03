@@ -14,7 +14,7 @@ app.controller('RusakBulananReportPelniCtrl', ['$scope', '$rootScope', '$statePa
 
 
         $scope.search = function() {
-            $state.transitionTo('app.pelni.rusakbulananreport', {
+            $state.transitionTo('app.pelnireport.rusakbulanan', {
                 date: moment($scope.calendar).format('YYYYMMDD'),
            
             });

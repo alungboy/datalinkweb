@@ -114,7 +114,7 @@ app.controller('SearchInvoicePelniCtrl', ['$scope', '$rootScope', '$stateParams'
             if (!$scope.invoiceBaru || $scope.invoiceBaru == '') {
                 return;
             }
-            $state.transitionTo('app.pelni.searchinvoice', {
+            $state.transitionTo('app.invoicepelni.searchinvoice', {
                 idInvoice: $scope.invoiceBaru,
 
             });
@@ -123,7 +123,7 @@ app.controller('SearchInvoicePelniCtrl', ['$scope', '$rootScope', '$stateParams'
         };
 
         $scope.toEdit = function() {
-            $state.transitionTo('app.pelni.invoice.edit', {
+            $state.transitionTo('app.invoicepelni.edit', {
                 idInvoice: $stateParams.idInvoice,
                 pageSize: 20,
             });
@@ -134,13 +134,13 @@ app.controller('SearchInvoicePelniCtrl', ['$scope', '$rootScope', '$stateParams'
             var params = {
                 idInvoice: $stateParams.idInvoice,
             }
-            var statePrintInvoiceKapal = $state.href('app.pelni.invoice.print', params);
+            var statePrintInvoiceKapal = $state.href('app.invoicepelni.print', params);
             window.open(statePrintInvoiceKapal, '_blank');
         }
 
         $scope.toListInvoice = function() {
 
-            $state.transitionTo('app.pelni.invoice.list', {
+            $state.transitionTo('app.invoicepelni.list', {
                 pageSize: 20,
 
             });

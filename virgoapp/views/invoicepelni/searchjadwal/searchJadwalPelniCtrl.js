@@ -42,7 +42,7 @@ app.controller('SearchJadwalPelniCtrl', ['$scope', '$rootScope', '$stateParams',
                 },
                 CreatedBy: $rootScope.User.uid
             }).then(function(ref) {
-                $state.transitionTo('app.pelni.search.results', {
+                $state.transitionTo('app.invoicepelni.search.results', {
                     embar: 835,
                     debar: $scope.Debar.originalObject.Kode
                 });
@@ -56,7 +56,7 @@ app.controller('SearchJadwalPelniCtrl', ['$scope', '$rootScope', '$stateParams',
         $scope.clearSearchPelni = function() {
             $scope.Embar = null;
             $scope.Debar = null;
-            $state.transitionTo('app.pelni.search')
+            $state.transitionTo('app.invoicepelni.search')
 
         }
     }
@@ -111,7 +111,7 @@ app.controller('SearchResultsTiketPelniCtrl', ['$scope', '$rootScope', '$statePa
                 },
                 CreatedBy: $rootScope.User.uid
             }).then(function(ref) {
-                $state.transitionTo('app.pelni.search.reskapal', {
+                $state.transitionTo('app.invoicepelni.search.reskapal', {
                     embar: $stateParams.embar,
                     debar: $stateParams.debar,
                     idKapal: idKapal
@@ -124,7 +124,7 @@ app.controller('SearchResultsTiketPelniCtrl', ['$scope', '$rootScope', '$statePa
         }
 
         $scope.createInvoce = function(idJadwal, idKelas) {
-            $state.transitionTo('app.pelni.invoicenew', {
+            $state.transitionTo('app.invoicepelni.new', {
                 idJadwal: idJadwal,
                 idKelas: idKelas
             });
@@ -151,7 +151,7 @@ app.controller('SearchResultsKapalPelniCtrl', ['$scope', '$rootScope', '$statePa
         };
 
         $scope.createInvoce = function(idJadwal, idKelas) {
-            $state.transitionTo('app.pelni.invoicenew', {
+            $state.transitionTo('app.invoicepelni.new', {
                 idJadwal: idJadwal,
                 idKelas: idKelas
             });

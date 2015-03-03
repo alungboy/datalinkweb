@@ -86,7 +86,7 @@ app.controller('SearchTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
                 return;
             }
 
-            $state.transitionTo('app.pelni.searchtiket', {
+            $state.transitionTo('app.tiketpelni.searchtiket', {
                 noTiket: $scope.tiketBaru,
 
             });

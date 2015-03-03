@@ -113,7 +113,7 @@ app.controller('InvoiceLunasDetailPelniCtrl', ['$scope', '$rootScope', '$statePa
 
                 $scope.selectedInvoice.$save().then(function(ref) {
                     var paramSize = parseInt($stateParams.pageSize);
-                    $state.transitionTo('app.pelni.invoicelunas.list', {
+                    $state.transitionTo('app.invoicelunaspelni.list', {
                         pageSize: paramSize,
                     });
 
@@ -128,7 +128,7 @@ app.controller('InvoiceLunasDetailPelniCtrl', ['$scope', '$rootScope', '$statePa
         $scope.toListInvoice = function() {
             var paramSize = parseInt($stateParams.pageSize);
 
-            $state.transitionTo('app.pelni.invoicelunas.list', {
+            $state.transitionTo('app.invoicelunaspelni.list', {
                 pageSize: paramSize,
 
             });

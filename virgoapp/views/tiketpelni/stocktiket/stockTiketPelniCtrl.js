@@ -54,7 +54,7 @@ app.controller('StockTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
 
             if ($scope.listTiketBaik.length >= paramSize) {
 
-                $state.transitionTo('app.pelni.stocktiket', {
+                $state.transitionTo('app.tiketpelni.stocktiket', {
                     startDate: null,
                     pageSize: paramSize + 10,
                     asc: null
@@ -81,6 +81,7 @@ app.controller('StockTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
         //         });
         //     }
         // };
+
         $scope.tambahStock = function(e) {
             e.preventDefault();
             $scope.errMsg = null;
@@ -104,7 +105,6 @@ app.controller('StockTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
             var noTiketInt = parseInt($scope.tiketBaru);
             var tktSinMin = 1000000001;
             var tktSinMax = 1999999999;
-
 
 
             if (noTiketInt < tktSinMin || noTiketInt > tktSinMax) {

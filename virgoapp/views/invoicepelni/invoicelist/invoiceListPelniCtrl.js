@@ -64,7 +64,7 @@ app.controller('InvoiceListPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
 
             if ($scope.listInvoiceLength >= paramSize) {
 
-                $state.transitionTo('app.pelni.invoice.list', {
+                $state.transitionTo('app.invoicepelni.list', {
                     startDate: null,
                     pageSize: paramSize + 20,
                     asc: null
@@ -77,7 +77,7 @@ app.controller('InvoiceListPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
             var paramSize = parseInt($stateParams.pageSize);
             if (input) {
 
-                $state.transitionTo('app.pelni.invoice.detail', {
+                $state.transitionTo('app.invoicepelni.detail', {
                     idInvoice: input,
                     pageSize: paramSize,
 

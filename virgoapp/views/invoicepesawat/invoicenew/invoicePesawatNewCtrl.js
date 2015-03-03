@@ -161,8 +161,9 @@ app.controller('InvoicePesawatNewCtrl', ['$scope', '$rootScope', '$stateParams',
 
             var fbDb = invoices.$inst();;
             fbDb.$update('' + Dibuat, $scope.selectedInvoice).then(function(ref) {
-                $state.transitionTo('app.pelni.invoice.detail', {
-                    idInvoice: Dibuat
+                $state.transitionTo('app.invoicepesawat.detail', {
+                    idInvoice: Dibuat,
+                    pageSize: 20
                 });
                 return;
             }, function(error) {
@@ -173,7 +174,7 @@ app.controller('InvoicePesawatNewCtrl', ['$scope', '$rootScope', '$stateParams',
             // Cara Lama Generate ID Otomatis
 
             // InvoicePelniRef().$push($scope.selectedInvoice).then(function(ref) {
-            //     $state.transitionTo('app.pelni.invoice.detail', {
+            //     $state.transitionTo('app.invoicepesawat.detail', {
             //         idInvoice: ref.key()
             //     });
 

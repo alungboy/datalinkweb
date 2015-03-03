@@ -223,8 +223,9 @@ app.controller('InvoiceNewPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
 
             var fbDb = invoices.$inst();;
             fbDb.$update('' + Dibuat, $scope.selectedInvoice).then(function(ref) {
-                $state.transitionTo('app.pelni.invoice.detail', {
-                    idInvoice: Dibuat
+                $state.transitionTo('app.invoicepelni.detail', {
+                    idInvoice: Dibuat,
+                    pageSize: 20
                 });
                 return;
             }, function(error) {

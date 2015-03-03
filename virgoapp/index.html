@@ -20,8 +20,8 @@
 
     <!-- Barcode Generator -->
     <link rel="stylesheet" href="bower_components/barcodeGenerator/barcode.css">
-
 </head>
+
 
 <body ng-controller="AppCtrl">
     <div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}" ui-view></div>
@@ -129,6 +129,8 @@
     <!-- KASIR -->
     <script src="views/kasir/invoicepelni/invoiceListPelniCtrl.js"></script>
     <script src="views/kasir/invoicepelni/invoiceDetailPelniCtrl.js"></script>
+    <script src="views/kasir/invoicepesawat/invoiceListPesawatCtrl.js"></script>
+    <script src="views/kasir/invoicepesawat/invoiceDetailPesawatCtrl.js"></script>
 
     <!-- REPORT PELNI -->
     <script src="views/pelnireport/stocktiket/stockTiketReportPelniCtrl.js"></script>
@@ -150,7 +152,6 @@
     <script src="bower_components/angular-qrcode/qrcode_Module.js"></script>
     <script src="bower_components/angular-qrcode/qrcide_UTF8.js"></script>
     <script src="bower_components/angular-qrcode/qrcode.js"></script>
-
 </body>
 
 </html>

@@ -56,7 +56,7 @@ app.controller('PenujualanHarianReportPelniCtrl', ['$scope', '$rootScope', '$sta
 
             if ($scope.listIssuedDay.length >= paramSize) {
 
-                $state.transitionTo('app.pelni.penjualanharianreport', {
+                $state.transitionTo('app.pelnireport.penjualanharian', {
                     date: $stateParams.date,
                     pageSize: paramSize + 2000
                 });
@@ -65,7 +65,7 @@ app.controller('PenujualanHarianReportPelniCtrl', ['$scope', '$rootScope', '$sta
 
 
         $scope.search = function() {
-            $state.transitionTo('app.pelni.penjualanharianreport', {
+            $state.transitionTo('app.pelnireport.penjualanharian', {
                 date: moment($scope.calendar).format('YYYYMMDD'),
                 pageSize: 2000
             });

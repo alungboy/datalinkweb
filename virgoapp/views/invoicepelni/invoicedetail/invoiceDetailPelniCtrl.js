@@ -101,7 +101,7 @@ app.controller('InvoiceDetailPelniCtrl', ['$scope', '$rootScope', '$stateParams'
 
         $scope.toEdit = function() {
             var paramSize = parseInt($stateParams.pageSize);
-            $state.transitionTo('app.pelni.invoice.edit', {
+            $state.transitionTo('app.invoicepelni.edit', {
                 idInvoice: $stateParams.idInvoice,
                 pageSize: paramSize,
             });
@@ -112,14 +112,14 @@ app.controller('InvoiceDetailPelniCtrl', ['$scope', '$rootScope', '$stateParams'
             var params = {
                 idInvoice: $stateParams.idInvoice,
             }
-            var statePrintInvoiceKapal = $state.href('app.pelni.invoice.print', params);
+            var statePrintInvoiceKapal = $state.href('app.invoicepelni.print', params);
             window.open(statePrintInvoiceKapal, '_blank');
         }
 
         $scope.toListInvoice = function() {
             var paramSize = parseInt($stateParams.pageSize);
 
-                $state.transitionTo('app.pelni.invoice.list', {
+                $state.transitionTo('app.invoicepelni.list', {
                     pageSize: paramSize,
 
                 });

@@ -10,29 +10,39 @@
             <div class="col-sm-6">
                 <div class="form-group input-sm">
                     <label class="col-lg-3 control-label">Airlines</label>
-                    <div class="col-lg-8">
+                    <div class="col-lg-4">
                         <input type="text" class="form-control input-sm" placeholder="Nama Airlines" ng-model="selectedInvoice.Airlines">
                     </div>
-                </div>
-                <div class="form-group input-sm">
-                    <label class="col-lg-3 control-label">Berangkat</label>
-                    <div class="col-lg-8">
-                        <input type="text" class="form-control input-sm" placeholder="Bandara Keberangkatan" ng-model="selectedInvoice.Berangkat" maxlength="20">
-                    </div>
-                </div>
-                <div class="form-group input-sm">
-                    <label class="col-lg-3 control-label">Tujuan</label>
-                    <div class="col-lg-8">
-                        <input type="text" class="form-control input-sm" placeholder="Bandara Tujuan" ng-model="selectedInvoice.Tujuan" maxlength="20">
+                    <div class="col-lg-3">
+                        <input id="_id212" name="_id212" type="text" class="form-control input-sm" placeholder="Kode Booking" ng-model="selectedInvoice.BookingCode" maxlength="16">
                     </div>
                 </div>
                 <div class="form-group input-sm">
                     <label class="col-lg-3 control-label">Tanggal Berangkat</label>
-                    <div class="col-lg-8">
+                    <div class="col-lg-7">
                         <input type="date" class="form-control input-sm" placeholder="Bandara Tujuan" ng-model="selectedInvoice.TglBerangkat">
                     </div>
                 </div>
-                
+                <div class="form-group input-sm">
+                    <label class="col-lg-3 control-label">Berangkat</label>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control input-sm" placeholder="Bandara Keberangkatan" ng-model="selectedInvoice.Berangkat" maxlength="20">
+                    </div>
+                    <div class="col-lg-2">
+                        <input type="text" class="form-control input-sm" placeholder="00:00" ng-model="selectedInvoice.BerangkatJam" maxlength="5">
+                    </div>
+                </div>
+                <div class="form-group input-sm">
+                    <label class="col-lg-3 control-label">Tujuan</label>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control input-sm" placeholder="Bandara Tujuan" ng-model="selectedInvoice.Tujuan" maxlength="20">
+                    </div>
+                    <div class="col-lg-2">
+                        <input type="text" class="form-control input-sm" placeholder="00:00" ng-model="selectedInvoice.TujuanJam" maxlength="5">
+                    </div>
+                </div>
+
+
             </div>
 
             <div class="col-sm-6">
@@ -54,7 +64,13 @@
                         <input id="_id222" name="_id222" type="text" class="form-control input-sm" placeholder="Alamat" ng-model="selectedInvoice.AlamatPemesan" maxlength="50">
                     </div>
                 </div>
-               
+                <div class="form-group input-sm">
+                    <label class="col-lg-3 control-label">Keterangan Transit</label>
+                    <div class="col-lg-8">
+                        <input id="_id222" name="_id222" type="text" class="form-control input-sm" placeholder="Kosongkan jika Direct Flight" ng-model="selectedInvoice.TransitNote" maxlength="50">
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -83,7 +99,7 @@
                             <option value="Bayi">Bayi</option>
                         </select>
                     </td>
-                    
+
                     <td class="text-right">
                         <input type="text" class="form-control input-sm" placeholder="Harga" ng-model="value.Harga" maxlength="10">
                     </td>
@@ -100,11 +116,11 @@
                     </th>
                     <th>
                         <div class="btn-group btn-group-justified">
-                            <a ng-click="save()"  class="btn btn-sm btn-success">Save</a>
+                            <a ng-click="save()" class="btn btn-sm btn-success">Save</a>
                         </div>
                     </th>
                     <th>
-                        TOTAL: 
+                        TOTAL:
                         <span class="text-right">Rp.{{grandTotal() | number :0}},-</span>
                     </th>
                 </tr>

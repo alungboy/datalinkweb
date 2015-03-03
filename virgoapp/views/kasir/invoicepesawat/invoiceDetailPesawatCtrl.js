@@ -1,13 +1,15 @@
 'use strict';
-app.controller('InvoicePesawatDetailCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'JadwalPelniSingleObj', 'invoices', 'InvoicePesawatRef', 'HargaFac',
-    function($scope, $rootScope, $stateParams, $state, JadwalPelniSingleObj, invoices, InvoicePesawatRef, HargaFac) {
+app.controller('InvoiceLunasDetailPesawatCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'JadwalPelniSingleObj', 'invoicePesawat', 'HargaFac',
+    function($scope, $rootScope, $stateParams, $state, JadwalPelniSingleObj, invoicePesawat, HargaFac) {
 
         $scope.User = $rootScope.User;
-        if (invoices && invoices.$value === null) {
+        if (invoicePesawat && invoicePesawat.$value === null) {
             alert('Tidak Ada Data Invoice');
         } else {
-            $scope.selectedInvoice = invoices;
+            $scope.selectedInvoice = invoicePesawat;
+            $scope.selectedInvoice.LunasMethod = 'Cash';
         }
+
 
         $scope.lunasBool = function(input) {
             if (input) {
@@ -22,7 +24,6 @@ app.controller('InvoicePesawatDetailCtrl', ['$scope', '$rootScope', '$stateParam
             return moment(input).format('dddd, DD MMMM YYYY');
         }
 
-
         $scope.getNoUrut = function(inKey) {
             if ($scope.selectedInvoice) {
                 var noUrut = 0;
@@ -35,7 +36,6 @@ app.controller('InvoicePesawatDetailCtrl', ['$scope', '$rootScope', '$stateParam
             }
         };
         // Fungsi Hitung Harga
-
 
 
         $scope.grandTotal = function() {
@@ -58,24 +58,37 @@ app.controller('InvoicePesawatDetailCtrl', ['$scope', '$rootScope', '$stateParam
             });
         };
 
-        $scope.toPrint = function() {
+        $scope.lunas = function() {
+            if (confirm('Lunaskan Invoice a.n: ' + $scope.selectedInvoice.Pemesan + ' ?') == true) {
+                $scope.selectedInvoice.LunasAt = {
+                    '.sv': 'timestamp'
+                };
+                $scope.selectedInvoice.LunasBy = $scope.User.uid;
 
-            var params = {
-                idInvoice: $stateParams.idInvoice,
+                $scope.selectedInvoice.$save().then(function(ref) {
+                    var paramSize = parseInt($stateParams.pageSize);
+                    $state.transitionTo('app.invoicelunaspesawat.list', {
+                        pageSize: paramSize,
+                    });
+
+                }, function(error) {
+                    console.log("Error:", error);
+                });
+            } else {
+                return;
             }
-            var statePrintInvoiceKapal = $state.href('app.invoicepesawat.print', params);
-            window.open(statePrintInvoiceKapal, '_blank');
         }
 
         $scope.toListInvoice = function() {
             var paramSize = parseInt($stateParams.pageSize);
 
-            $state.transitionTo('app.invoicepesawat.list', {
+            $state.transitionTo('app.invoicelunaspesawat.list', {
                 pageSize: paramSize,
 
             });
 
         };
+
 
     }
 ]);

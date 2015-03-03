@@ -10,20 +10,11 @@
             <div class="col-sm-6">
                 <div class="form-group input-sm">
                     <label class="col-lg-3 control-label">Airlines</label>
-                    <div class="col-lg-8">
+                    <div class="col-lg-4">
                         <input type="text" class="form-control input-sm" placeholder="Nama Airlines" ng-model="selectedInvoice.Airlines" disabled>
                     </div>
-                </div>
-                <div class="form-group input-sm">
-                    <label class="col-lg-3 control-label">Berangkat</label>
-                    <div class="col-lg-8">
-                        <input type="text" class="form-control input-sm" placeholder="Bandara Keberangkatan" ng-model="selectedInvoice.Berangkat" maxlength="20" disabled>
-                    </div>
-                </div>
-                <div class="form-group input-sm">
-                    <label class="col-lg-3 control-label">Tujuan</label>
-                    <div class="col-lg-8">
-                        <input type="text" class="form-control input-sm" placeholder="Bandara Tujuan" ng-model="selectedInvoice.Tujuan" maxlength="20" disabled>
+                    <div class="col-lg-3">
+                        <input id="_id212" name="_id212" type="text" class="form-control input-sm" placeholder="Kode Booking" ng-model="selectedInvoice.BookingCode" maxlength="16" disabled>
                     </div>
                 </div>
                 <div class="form-group input-sm">
@@ -32,7 +23,26 @@
                         <b>{{getBerangkatDate(selectedInvoice.TglBerangkat)}}</b>
                     </div>
                 </div>
+                <div class="form-group input-sm">
+                    <label class="col-lg-3 control-label">Berangkat</label>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control input-sm" placeholder="Bandara Keberangkatan" ng-model="selectedInvoice.Berangkat" maxlength="20" disabled>
+                    </div>
+                    <div class="col-lg-2">
+                        <input type="text" class="form-control input-sm" placeholder="00:00" ng-model="selectedInvoice.BerangkatJam" maxlength="5" disabled>
+                    </div>
+                </div>
+                <div class="form-group input-sm">
+                    <label class="col-lg-3 control-label">Tujuan</label>
+                    <div class="col-lg-5">
+                        <input type="text" class="form-control input-sm" placeholder="Bandara Tujuan" ng-model="selectedInvoice.Tujuan" maxlength="20" disabled>
+                    </div>
+                    <div class="col-lg-2">
+                        <input type="text" class="form-control input-sm" placeholder="00:00" ng-model="selectedInvoice.TujuanJam" maxlength="5" disabled>
+                    </div>
+                </div>
                 
+
             </div>
 
             <div class="col-sm-6">
@@ -54,7 +64,13 @@
                         <input id="_id222" name="_id222" type="text" class="form-control input-sm" placeholder="Alamat" ng-model="selectedInvoice.AlamatPemesan" maxlength="50" disabled>
                     </div>
                 </div>
-               
+                <div class="form-group input-sm">
+                    <label class="col-lg-3 control-label">Keterangan Transit</label>
+                    <div class="col-lg-8">
+                        <input id="_id222" name="_id222" type="text" class="form-control input-sm" placeholder="Kosongkan jika Direct Flight" ng-model="selectedInvoice.TransitNote" maxlength="50" disabled>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -65,7 +81,7 @@
                     <th>Nama Penumpang</th>
                     <th style="width:120px;">Status</th>
                     <th style="width:190px;">Harga</th>
-                   
+
                 </tr>
             </thead>
             <tbody>
@@ -86,7 +102,7 @@
                     <td class="text-right">
                         Rp.{{value.Harga | number :0}},-
                     </td>
-                    
+
                 </tr>
             </tbody>
             <tfoot>

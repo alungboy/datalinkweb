@@ -59,7 +59,7 @@ app.controller('HilangTiketPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
 
             if ($scope.listTiketIssued.length >= paramSize) {
 
-                $state.transitionTo('app.pelni.stocktiket', {
+                $state.transitionTo('app.tiketpelni.hilangtiket', {
                     startDate: null,
                     pageSize: paramSize + 10,
                     asc: null

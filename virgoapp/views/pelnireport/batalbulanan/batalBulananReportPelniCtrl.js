@@ -12,7 +12,7 @@ app.controller('BatalBulananReportPelniCtrl', ['$scope', '$rootScope', '$statePa
 
 
         $scope.search = function() {
-            $state.transitionTo('app.pelni.batalbulananreport', {
+            $state.transitionTo('app.pelnireport.batalbulanan', {
                 date: moment($scope.calendar).format('YYYYMMDD'),
            
             });

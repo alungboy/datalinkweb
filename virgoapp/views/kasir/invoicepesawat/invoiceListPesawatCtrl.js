@@ -1,5 +1,5 @@
 'use strict';
-app.controller('InvoiceLunasListPelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'invoices',
+app.controller('InvoiceLunasListPesawatCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'invoices',
     function($scope, $rootScope, $stateParams, $state, invoices) {
 
         if (!$stateParams.pageSize || $stateParams.pageSize == '') {
@@ -20,8 +20,9 @@ app.controller('InvoiceLunasListPelniCtrl', ['$scope', '$rootScope', '$statePara
         $scope.okMsg = null;
 
         $scope.getBerangkatDate = function(input) {
-
-            return moment(input, 'YYYYMMDDHHmm').format('dddd, DD MMMM HH:mm');
+            if (input) {
+                return moment(input).format('dddd, DD MMMM ');
+            }
         }
 
 
@@ -56,7 +57,7 @@ app.controller('InvoiceLunasListPelniCtrl', ['$scope', '$rootScope', '$statePara
 
             if ($scope.listInvoiceLength >= paramSize) {
 
-                $state.transitionTo('app.invoicelunaspelni.list', {
+                $state.transitionTo('app.invoicelunaspesawat.list', {
                     startDate: null,
                     pageSize: parseInt($stateParams.pageSize) + 20,
                     asc: null
@@ -66,13 +67,15 @@ app.controller('InvoiceLunasListPelniCtrl', ['$scope', '$rootScope', '$statePara
         };
 
         $scope.detailInvoice = function(input) {
+
             var paramSize = parseInt($stateParams.pageSize);
             if (input) {
-                $state.transitionTo('app.invoicelunaspelni.detail', {
+                $state.transitionTo('app.invoicelunaspesawat.detail', {
                     pageSize: paramSize,
                     idInvoice: input,
                 });
             }
+            
         };
     }
 ]);

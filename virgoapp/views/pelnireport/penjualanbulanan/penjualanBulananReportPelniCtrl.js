@@ -10,7 +10,7 @@ app.controller('PenujualanBulananReportPelniCtrl', ['$scope', '$rootScope', '$st
         $scope.calendar = new Date(moment($stateParams.date, 'YYYYMMDD').valueOf());
 
         $scope.search = function() {
-            $state.transitionTo('app.pelni.penjualanbulananreport', {
+            $state.transitionTo('app.pelnireport.penjualanbulanan', {
                 date: moment($scope.calendar).format('YYYYMMDD')
             });
         };
