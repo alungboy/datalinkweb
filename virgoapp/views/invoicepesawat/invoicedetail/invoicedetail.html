@@ -78,6 +78,7 @@
             <thead style="background-color: #F6F8F8;">
                 <tr>
                     <th style="width:75px;">No</th>
+                    <th style="width:120px;">Title</th>
                     <th>Nama Penumpang</th>
                     <th style="width:120px;">Status</th>
                     <th style="width:190px;">Harga</th>
@@ -90,10 +91,19 @@
                         &nbsp;&nbsp;{{getNoUrut(key)}}
                     </td>
                     <td>
+                        <select class="form-control input-sm" ng-model="value.Title" disabled>
+                            <option value="">-Title-</option>
+                            <option value="MR">MR</option>
+                            <option value="MRS">MRS</option>
+                            <option value="MISS">MISS</option>
+                            <option value="MSTR">MSTR</option>
+                        </select>
+                    </td>
+                    <td>
                         <input type="text" class="form-control input-sm" placeholder="Nama Penumpang" ng-model="value.Nama" maxlength="50" disabled>
                     </td>
                     <td>
-                        <select class="form-control input-sm" ng-model="value.Status" ng-change="hitungHarga(value)" disabled>
+                        <select class="form-control input-sm" ng-model="value.Status" disabled>
                             <option value="Dewasa">Dewasa</option>
                             <option value="Anak">Anak</option>
                             <option value="Bayi">Bayi</option>
@@ -107,7 +117,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <th colspan="2">
+                    <th colspan="3">
                         <div class="input-group">
                             <span class="text-danger " ng-show="errMsg">{{errMsg}}</span>
                         </div>
@@ -119,8 +129,9 @@
                             <a ng-hide="lunasBool(selectedInvoice.LunasAt) == 'Ya' " ng-click="toEdit()" class="btn btn-sm btn-success">Edit</a>
                         </div>
                     </th>
-                    <th class="text-right">
-                        Rp.{{grandTotal() | number :0}},-
+                    <th>
+                        TOTAL:
+                        <span class="text-right">Rp.{{grandTotal() | number :0}},-</span>
                     </th>
                 </tr>
             </tfoot>

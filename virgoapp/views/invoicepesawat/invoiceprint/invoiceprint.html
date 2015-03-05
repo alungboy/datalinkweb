@@ -21,11 +21,12 @@
                     <p>
                     <br>Invoice Pesawat: <b>{{selectedInvoice.$id}}</b> 
                     <br>Airlines:
-                    <strong>{{selectedInvoice.Airlines}}</strong>
+                    <strong>{{selectedInvoice.Airlines}} <u>{{selectedInvoice.BookingCode}}</u></strong>
                     <span class="label bg-info">{{selectedInvoice.KelasNama}}</span>
                     <br>Tanggal Berangkat: <i class="fa fa-check-square-o"></i>&nbsp;<b>{{getBerangkatDate(selectedInvoice.TglBerangkat)}}</b>
                     <br>Penerbangan:
-                    <strong>{{selectedInvoice.Berangkat}}<i class="fa fa-arrow-right"></i>{{selectedInvoice.Tujuan}}</strong>
+                    <strong>{{selectedInvoice.Berangkat}} {{selectedInvoice.BerangkatJam}}<i class="fa fa-arrow-right"></i>{{selectedInvoice.Tujuan}} {{selectedInvoice.TujuanJam}}</strong>
+                    <br><span ng-hide="selectedInvoice.TransitNote == null ">Transit Note: <b>{{selectedInvoice.TransitNote}}</b></span>
                     </p>
                 </small>
             </div>
@@ -61,7 +62,7 @@
             <tbody>
                 <tr ng-repeat="(key, value) in selectedInvoice.ListPng">
                     <td>{{getNoUrut(key)}}</td>
-                    <td>{{value.Nama}}</td>
+                    <td>{{value.Title}}. {{value.Nama}}</td>
                     <td>{{value.Status}}</td>
                     <td class="text-right">Rp.{{value.Harga | number :0}},-</td>
                 </tr>
@@ -132,11 +133,12 @@
                     <p>
                     <br>Invoice Pesawat: <b>{{selectedInvoice.$id}}</b> 
                     <br>Airlines:
-                    <strong>{{selectedInvoice.Airlines}}</strong>
+                    <strong>{{selectedInvoice.Airlines}} <u>{{selectedInvoice.BookingCode}}</u></strong>
                     <span class="label bg-info">{{selectedInvoice.KelasNama}}</span>
                     <br>Tanggal Berangkat: <i class="fa fa-check-square-o"></i>&nbsp;<b>{{getBerangkatDate(selectedInvoice.TglBerangkat)}}</b>
                     <br>Penerbangan:
-                    <strong>{{selectedInvoice.Berangkat}}<i class="fa fa-arrow-right"></i>{{selectedInvoice.Tujuan}}</strong>
+                    <strong>{{selectedInvoice.Berangkat}} {{selectedInvoice.BerangkatJam}}<i class="fa fa-arrow-right"></i>{{selectedInvoice.Tujuan}} {{selectedInvoice.TujuanJam}}</strong>
+                    <br><span ng-hide="selectedInvoice.TransitNote == null ">Transit Note: <b>{{selectedInvoice.TransitNote}}</b></span>
                     </p>
                 </small>
             </div>
@@ -172,7 +174,7 @@
             <tbody>
                 <tr ng-repeat="(key, value) in selectedInvoice.ListPng">
                     <td>{{getNoUrut(key)}}</td>
-                    <td>{{value.Nama}}</td>
+                    <td>{{value.Title}}. {{value.Nama}}</td>
                     <td>{{value.Status}}</td>
                     <td class="text-right">Rp.{{value.Harga | number :0}},-</td>
                 </tr>

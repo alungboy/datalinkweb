@@ -128,6 +128,10 @@ app.controller('InvoicePesawatNewCtrl', ['$scope', '$rootScope', '$stateParams',
                 return;
             }
             _.each($scope.selectedInvoice.ListPng, function(value, key, list) {
+                if (!value.Title || value.Title == '') {
+                    $scope.errMsg = 'Silahkan Pilih Title';
+                    return;
+                }
                 if (!value.Nama || value.Nama == '') {
                     $scope.errMsg = 'Nama Penumpang Harus Diisi';
                     return;
