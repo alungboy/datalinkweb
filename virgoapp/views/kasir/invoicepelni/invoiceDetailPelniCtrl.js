@@ -107,10 +107,24 @@ app.controller('InvoiceLunasDetailPelniCtrl', ['$scope', '$rootScope', '$statePa
         $scope.lunas = function() {
             if (confirm('Lunaskan Invoice a.n: ' + $scope.selectedInvoice.Pemesan + ' ?') == true) {
                 $scope.selectedInvoice.LunasAt = {
-                    '.sv': 'timestamp'
+                '.sv': 'timestamp'
                 };
                 $scope.selectedInvoice.LunasBy = $scope.User.uid;
-
+                if($scope.selectedInvoice.LunasMethod === "Cash"){
+                    $scope.selectedInvoice.LunasCash = $scope.selectedInvoice.HargaLast;
+                    $scope.selectedInvoice.LunasTransfer = 0;
+                    $scope.selectedInvoice.LunasEDC = 0;
+                }
+                if($scope.selectedInvoice.LunasMethod === "Transfer"){
+                    $scope.selectedInvoice.LunasCash = 0;
+                    $scope.selectedInvoice.LunasTransfer = $scope.selectedInvoice.HargaLast;
+                    $scope.selectedInvoice.LunasEDC = 0;
+                }
+                if($scope.selectedInvoice.LunasMethod === "EDC"){
+                    $scope.selectedInvoice.LunasCash = 0;
+                    $scope.selectedInvoice.LunasTransfer = 0;
+                    $scope.selectedInvoice.LunasEDC = $scope.selectedInvoice.HargaLast;
+                }
                 $scope.selectedInvoice.$save().then(function(ref) {
                     var paramSize = parseInt($stateParams.pageSize);
                     $state.transitionTo('app.invoicelunaspelni.list', {
@@ -120,9 +134,11 @@ app.controller('InvoiceLunasDetailPelniCtrl', ['$scope', '$rootScope', '$statePa
                 }, function(error) {
                     console.log("Error:", error);
                 });
-            } else {
-                return;
-            }
+                
+            } 
+
+            return;
+
         }
 
         $scope.toListInvoice = function() {

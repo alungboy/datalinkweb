@@ -101,10 +101,7 @@ app.controller('InvoicePesawatEditCtrl', ['$scope', '$rootScope', '$stateParams'
                 $scope.errMsg = 'Tanggal Berangkat Harus Diisi';
                 return;
             }
-            if (($scope.selectedInvoice.TglBerangkat).valueOf() <= $scope.selectedInvoice.CreatedAt - 86400000) {
-                $scope.errMsg = 'Tanggal Berangkat Harus Tepat';
-                return;
-            }
+
             if ($scope.selectedInvoice.Pemesan == '' || $scope.selectedInvoice.Pemesan == null) {
                 $scope.errMsg = 'Nama Pemesan Harus Diisi';
                 return;
