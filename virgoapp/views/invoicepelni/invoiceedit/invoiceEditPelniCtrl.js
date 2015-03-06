@@ -223,6 +223,8 @@ app.controller('InvoiceEditPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
                 HargaBy: $scope.selectedInvoice.UpdatedBy,
             };
 
+            $scope.selectedInvoice.HargaLast = $scope.grandTotal();
+
             $scope.selectedInvoice.$save().then(function(ref) {
                 var paramSize = parseInt($stateParams.pageSize);
                 $state.transitionTo('app.invoicepelni.detail', {
