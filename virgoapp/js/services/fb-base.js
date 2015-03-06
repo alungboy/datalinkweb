@@ -495,6 +495,58 @@ angular.module('Fbase', ['app', 'firebase'])
 }])
 
 
+.service("ShiftKasirObj", ['Fbase', "$firebase", function(Fbase, $firebase) {
+
+    var get = function(pageSize) {
+
+        if (!pageSize || pageSize == '') {
+            var obj = Fbase.child('shiftkasir').orderByChild('CreatedAt').startAt(1).endAt(9999999999999);
+            obj = obj.limitToLast(20);
+        } else {
+            var obj = Fbase.child('shiftkasir').orderByChild('CreatedAt').startAt(1).endAt(9999999999999);
+            obj = obj.limitToLast(parseInt(pageSize));
+        }
+
+        return $firebase(obj).$asObject();
+    };
+
+
+    return get;
+}])
+
+.service("ShiftKasirArr", ['Fbase', "$firebase", function(Fbase, $firebase) {
+
+    var get = function(pageSize) {
+
+        if (!pageSize || pageSize == '') {
+            var obj = Fbase.child('shiftkasir').orderByChild('CreatedAt').startAt(1).endAt(9999999999999);
+            obj = obj.limitToLast(10);
+        } else {
+            var obj = Fbase.child('shiftkasir').orderByChild('CreatedAt').startAt(1).endAt(9999999999999);
+            obj = obj.limitToLast(parseInt(pageSize));
+        }
+
+        return $firebase(obj).$asArray();
+    };
+
+
+    return get;
+}])
+
+.service("ShiftKasirSingleObj", ['Fbase', "$firebase", function(Fbase, $firebase) {
+
+    var get = function(dateshift) {
+
+        if (!dateshift || dateshift == '') {
+            var obj = Fbase.child('shiftkasir').child('2015030401');
+        } else {
+            var obj = Fbase.child('shiftkasir').child(dateshift);
+        }
+        return $firebase(obj).$asObject();
+    };
+    return get;
+}])
+
 .factory('HargaFac', ['Fbase', "$firebase", function(Fbase, $firebase) {
     var harga = {};
     harga.pelni = {

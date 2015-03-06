@@ -1,0 +1,315 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Shift Kasir - Detail
+        <b>({{getDate(selectedShift.Tanggal)}} - Shift: {{selectedShift.Shift}})</b>
+        <span class="pull-right">
+        	<b>
+        	BUKA: {{getHour(selectedShift.Buka)}}  
+        	<i class="fa fa-arrow-right"></i>
+        	TUTUP: {{getHour(selectedShift.Tutup)}}
+        	</b>
+        </span>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="table-responsive">
+                <table class="table table-bordered" style="font-size:12px; border: 1px solid black;">
+                    <thead>
+                        <tr>
+                            <th style="width:130px;">Modal</th>
+                            <th>Keterangan</th>
+                            <th>Jumlah</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="(key, value) in selectedShift.Pemasukan">
+                            <td>{{value.CreatedAt | date : 'dd/MM/yy HH:mm'}}</td>
+                            <td>{{value.Keterangan}}</td>
+                            <td class="text-right">Rp.{{value.Jumlah | number :0}},-</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th class="text-right">Rp.{{totalJumlah(selectedShift.Pemasukan) | number :0}},-</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered" style="font-size:12px; border: 1px solid black;">
+                    <thead>
+                        <tr>
+                            <th style="width:130px;">Pengeluaran</th>
+                            <th>Keterangan</th>
+                            <th>Jumlah</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="(key, value) in selectedShift.Pengeluaran">
+                            <td>{{value.CreatedAt | date : 'dd/MM/yy HH:mm'}}</td>
+                            <td>{{value.Keterangan}}</td>
+                            <td class="text-right">Rp.{{value.Jumlah | number :0}},-</td>
+                        </tr>
+                        <tfoot>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th class="text-right">Rp.{{totalJumlah(selectedShift.Pengeluaran) | number :0}},-</th>
+                        </tr>
+                    </tfoot>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="table-responsive">
+                <table class="table table-bordered" style="font-size:12px; border: 1px solid black;">
+                    <thead>
+                        <tr>
+                            <th style="width:20px;">Kasir</th>
+                            <th style="width:20px;">Nominal</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="number" ng-model="selectedShift.Kasir.SeratusRibu" disabled>
+                            </td>
+                            <td>Rp.100,000,-</td>
+                            <td class="text-right">Rp.{{multiplyBy(selectedShift.Kasir.SeratusRibu, 100000) | number :0}},-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" ng-model="selectedShift.Kasir.LimaPuluhRibu" disabled>
+                            </td>
+                            <td>Rp.50,000,-</td>
+                            <td class="text-right">Rp.{{multiplyBy(selectedShift.Kasir.LimaPuluhRibu, 50000) | number :0}},-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" ng-model="selectedShift.Kasir.DuaPuluhRibu" disabled>
+                            </td>
+                            <td>Rp.20,000,-</td>
+                            <td class="text-right">Rp.{{multiplyBy(selectedShift.Kasir.DuaPuluhRibu, 20000) | number :0}},-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" ng-model="selectedShift.Kasir.SepuluhRibu" disabled>
+                            </td>
+                            <td>Rp.10,000,-</td>
+                            <td class="text-right">Rp.{{multiplyBy(selectedShift.Kasir.SepuluhRibu, 10000) | number :0}},-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" ng-model="selectedShift.Kasir.LimaRibu" disabled>
+                            </td>
+                            <td>Rp.5,000,-</td>
+                            <td class="text-right">Rp.{{multiplyBy(selectedShift.Kasir.LimaRibu, 5000) | number :0}},-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" ng-model="selectedShift.Kasir.DuaRibu" disabled>
+                            </td>
+                            <td>Rp.2,000,-</td>
+                            <td class="text-right">Rp.{{multiplyBy(selectedShift.Kasir.DuaRibu, 2000) | number :0}},-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" ng-model="selectedShift.Kasir.Seribu" disabled>
+                            </td>
+                            <td>Rp.1,000,-</td>
+                            <td class="text-right">Rp.{{multiplyBy(selectedShift.Kasir.Seribu, 1000) | number :0}},-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" ng-model="selectedShift.Kasir.LimaRatus" disabled>
+                            </td>
+                            <td>Rp.500,-</td>
+                            <td class="text-right">Rp.{{multiplyBy(selectedShift.Kasir.LimaRatus, 500) | number :0}},-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" ng-model="selectedShift.Kasir.DuaRatus" disabled>
+                            </td>
+                            <td>Rp.200,-</td>
+                            <td class="text-right">Rp.{{multiplyBy(selectedShift.Kasir.DuaRatus, 200) | number :0}},-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" ng-model="selectedShift.Kasir.Seratus" disabled>
+                            </td>
+                            <td>Rp.100,-</td>
+                            <td class="text-right">Rp.{{multiplyBy(selectedShift.Kasir.Seratus, 100) | number :0}},-</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>
+
+                            </th>
+                            <th class="text-right">
+                                Total:
+                            </th>
+                            <th class="text-right">
+                                Rp.{{totalKasir(selectedShift.Kasir) | number :0}},-
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="table-responsive">
+                <table class="table table-bordered" style="font-size:12px; border: 1px solid black;">
+                    <thead>
+                        <tr>
+                            <th style="width:20px;">Kasir Tutup</th>
+                            <th style="width:20px;">Nominal</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="number" ng-model="selectedShift.KasirTutup.SeratusRibu" disabled>
+                            </td>
+                            <td>Rp.100,000,-</td>
+                            <td class="text-right">Rp.{{multiplyBy(selectedShift.KasirTutup.SeratusRibu, 100000) | number :0}},-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" ng-model="selectedShift.KasirTutup.LimaPuluhRibu" disabled>
+                            </td>
+                            <td>Rp.50,000,-</td>
+                            <td class="text-right">Rp.{{multiplyBy(selectedShift.KasirTutup.LimaPuluhRibu, 50000) | number :0}},-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" ng-model="selectedShift.KasirTutup.DuaPuluhRibu" disabled>
+                            </td>
+                            <td>Rp.20,000,-</td>
+                            <td class="text-right">Rp.{{multiplyBy(selectedShift.Kasir.DuaPuluhRibu, 20000) | number :0}},-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" ng-model="selectedShift.KasirTutup.SepuluhRibu" disabled>
+                            </td>
+                            <td>Rp.10,000,-</td>
+                            <td class="text-right">Rp.{{multiplyBy(selectedShift.KasirTutup.SepuluhRibu, 10000) | number :0}},-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" ng-model="selectedShift.KasirTutup.LimaRibu" disabled>
+                            </td>
+                            <td>Rp.5,000,-</td>
+                            <td class="text-right">Rp.{{multiplyBy(selectedShift.KasirTutup.LimaRibu, 5000) | number :0}},-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" ng-model="selectedShift.KasirTutup.DuaRibu" disabled>
+                            </td>
+                            <td>Rp.2,000,-</td>
+                            <td class="text-right">Rp.{{multiplyBy(selectedShift.KasirTutup.DuaRibu, 2000) | number :0}},-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" ng-model="selectedShift.KasirTutup.Seribu" disabled>
+                            </td>
+                            <td>Rp.1,000,-</td>
+                            <td class="text-right">Rp.{{multiplyBy(selectedShift.KasirTutup.Seribu, 1000) | number :0}},-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" ng-model="selectedShift.KasirTutup.LimaRatus" disabled>
+                            </td>
+                            <td>Rp.500,-</td>
+                            <td class="text-right">Rp.{{multiplyBy(selectedShift.KasirTutup.LimaRatus, 500) | number :0}},-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" ng-model="selectedShift.KasirTutup.DuaRatus" disabled>
+                            </td>
+                            <td>Rp.200,-</td>
+                            <td class="text-right">Rp.{{multiplyBy(selectedShift.KasirTutup.DuaRatus, 200) | number :0}},-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" ng-model="selectedShift.KasirTutup.Seratus" disabled>
+                            </td>
+                            <td>Rp.100,-</td>
+                            <td class="text-right">Rp.{{multiplyBy(selectedShift.KasirTutup.Seratus, 100) | number :0}},-</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>
+
+                            </th>
+                            <th class="text-right">
+                                Total:
+                            </th>
+                            <th class="text-right">
+                                Rp.{{totalKasir(selectedShift.KasirTutup) | number :0}},-
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="table-responsive">
+                <table class="table table-bordered" style="font-size:12px; border: 1px solid black;">
+                    <thead>
+                        <tr>
+                            <th>Pesawat</th>
+                            <th>PAX</th>
+                            <th>Cash</th>
+                            <th>Transfer</th>
+                            <th>EDC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1158274528</td>
+                            <td>1</td>
+                            <td>Rp.1,000,000</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="table-responsive">
+                <table class="table table-bordered" style="font-size:12px; border: 1px solid black;">
+                    <thead>
+                        <tr>
+                            <th>Kapal</th>
+                            <th>PAX</th>
+                            <th>Cash</th>
+                            <th>Transfer</th>
+                            <th>EDC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1158274528</td>
+                            <td>1</td>
+                            <td>Rp.1,000,000</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

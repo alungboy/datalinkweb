@@ -449,6 +449,55 @@ angular.module('app')
                         }
                     })
 
+                // KASIR > Shift Saat Ini
+                .state('app.lastshift', {
+                        url: '/lastshift/:dateshift',
+                        abstract: true,
+                        template: '<div class="fade-in-right" ui-view></div>',
+                    })
+                    .state('app.lastshift.list', {
+                        url: '/list',
+                        templateUrl: 'views/kasir/lastshift/lastshiftkasirlist.html',
+                    })
+
+
+                // KASIR > List Shift Kasir
+                .state('app.shiftkasir', {
+                        url: '/shiftkasir',
+                        abstract: true,
+                        template: '<div class="fade-in-right" ui-view></div>',
+                    })
+                    .state('app.shiftkasir.list', {
+                        url: '/list/:pageSize',
+                        templateUrl: 'views/kasir/shiftkasir/list/shiftkasirlist.html',
+                        controller: 'ShiftKasirListCtrl',
+                        resolve: {
+                            shiftkasirs: ['$stateParams', 'ShiftKasirObj',
+                                function($stateParams, ShiftKasirObj) {
+                                    return ShiftKasirObj(parseInt($stateParams.pageSize))
+                                        .$loaded();
+                                }
+                            ],
+                        }
+                    })
+                    .state('app.shiftkasir.new', {
+                        url: '/new/:pageSize',
+                        templateUrl: 'views/kasir/shiftkasir/new/shiftkasirnew.html',
+                    })
+                    .state('app.shiftkasir.detail', {
+                        url: '/detail/:pageSize/:dateshift/:shiftOpen/:shiftClosed',
+                        templateUrl: 'views/kasir/shiftkasir/detail/shiftkasirdetail.html',
+                        controller: 'ShiftKasirDetailCtrl',
+                        resolve: {
+                            shiftkasir: ['$stateParams', 'ShiftKasirSingleObj',
+                                function($stateParams, ShiftKasirSingleObj) {
+                                    return ShiftKasirSingleObj(parseInt($stateParams.dateshift))
+                                        .$loaded();
+                                }
+                            ],
+                        }
+                    })
+
 
 
 

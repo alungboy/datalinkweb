@@ -50,25 +50,26 @@
                             <ol style="margin-left: -20px;">
                                 <li ng-repeat="subvalue in value.TotalHistory" title="{{getUserByUid(subvalue.HargaBy).facebook.displayName}}">Rp.{{subvalue.Harga | number:0}},-</li>
                             </ol>
-    
+
                         </td>
                         <td>{{lunasBool(value.LunasAt)}}</td>
                     </tr>
 
                 </tbody>
+                <footer class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-4 hidden-xs">
+
+
+                        </div>
+                        <div class="col-sm-4 text-center">
+                            <a ng-click="loadMore()" ng-show="showLoadMore()"><small class="text-info inline m-t-sm m-b-sm">Load more...</small></a>
+                        </div>
+                    </div>
+                </footer>
             </table>
         </div>
-        <footer class="panel-footer">
-            <div class="row">
-                <div class="col-sm-4 hidden-xs">
 
-
-                </div>
-                <div class="col-sm-4 text-center">
-                    <a ng-click="loadMore()" ng-show="showLoadMore()"><small class="text-info inline m-t-sm m-b-sm">Load more...</small></a>
-                </div>
-            </div>
-        </footer>
     </div>
 
 </div>

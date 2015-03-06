@@ -1,0 +1,68 @@
+<div class=" hbox hbox-auto-xs bg-light ">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Shift Kasir - List
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped b-t b-light">
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Shift</th>
+                        <th>PJ</th>
+                        <th>Buka</th>
+                        <th>Tutup</th>
+               <!--          <th>Pesawat</th>
+                        <th>Kapal</th> -->
+                        <th>Total Penjualan</th>
+                        <th>Status</th>
+                        <th>CreatedBy</th>
+                        <th>UpdatedBy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="fadeInRight animated" ng-repeat="(key, value) in listShift |  orderObjectBy:'CreatedAt':true">
+                        <td><a ng-click="detailShift(value)"> {{getDate(value.Tanggal)}}</a></td>
+                        <td>Shift {{value.Shift}}</td>
+                        <td>{{value.PJ}}</td>
+                        <td>{{value.Buka | date:'HH:mm:ss'}}</td>
+                        <td>{{value.Tutup | date:'HH:mm:ss'}}</td>
+                      <!--   <td>Rp.{{value.Pesawat.Cash | number :0}},-</td>
+                        <td>Rp.{{value.Kapal.Cash | number :0}},-</td> -->
+                        <td>Rp.{{value.Total | number :0}}</td>
+                        <td>{{getShiftStatus(value.Tutup)}}</td>
+                        <td>
+                            <span class="thumb-sm avatar m-t-n-sm m-b-n-sm m-l-sm">
+                            <a ng-href="https://www.facebook.com/{{getUserByUid(value.CreatedBy).facebook.id}}" target="_blank">
+                            <img ng-src="https://graph.facebook.com/{{getUserByUid(value.CreatedBy).facebook.id}}/picture?type=square" tooltip="{{getUserByUid(value.CreatedBy).facebook.displayName}}" style="width:80%;">
+                            </a>
+                            </span>
+
+                        </td>
+                        <td>
+                            <span class="thumb-sm avatar m-t-n-sm m-b-n-sm m-l-sm">
+                            <a ng-href="https://www.facebook.com/{{getUserByUid(value.UpdatedBy).facebook.id}}" target="_blank">
+                            <img ng-src="https://graph.facebook.com/{{getUserByUid(value.UpdatedBy).facebook.id}}/picture?type=square" tooltip="{{getUserByUid(value.UpdatedBy).facebook.displayName}}" style="width:80%;">
+                            </a>
+                            </span>
+
+                        </td>
+                    </tr>
+                </tbody>
+                <footer class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-4 hidden-xs">
+
+
+                        </div>
+                        <div class="col-sm-4 text-center">
+                            <a ng-click="loadMore()" ng-show="showLoadMore()"><small class="text-info inline m-t-sm m-b-sm">Load more...</small></a>
+                        </div>
+                    </div>
+                </footer>
+            </table>
+        </div>
+
+    </div>
+
+</div>
