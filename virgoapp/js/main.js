@@ -17,7 +17,7 @@ angular.module('app')
             // config
             $scope.app = {
                 name: 'VirgoTravel-App',
-                version: '1.0.0',
+                version: '1.0.36',
                 // for chart colors
                 color: {
                     primary: '#7266ba',
