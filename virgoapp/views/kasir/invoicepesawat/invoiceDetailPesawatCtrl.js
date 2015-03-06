@@ -64,20 +64,40 @@ app.controller('InvoiceLunasDetailPesawatCtrl', ['$scope', '$rootScope', '$state
                     '.sv': 'timestamp'
                 };
                 $scope.selectedInvoice.LunasBy = $scope.User.uid;
-                if($scope.selectedInvoice.LunasMethod === "Cash"){
+                if ($scope.selectedInvoice.LunasMethod === "Cash") {
                     $scope.selectedInvoice.LunasCash = $scope.selectedInvoice.HargaLast;
                     $scope.selectedInvoice.LunasTransfer = 0;
-                    $scope.selectedInvoice.LunasEDC = 0;
+                    $scope.selectedInvoice.LunasEDCDebet = 0;
+                    $scope.selectedInvoice.LunasEDCKredit = 0;
+                    $scope.selectedInvoice.LunasKTG = 0;
                 }
-                if($scope.selectedInvoice.LunasMethod === "Transfer"){
+                if ($scope.selectedInvoice.LunasMethod === "Transfer") {
                     $scope.selectedInvoice.LunasCash = 0;
                     $scope.selectedInvoice.LunasTransfer = $scope.selectedInvoice.HargaLast;
-                    $scope.selectedInvoice.LunasEDC = 0;
+                    $scope.selectedInvoice.LunasEDCDebet = 0;
+                    $scope.selectedInvoice.LunasEDCKredit = 0;
+                    $scope.selectedInvoice.LunasKTG = 0;
                 }
-                if($scope.selectedInvoice.LunasMethod === "EDC"){
+                if ($scope.selectedInvoice.LunasMethod === "EDCDebet") {
                     $scope.selectedInvoice.LunasCash = 0;
                     $scope.selectedInvoice.LunasTransfer = 0;
-                    $scope.selectedInvoice.LunasEDC = $scope.selectedInvoice.HargaLast;
+                    $scope.selectedInvoice.LunasEDCDebet = $scope.selectedInvoice.HargaLast;
+                    $scope.selectedInvoice.LunasEDCKredit = 0;
+                    $scope.selectedInvoice.LunasKTG = 0;
+                }
+                if ($scope.selectedInvoice.LunasMethod === "EDCKredit") {
+                    $scope.selectedInvoice.LunasCash = 0;
+                    $scope.selectedInvoice.LunasTransfer = 0;
+                    $scope.selectedInvoice.LunasEDCDebet = 0;
+                    $scope.selectedInvoice.LunasEDCKredit = $scope.selectedInvoice.HargaLast + $scope.selectedInvoice.HargaLast * 0.3;
+                    $scope.selectedInvoice.LunasKTG = 0;
+                }
+                if ($scope.selectedInvoice.LunasMethod === "KTG") {
+                    $scope.selectedInvoice.LunasCash = 0;
+                    $scope.selectedInvoice.LunasTransfer = 0;
+                    $scope.selectedInvoice.LunasEDCDebet = 0;
+                    $scope.selectedInvoice.LunasEDCKredit = 0;
+                    $scope.selectedInvoice.LunasKTG = $scope.selectedInvoice.HargaLast;
                 }
                 $scope.selectedInvoice.$save().then(function(ref) {
                     var paramSize = parseInt($stateParams.pageSize);
