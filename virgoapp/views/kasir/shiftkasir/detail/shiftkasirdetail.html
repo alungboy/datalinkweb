@@ -279,7 +279,7 @@
                     <tbody>
                         <tr ng-repeat="(key, value) in lunasPesawat">
                             <td>{{key}}</td>
-                            <td></td>
+                            <td>{{value.TotalPax | number :0}}</td>
                             <td>{{value.LunasCash | number :0}}</td>
                             <td>{{value.LunasTransfer | number :0}}</td>
                             <td>{{value.LunasEDCDebet | number :0}}</td>
@@ -307,7 +307,7 @@
                     <tbody>
                         <tr ng-repeat="(key, value) in lunasPelni">
                             <td>{{key}}</td>
-                            <td></td>
+                            <td>{{value.TotalPax | number :0}}</td>
                             <td>{{value.LunasCash | number :0}}</td>
                             <td>{{value.LunasTransfer | number :0}}</td>
                             <td>{{value.LunasEDCDebet | number :0}}</td>
