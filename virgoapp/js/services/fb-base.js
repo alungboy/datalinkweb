@@ -494,6 +494,49 @@ angular.module('Fbase', ['app', 'firebase'])
     return get;
 }])
 
+.service("InvoicePelniLunasObj", ['Fbase', "$firebase", function(Fbase, $firebase) {
+
+    var get = function(shiftOpen, shiftClosed) {
+
+        if (shiftOpen &&shiftClosed) {
+            var obj = Fbase.child('invoicepelni').orderByChild('LunasAt').startAt(parseInt(shiftOpen)).endAt(parseInt(shiftClosed));
+
+        } else if (shiftOpen) {
+            var obj = Fbase.child('invoicepelni').orderByChild('LunasAt').startAt(parseInt(shiftOpen)).endAt(9999999999999);
+          
+        } else{
+            var obj = {};
+        }
+
+        return $firebase(obj).$asObject();
+    };
+
+
+    return get;
+}])
+
+
+.service("InvoicePesawatLunasObj", ['Fbase', "$firebase", function(Fbase, $firebase) {
+
+     var get = function(shiftOpen, shiftClosed) {
+
+        if (shiftOpen &&shiftClosed) {
+            var obj = Fbase.child('invoicepesawat').orderByChild('LunasAt').startAt(parseInt(shiftOpen)).endAt(parseInt(shiftClosed));
+
+        } else if (shiftOpen) {
+            var obj = Fbase.child('invoicepesawat').orderByChild('LunasAt').startAt(parseInt(shiftOpen)).endAt(9999999999999);
+          
+        } else{
+            var obj = {};
+        }
+
+        return $firebase(obj).$asObject();
+    };
+
+
+    return get;
+}])
+
 
 .service("ShiftKasirObj", ['Fbase', "$firebase", function(Fbase, $firebase) {
 

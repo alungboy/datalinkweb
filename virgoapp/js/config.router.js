@@ -495,6 +495,18 @@ angular.module('app')
                                         .$loaded();
                                 }
                             ],
+                            lunaspelni: ['$stateParams', 'InvoicePelniLunasObj',
+                                function($stateParams, InvoicePelniLunasObj) {
+                                    return InvoicePelniLunasObj($stateParams.shiftOpen, $stateParams.shiftClosed)
+                                        .$loaded();
+                                }
+                            ],
+                            lunaspesawat: ['$stateParams', 'InvoicePesawatLunasObj',
+                                function($stateParams, InvoicePesawatLunasObj) {
+                                    return InvoicePesawatLunasObj($stateParams.shiftOpen, $stateParams.shiftClosed)
+                                        .$loaded();
+                                }
+                            ],
                         }
                     })
 

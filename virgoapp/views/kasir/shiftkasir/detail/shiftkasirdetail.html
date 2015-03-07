@@ -3,11 +3,11 @@
         Shift Kasir - Detail
         <b>({{getDate(selectedShift.Tanggal)}} - Shift: {{selectedShift.Shift}})</b>
         <span class="pull-right">
-        	<b>
-        	BUKA: {{getHour(selectedShift.Buka)}}  
-        	<i class="fa fa-arrow-right"></i>
-        	TUTUP: {{getHour(selectedShift.Tutup)}}
-        	</b>
+            <b>
+            BUKA: {{getHour(selectedShift.Buka)}}  
+            <i class="fa fa-arrow-right"></i>
+            TUTUP: {{getHour(selectedShift.Tutup)}}
+            </b>
         </span>
     </div>
 
@@ -46,7 +46,7 @@
                             <th style="width:130px;">Pengeluaran</th>
                             <th>Keterangan</th>
                             <th>Jumlah</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody>
@@ -56,12 +56,12 @@
                             <td class="text-right">Rp.{{value.Jumlah | number :0}},-</td>
                         </tr>
                         <tfoot>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th class="text-right">Rp.{{totalJumlah(selectedShift.Pengeluaran) | number :0}},-</th>
-                        </tr>
-                    </tfoot>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th class="text-right">Rp.{{totalJumlah(selectedShift.Pengeluaran) | number :0}},-</th>
+                            </tr>
+                        </tfoot>
                     </tbody>
                 </table>
             </div>
@@ -267,20 +267,24 @@
                 <table class="table table-bordered" style="font-size:12px; border: 1px solid black;">
                     <thead>
                         <tr>
-                            <th>Pesawat</th>
+                            <th style="width:20px">Pesawat</th>
                             <th>PAX</th>
                             <th>Cash</th>
                             <th>Transfer</th>
-                            <th>EDC</th>
+                            <th>EDC Debet</th>
+                            <th>EDC Kredit</th>
+                            <th>KTG</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1158274528</td>
-                            <td>1</td>
-                            <td>Rp.1,000,000</td>
+                        <tr ng-repeat="(key, value) in lunasPesawat">
+                            <td>{{key}}</td>
                             <td></td>
-                            <td></td>
+                            <td>{{value.LunasCash | number :0}}</td>
+                            <td>{{value.LunasTransfer | number :0}}</td>
+                            <td>{{value.LunasEDCDebet | number :0}}</td>
+                            <td>{{value.LunasEDCKredit | number :0}}</td>
+                            <td>{{value.LunasKTG | number:0}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -291,20 +295,24 @@
                 <table class="table table-bordered" style="font-size:12px; border: 1px solid black;">
                     <thead>
                         <tr>
-                            <th>Kapal</th>
+                            <th style="width:20px">Kapal</th>
                             <th>PAX</th>
                             <th>Cash</th>
                             <th>Transfer</th>
-                            <th>EDC</th>
+                            <th>EDC Debet</th>
+                            <th>EDC Kredit</th>
+                            <th>KTG</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1158274528</td>
-                            <td>1</td>
-                            <td>Rp.1,000,000</td>
+                        <tr ng-repeat="(key, value) in lunasPelni">
+                            <td>{{key}}</td>
                             <td></td>
-                            <td></td>
+                            <td>{{value.LunasCash | number :0}}</td>
+                            <td>{{value.LunasTransfer | number :0}}</td>
+                            <td>{{value.LunasEDCDebet | number :0}}</td>
+                            <td>{{value.LunasEDCKredit | number :0}}</td>
+                            <td>{{value.LunasKTG | number:0}}</td>
                         </tr>
                     </tbody>
                 </table>

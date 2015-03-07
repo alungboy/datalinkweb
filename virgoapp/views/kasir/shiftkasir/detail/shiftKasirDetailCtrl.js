@@ -1,6 +1,6 @@
 'use strict';
-app.controller('ShiftKasirDetailCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'JadwalPelniSingleObj', 'shiftkasir', 'InvoicePesawatRef', 'HargaFac',
-    function($scope, $rootScope, $stateParams, $state, JadwalPelniSingleObj, shiftkasir, InvoicePesawatRef, HargaFac) {
+app.controller('ShiftKasirDetailCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'shiftkasir', 'lunaspelni', 'lunaspesawat',
+    function($scope, $rootScope, $stateParams, $state, shiftkasir, lunaspelni, lunaspesawat) {
 
         $scope.User = $rootScope.User;
         if (shiftkasir && shiftkasir.$value === null) {
@@ -8,6 +8,8 @@ app.controller('ShiftKasirDetailCtrl', ['$scope', '$rootScope', '$stateParams', 
         } else {
             $scope.selectedShift = shiftkasir;
         }
+        $scope.lunasPelni = lunaspelni;
+        $scope.lunasPesawat = lunaspesawat;
 
         $scope.lunasBool = function(input) {
             if (input) {
