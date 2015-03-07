@@ -171,7 +171,9 @@ app.controller('InvoicePesawatEditCtrl', ['$scope', '$rootScope', '$stateParams'
                 HargaBy: $scope.selectedInvoice.UpdatedBy,
             };
 
-             $scope.selectedInvoice.HargaLast = $scope.grandTotal();
+            $scope.selectedInvoice.HargaLast = $scope.grandTotal();
+            $scope.TotalPax = $scope.countPng();
+
 
             $scope.selectedInvoice.$save().then(function(ref) {
                 var paramSize = parseInt($stateParams.pageSize);

@@ -223,6 +223,7 @@ app.controller('InvoiceEditPelniCtrl', ['$scope', '$rootScope', '$stateParams', 
                 HargaBy: $scope.selectedInvoice.UpdatedBy,
             };
 
+            $scope.TotalPax = $scope.countPng();
             $scope.selectedInvoice.HargaLast = $scope.grandTotal();
 
             $scope.selectedInvoice.$save().then(function(ref) {

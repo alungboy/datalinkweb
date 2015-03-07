@@ -449,16 +449,16 @@ angular.module('app')
                         }
                     })
 
-                // KASIR > Shift Saat Ini
-                .state('app.lastshift', {
-                        url: '/lastshift/:dateshift',
-                        abstract: true,
-                        template: '<div class="fade-in-right" ui-view></div>',
-                    })
-                    .state('app.lastshift.list', {
-                        url: '/list',
-                        templateUrl: 'views/kasir/lastshift/lastshiftkasirlist.html',
-                    })
+                // // KASIR > Shift Saat Ini
+                // .state('app.lastshift', {
+                //         url: '/lastshift/:dateshift',
+                //         abstract: true,
+                //         template: '<div class="fade-in-right" ui-view></div>',
+                //     })
+                //     .state('app.lastshift.list', {
+                //         url: '/list',
+                //         templateUrl: 'views/kasir/lastshift/lastshiftkasirlist.html',
+                //     })
 
 
                 // KASIR > List Shift Kasir

@@ -49,6 +49,7 @@ app.controller('InvoicePesawatNewCtrl', ['$scope', '$rootScope', '$stateParams',
         $scope.rmPng = function(key) {
             delete $scope.selectedInvoice.ListPng[key];
         }
+
         $scope.countPng = function() {
             var countPng = 0;
             _.each($scope.selectedInvoice.ListPng, function(value, key, list) {
@@ -163,6 +164,7 @@ app.controller('InvoicePesawatNewCtrl', ['$scope', '$rootScope', '$stateParams',
                 HargaBy: $scope.selectedInvoice.CreatedBy,
             };
             $scope.selectedInvoice.HargaLast = $scope.grandTotal();
+            $scope.TotalPax = $scope.countPng();
 
             var fbDb = invoices.$inst();;
             fbDb.$update('' + Dibuat, $scope.selectedInvoice).then(function(ref) {
