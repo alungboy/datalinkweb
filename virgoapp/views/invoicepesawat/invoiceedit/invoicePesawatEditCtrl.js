@@ -172,7 +172,7 @@ app.controller('InvoicePesawatEditCtrl', ['$scope', '$rootScope', '$stateParams'
             };
 
             $scope.selectedInvoice.HargaLast = $scope.grandTotal();
-            $scope.TotalPax = $scope.countPng();
+            $scope.selectedInvoice.TotalPax = $scope.countPng();
 
 
             $scope.selectedInvoice.$save().then(function(ref) {

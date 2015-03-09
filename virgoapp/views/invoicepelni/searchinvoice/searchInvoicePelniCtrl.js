@@ -1,7 +1,6 @@
 'use strict';
 app.controller('SearchInvoicePelniCtrl', ['$scope', '$rootScope', '$stateParams', '$state', 'JadwalPelniSingleObj', 'invoicePelni', 'InvoicePelniRef', 'HargaFac',
     function($scope, $rootScope, $stateParams, $state, JadwalPelniSingleObj, invoicePelni, InvoicePelniRef, HargaFac) {
-
         $scope.User = $rootScope.User;
         if (invoicePelni && invoicePelni.$value === null || invoicePelni === null) {
             $scope.errMsg = 'Tidak Ada Data Invoice';

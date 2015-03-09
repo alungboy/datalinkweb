@@ -164,7 +164,7 @@ app.controller('InvoicePesawatNewCtrl', ['$scope', '$rootScope', '$stateParams',
                 HargaBy: $scope.selectedInvoice.CreatedBy,
             };
             $scope.selectedInvoice.HargaLast = $scope.grandTotal();
-            $scope.TotalPax = $scope.countPng();
+            $scope.selectedInvoice.TotalPax = $scope.countPng();
 
             var fbDb = invoices.$inst();;
             fbDb.$update('' + Dibuat, $scope.selectedInvoice).then(function(ref) {

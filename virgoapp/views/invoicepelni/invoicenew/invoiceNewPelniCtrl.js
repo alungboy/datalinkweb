@@ -220,7 +220,7 @@ app.controller('InvoiceNewPelniCtrl', ['$scope', '$rootScope', '$stateParams', '
                 HargaAt: $scope.selectedInvoice.CreatedAt,
                 HargaBy: $scope.selectedInvoice.CreatedBy,
             };
-            $scope.TotalPax = $scope.countPng();
+           $scope.selectedInvoice.TotalPax = $scope.countPng();
             $scope.selectedInvoice.HargaLast = $scope.grandTotal();
 
             var fbDb = invoices.$inst();;
