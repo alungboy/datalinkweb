@@ -253,12 +253,16 @@ app.controller('ShiftKasirDetailCtrl', ['$scope', '$rootScope', '$stateParams', 
         $scope.tutupShift = function() {
             if (confirm('Anda Yakin Akan Tutup Shift Kasir? Isi Data Tidak dapat Di-EDIT!')) {
                 $scope.selectedShift.Total = $scope.PenjualanCash;
+
+                $scope.selectedShift.StatusTutup = true;
                 $scope.selectedShift.UpdatedAt = {
                     '.sv': 'timestamp'
                 };
+                $scope.selectedShift.Tutup = {
+                    '.sv': 'timestamp'
+                };
                 $scope.selectedShift.UpdatedBy = $scope.User.uid;
-                $scope.selectedShift.Tutup = UpdatedAt;
-                $scope.selectedShift.StatusTutup = true;
+
                 $scope.selectedShift.$save().then(function(ref) {
                     $scope.lockTutupKasir = true;
                 }, function(error) {
