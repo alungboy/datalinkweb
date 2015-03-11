@@ -3,11 +3,13 @@
         Shift Kasir - Detail
         <b>({{getDate(selectedShift.Tanggal)}} - Shift: {{selectedShift.Shift}})</b>
         <span class="pull-right">
-            <a class="btn btn-xs btn-primary" ng-click="toNewShift()">Shift Baru</a>
+            <a class="btn btn-xs btn-default" ng-click="toListShift()">Back</a>
+            <a class="btn btn-xs btn-primary" ng-show="selectedShift.StatusTutup" ng-click="toNewShift()">Shift Baru</a>
+            <a class="btn btn-xs btn-success" ng-hide="selectedShift.StatusTutup" ng-click="tutupShift()">Tutup Shift</a>
             <b>
-            BUKA: {{getHour(selectedShift.Buka)}}  
-            <i class="fa fa-arrow-right"></i>
-            TUTUP: {{getHour(selectedShift.Tutup)}}
+                BUKA: {{getHour(selectedShift.Buka)}}  
+                <i class="fa fa-arrow-right"></i>
+                TUTUP: {{getHour(selectedShift.Tutup)}}
             </b>
         </span>
     </div>
@@ -41,7 +43,7 @@
                                 <a ng-hide="lockPemasukan" class="btn btn-default btn-xs" ng-click="tambahPemasukan()">+</a>
                             </th>
                             <th>
-                                <a ng-show="lockPemasukan" class="btn btn-xs btn-warning" ng-click="editPemasukan()">EDIT</a>
+                                <a ng-show="lockPemasukan && !selectedShift.StatusTutup" class="btn btn-xs btn-warning" ng-click="editPemasukan()">EDIT</a>
                                 <a ng-hide="lockPemasukan" class="btn btn-xs btn-success" ng-click="savePemasukan()">SAVE</a>
                             </th>
                             <th class="text-right">Rp.{{totalJumlah(selectedShift.Pemasukan) | number :0}},-</th>
@@ -75,7 +77,7 @@
                                     <a ng-hide="lockPengeluaran" class="btn btn-default btn-xs" ng-click="tambahPengeluaran()">+</a>
                                 </th>
                                 <th>
-                                    <a ng-show="lockPengeluaran" class="btn btn-xs btn-warning" ng-click="editPengeluaran()">EDIT</a>
+                                    <a ng-show="lockPengeluaran && !selectedShift.StatusTutup" class="btn btn-xs btn-warning" ng-click="editPengeluaran()">EDIT</a>
                                     <a ng-hide="lockPengeluaran" class="btn btn-xs btn-success" ng-click="savePengeluaran()">SAVE</a>
                                 </th>
                                 <th class="text-right">Rp.{{totalJumlah(selectedShift.Pengeluaran) | number :0}},-</th>
@@ -192,7 +194,7 @@
                     <tfoot>
                         <tr>
                             <th>
-                                <a ng-show="lockKasir" class="btn btn-xs btn-warning" ng-click="editKasir()">EDIT</a>
+                                <a ng-show="lockKasir && !selectedShift.StatusTutup" class="btn btn-xs btn-warning" ng-click="editKasir()">EDIT</a>
                                 <a ng-hide="lockKasir" class="btn btn-xs btn-success" ng-click="saveKasir()">SAVE</a>
                             </th>
                             <th class="text-right">
@@ -219,70 +221,70 @@
                     <tbody>
                         <tr>
                             <td>
-                                <input type="number" ng-model="selectedShift.KasirTutup.SeratusRibu" disabled>
+                                <input type="number" ng-model="selectedShift.KasirTutup.SeratusRibu" ng-disabled="lockTutupKasir">
                             </td>
                             <td>Rp.100,000,-</td>
                             <td class="text-right">Rp.{{multiplyBy(selectedShift.KasirTutup.SeratusRibu, 100000) | number :0}},-</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="number" ng-model="selectedShift.KasirTutup.LimaPuluhRibu" disabled>
+                                <input type="number" ng-model="selectedShift.KasirTutup.LimaPuluhRibu" ng-disabled="lockTutupKasir">
                             </td>
                             <td>Rp.50,000,-</td>
                             <td class="text-right">Rp.{{multiplyBy(selectedShift.KasirTutup.LimaPuluhRibu, 50000) | number :0}},-</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="number" ng-model="selectedShift.KasirTutup.DuaPuluhRibu" disabled>
+                                <input type="number" ng-model="selectedShift.KasirTutup.DuaPuluhRibu" ng-disabled="lockTutupKasir">
                             </td>
                             <td>Rp.20,000,-</td>
-                            <td class="text-right">Rp.{{multiplyBy(selectedShift.Kasir.DuaPuluhRibu, 20000) | number :0}},-</td>
+                            <td class="text-right">Rp.{{multiplyBy(selectedShift.KasirTutup.DuaPuluhRibu, 20000) | number :0}},-</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="number" ng-model="selectedShift.KasirTutup.SepuluhRibu" disabled>
+                                <input type="number" ng-model="selectedShift.KasirTutup.SepuluhRibu" ng-disabled="lockTutupKasir">
                             </td>
                             <td>Rp.10,000,-</td>
                             <td class="text-right">Rp.{{multiplyBy(selectedShift.KasirTutup.SepuluhRibu, 10000) | number :0}},-</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="number" ng-model="selectedShift.KasirTutup.LimaRibu" disabled>
+                                <input type="number" ng-model="selectedShift.KasirTutup.LimaRibu" ng-disabled="lockTutupKasir">
                             </td>
                             <td>Rp.5,000,-</td>
                             <td class="text-right">Rp.{{multiplyBy(selectedShift.KasirTutup.LimaRibu, 5000) | number :0}},-</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="number" ng-model="selectedShift.KasirTutup.DuaRibu" disabled>
+                                <input type="number" ng-model="selectedShift.KasirTutup.DuaRibu" ng-disabled="lockTutupKasir">
                             </td>
                             <td>Rp.2,000,-</td>
                             <td class="text-right">Rp.{{multiplyBy(selectedShift.KasirTutup.DuaRibu, 2000) | number :0}},-</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="number" ng-model="selectedShift.KasirTutup.Seribu" disabled>
+                                <input type="number" ng-model="selectedShift.KasirTutup.Seribu" ng-disabled="lockTutupKasir">
                             </td>
                             <td>Rp.1,000,-</td>
                             <td class="text-right">Rp.{{multiplyBy(selectedShift.KasirTutup.Seribu, 1000) | number :0}},-</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="number" ng-model="selectedShift.KasirTutup.LimaRatus" disabled>
+                                <input type="number" ng-model="selectedShift.KasirTutup.LimaRatus" ng-disabled="lockTutupKasir">
                             </td>
                             <td>Rp.500,-</td>
                             <td class="text-right">Rp.{{multiplyBy(selectedShift.KasirTutup.LimaRatus, 500) | number :0}},-</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="number" ng-model="selectedShift.KasirTutup.DuaRatus" disabled>
+                                <input type="number" ng-model="selectedShift.KasirTutup.DuaRatus" ng-disabled="lockTutupKasir">
                             </td>
                             <td>Rp.200,-</td>
                             <td class="text-right">Rp.{{multiplyBy(selectedShift.KasirTutup.DuaRatus, 200) | number :0}},-</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="number" ng-model="selectedShift.KasirTutup.Seratus" disabled>
+                                <input type="number" ng-model="selectedShift.KasirTutup.Seratus" ng-disabled="lockTutupKasir">
                             </td>
                             <td>Rp.100,-</td>
                             <td class="text-right">Rp.{{multiplyBy(selectedShift.KasirTutup.Seratus, 100) | number :0}},-</td>
@@ -291,7 +293,8 @@
                     <tfoot>
                         <tr>
                             <th>
-
+                                <a ng-show="lockTutupKasir && !selectedShift.StatusTutup" class="btn btn-xs btn-warning" ng-click="editTutupKasir()">EDIT</a>
+                                <a ng-hide="lockTutupKasir" class="btn btn-xs btn-success" ng-click="saveTutupKasir()">SAVE</a>
                             </th>
                             <th class="text-right">
                                 Total:

@@ -14,6 +14,7 @@ app.controller('ShiftKasirNewCtrl', ['$scope', '$rootScope', '$stateParams', '$s
                 Tutup : null,
                 CreatedAt: Dibuat,
                 CreatedBy: $rootScope.User.uid,
+                StatusTutup: false,
                 Kasir : {
                     SeratusRibu: 0,
                     LimaPuluhRibu: 0,

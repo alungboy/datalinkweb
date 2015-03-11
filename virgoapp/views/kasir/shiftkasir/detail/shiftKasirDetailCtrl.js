@@ -14,6 +14,7 @@ app.controller('ShiftKasirDetailCtrl', ['$scope', '$rootScope', '$stateParams', 
         $scope.lockPemasukan = true;
         $scope.lockPengeluaran = true;
         $scope.lockKasir = true;
+        $scope.lockTutupKasir = true;
         $scope.lunasPelni = lunaspelni;
         $scope.lunasPesawat = lunaspesawat;
 
@@ -62,12 +63,9 @@ app.controller('ShiftKasirDetailCtrl', ['$scope', '$rootScope', '$stateParams', 
             }
         }
 
-
         $scope.editPemasukan = function() {
             $scope.lockPemasukan = false;
         };
-
-
 
         $scope.rmPemasukan = function(key) {
             delete $scope.selectedShift.Pemasukan[key];
@@ -155,20 +153,6 @@ app.controller('ShiftKasirDetailCtrl', ['$scope', '$rootScope', '$stateParams', 
             return 0;
         };
 
-        $scope.totalKasirTutup = function() {
-            var result = 0;
-            result += $scope.selectedShift.KasirTutup.SeratusRibu * 100000;
-            result += $scope.selectedShift.KasirTutup.LimaPuluhRibu * 50000;
-            result += $scope.selectedShift.KasirTutup.DuaPuluhRibu * 20000;
-            result += $scope.selectedShift.KasirTutup.SepuluhRibu * 10000;
-            result += $scope.selectedShift.KasirTutup.LimaRibu * 5000;
-            result += $scope.selectedShift.KasirTutup.DuaRibu * 2000;
-            result += $scope.selectedShift.KasirTutup.Seribu * 1000;
-            result += $scope.selectedShift.KasirTutup.LimaRatus * 500;
-            result += $scope.selectedShift.KasirTutup.DuaRatus * 200;
-            result += $scope.selectedShift.KasirTutup.Seratus * 100;
-            return result;
-        };
 
         $scope.sumAll = function(input) {
             if (input) {
@@ -220,6 +204,42 @@ app.controller('ShiftKasirDetailCtrl', ['$scope', '$rootScope', '$stateParams', 
 
         };
 
+        $scope.editTutupKasir = function() {
+            $scope.lockTutupKasir = false;
+        };
+
+        $scope.saveTutupKasir = function() {
+            $scope.selectedShift.UpdatedAt = {
+                '.sv': 'timestamp'
+            };
+            $scope.selectedShift.UpdatedBy = $scope.User.uid;
+            $scope.selectedShift.$save().then(function(ref) {
+                $scope.lockTutupKasir = true;
+            }, function(error) {
+                console.log("Error:", error);
+            });
+
+        };
+
+        $scope.tutupShift = function() {
+            if (confirm('Anda Yakin Akan Tutup Shift Kasir? Isi Data Tidak dapat Di-EDIT!')) {
+                $scope.selectedShift.UpdatedAt = {
+                    '.sv': 'timestamp'
+                };
+                $scope.selectedShift.UpdatedBy = $scope.User.uid;
+                $scope.selectedShift.Tutup = UpdatedAt;
+                $scope.selectedShift.StatusTutup = true;
+                $scope.selectedShift.$save().then(function(ref) {
+                    $scope.lockTutupKasir = true;
+                }, function(error) {
+                    console.log("Error:", error);
+                });
+            } else {
+                return;
+            }
+
+        };
+
 
         // Pesawat Dan Pelni
         $scope.TotalLunasPesawat = $scope.sumAll($scope.lunasPesawat);
@@ -237,6 +257,13 @@ app.controller('ShiftKasirDetailCtrl', ['$scope', '$rootScope', '$stateParams', 
                 pageSize: paramSize,
                 idInvoice: $stateParams.idInvoice,
                 dateshift: $stateParams.dateshift,
+            });
+        };
+
+        $scope.toListShift = function() {
+            var paramSize = parseInt($stateParams.pageSize);
+            $state.transitionTo('app.shiftkasir.list', {
+                pageSize: paramSize,
             });
         };
 
