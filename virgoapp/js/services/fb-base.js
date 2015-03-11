@@ -498,13 +498,13 @@ angular.module('Fbase', ['app', 'firebase'])
 
     var get = function(shiftOpen, shiftClosed) {
 
-        if (shiftOpen &&shiftClosed) {
+        if (shiftOpen && shiftClosed) {
             var obj = Fbase.child('invoicepelni').orderByChild('LunasAt').startAt(parseInt(shiftOpen)).endAt(parseInt(shiftClosed));
 
         } else if (shiftOpen) {
             var obj = Fbase.child('invoicepelni').orderByChild('LunasAt').startAt(parseInt(shiftOpen)).endAt(9999999999999);
-          
-        } else{
+
+        } else {
             var obj = {};
         }
 
@@ -518,15 +518,15 @@ angular.module('Fbase', ['app', 'firebase'])
 
 .service("InvoicePesawatLunasObj", ['Fbase', "$firebase", function(Fbase, $firebase) {
 
-     var get = function(shiftOpen, shiftClosed) {
+    var get = function(shiftOpen, shiftClosed) {
 
-        if (shiftOpen &&shiftClosed) {
+        if (shiftOpen && shiftClosed) {
             var obj = Fbase.child('invoicepesawat').orderByChild('LunasAt').startAt(parseInt(shiftOpen)).endAt(parseInt(shiftClosed));
 
         } else if (shiftOpen) {
             var obj = Fbase.child('invoicepesawat').orderByChild('LunasAt').startAt(parseInt(shiftOpen)).endAt(9999999999999);
-          
-        } else{
+
+        } else {
             var obj = {};
         }
 
@@ -535,6 +535,24 @@ angular.module('Fbase', ['app', 'firebase'])
 
 
     return get;
+}])
+
+
+.factory("ShiftKasirRef", ['Fbase', 'FbAuth', "$firebase", function(Fbase, FbAuth, $firebase) {
+    var objRef = null
+
+    var getRef = function() {
+        if (!objRef) {
+
+
+            objRef = $firebase(Fbase.child('shiftkasir'));
+
+
+        }
+        return objRef;
+    };
+
+    return getRef;
 }])
 
 
@@ -568,7 +586,6 @@ angular.module('Fbase', ['app', 'firebase'])
             var obj = Fbase.child('shiftkasir').orderByChild('CreatedAt').startAt(1).endAt(9999999999999);
             obj = obj.limitToLast(parseInt(pageSize));
         }
-
         return $firebase(obj).$asArray();
     };
 
@@ -589,6 +606,7 @@ angular.module('Fbase', ['app', 'firebase'])
     };
     return get;
 }])
+
 
 .factory('HargaFac', ['Fbase', "$firebase", function(Fbase, $firebase) {
     var harga = {};
@@ -1227,7 +1245,7 @@ angular.module('Fbase', ['app', 'firebase'])
             },
         },
         // TATAMAILAU
-        '107' : {
+        '107': {
             // Rute Bitung call-1 (B)
             // Sorong
             '835-1-971-1': {

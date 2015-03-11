@@ -481,8 +481,24 @@ angular.module('app')
                         }
                     })
                     .state('app.shiftkasir.new', {
-                        url: '/new/:pageSize',
+                        url: '/new/:pageSize/:dateshift',
                         templateUrl: 'views/kasir/shiftkasir/new/shiftkasirnew.html',
+                        controller: 'ShiftKasirNewCtrl',
+                        resolve: {
+                            shiftkasir: ['$stateParams', 'ShiftKasirSingleObj',
+                                function($stateParams, ShiftKasirSingleObj) {
+                                    return ShiftKasirSingleObj(parseInt($stateParams.dateshift))
+                                        .$loaded();
+                                }
+                            ],
+                            newshiftkasir: ['$stateParams', 'ShiftKasirArr',
+                                function($stateParams, ShiftKasirArr) {
+                                    return ShiftKasirArr(5)
+                                        .$loaded();
+                                }
+                            ],
+
+                        }
                     })
                     .state('app.shiftkasir.detail', {
                         url: '/detail/:pageSize/:dateshift/:shiftOpen/:shiftClosed',

@@ -3,6 +3,7 @@
         Shift Kasir - Detail
         <b>({{getDate(selectedShift.Tanggal)}} - Shift: {{selectedShift.Shift}})</b>
         <span class="pull-right">
+            <a class="btn btn-xs btn-primary" ng-click="toNewShift()">Shift Baru</a>
             <b>
             BUKA: {{getHour(selectedShift.Buka)}}  
             <i class="fa fa-arrow-right"></i>
@@ -17,23 +18,32 @@
                 <table class="table table-bordered" style="font-size:12px; border: 1px solid black;">
                     <thead>
                         <tr>
-                            <th style="width:130px;">Modal</th>
+                            <th style="width:300px;">Modal</th>
                             <th>Keterangan</th>
                             <th>Jumlah</th>
-
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="(key, value) in selectedShift.Pemasukan">
-                            <td>{{value.CreatedAt | date : 'dd/MM/yy HH:mm'}}</td>
-                            <td>{{value.Keterangan}}</td>
-                            <td class="text-right">Rp.{{value.Jumlah | number :0}},-</td>
+                            <td> <a ng-hide="lockPemasukan || countPemasukan() == 1" class="btn btn-default btn-xs" ng-click="rmPemasukan(key)">-</a> {{value.CreatedAt | date : 'dd/MM/yy HH:mm'}}
+                            </td>
+                            <td>
+                                <input type="text" ng-model="value.Keterangan" ng-disabled="lockPemasukan">
+                            </td>
+                            <td>
+                                <input type="number" ng-model="value.Jumlah" ng-disabled="lockPemasukan">
+                            </td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th></th>
-                            <th></th>
+                            <th>
+                                <a ng-hide="lockPemasukan" class="btn btn-default btn-xs" ng-click="tambahPemasukan()">+</a>
+                            </th>
+                            <th>
+                                <a ng-show="lockPemasukan" class="btn btn-xs btn-warning" ng-click="editPemasukan()">EDIT</a>
+                                <a ng-hide="lockPemasukan" class="btn btn-xs btn-success" ng-click="savePemasukan()">SAVE</a>
+                            </th>
                             <th class="text-right">Rp.{{totalJumlah(selectedShift.Pemasukan) | number :0}},-</th>
                         </tr>
                     </tfoot>
@@ -43,26 +53,57 @@
                 <table class="table table-bordered" style="font-size:12px; border: 1px solid black;">
                     <thead>
                         <tr>
-                            <th style="width:130px;">Pengeluaran</th>
+                            <th style="width:300px;">Pengeluaran</th>
                             <th>Keterangan</th>
                             <th>Jumlah</th>
-
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="(key, value) in selectedShift.Pengeluaran">
-                            <td>{{value.CreatedAt | date : 'dd/MM/yy HH:mm'}}</td>
-                            <td>{{value.Keterangan}}</td>
-                            <td class="text-right">Rp.{{value.Jumlah | number :0}},-</td>
+                            <td> <a ng-hide="lockPengeluaran || countPengeluaran() == 1" class="btn btn-default btn-xs" ng-click="rmPengeluaran(key)">-</a> {{value.CreatedAt | date : 'dd/MM/yy HH:mm'}}
+                            </td>
+                            <td>
+                                <input type="text" ng-model="value.Keterangan" ng-disabled="lockPengeluaran">
+                            </td>
+                            <td>
+                                <input type="number" ng-model="value.Jumlah" ng-disabled="lockPengeluaran">
+                            </td>
                         </tr>
                         <tfoot>
                             <tr>
-                                <th></th>
-                                <th></th>
+                                <th>
+                                    <a ng-hide="lockPengeluaran" class="btn btn-default btn-xs" ng-click="tambahPengeluaran()">+</a>
+                                </th>
+                                <th>
+                                    <a ng-show="lockPengeluaran" class="btn btn-xs btn-warning" ng-click="editPengeluaran()">EDIT</a>
+                                    <a ng-hide="lockPengeluaran" class="btn btn-xs btn-success" ng-click="savePengeluaran()">SAVE</a>
+                                </th>
                                 <th class="text-right">Rp.{{totalJumlah(selectedShift.Pengeluaran) | number :0}},-</th>
                             </tr>
                         </tfoot>
                     </tbody>
+                </table>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered" style="font-size:12px; border: 1px solid black;">
+                    <thead>
+                        <tr>
+                            <th>Modal - Pengeluaran</th>
+                            <th class="text-right">{{SelisihModalPengeluaran | number: 0}}</th>
+                        </tr>
+                        <tr>
+                            <th>Kapal + Pesawat (Cash)</th>
+                            <th class="text-right">{{PenjualanCash | number: 0}}</th>
+                        </tr>
+                        <tr>
+                            <th>Total </th>
+                            <th class="text-right">{{ModalDanPenjualan | number: 0}}</th>
+                        </tr>
+                        <tr>
+                            <th>Selisih Dengan Kasir </th>
+                            <th class="text-right">{{SelisihKasir | number: 0}}</th>
+                        </tr>
+                    </thead>
                 </table>
             </div>
         </div>
@@ -79,70 +120,70 @@
                     <tbody>
                         <tr>
                             <td>
-                                <input type="number" ng-model="selectedShift.Kasir.SeratusRibu" disabled>
+                                <input type="number" ng-model="selectedShift.Kasir.SeratusRibu" ng-disabled="lockKasir">
                             </td>
                             <td>Rp.100,000,-</td>
                             <td class="text-right">Rp.{{multiplyBy(selectedShift.Kasir.SeratusRibu, 100000) | number :0}},-</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="number" ng-model="selectedShift.Kasir.LimaPuluhRibu" disabled>
+                                <input type="number" ng-model="selectedShift.Kasir.LimaPuluhRibu" ng-disabled="lockKasir">
                             </td>
                             <td>Rp.50,000,-</td>
                             <td class="text-right">Rp.{{multiplyBy(selectedShift.Kasir.LimaPuluhRibu, 50000) | number :0}},-</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="number" ng-model="selectedShift.Kasir.DuaPuluhRibu" disabled>
+                                <input type="number" ng-model="selectedShift.Kasir.DuaPuluhRibu" ng-disabled="lockKasir">
                             </td>
                             <td>Rp.20,000,-</td>
                             <td class="text-right">Rp.{{multiplyBy(selectedShift.Kasir.DuaPuluhRibu, 20000) | number :0}},-</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="number" ng-model="selectedShift.Kasir.SepuluhRibu" disabled>
+                                <input type="number" ng-model="selectedShift.Kasir.SepuluhRibu" ng-disabled="lockKasir">
                             </td>
                             <td>Rp.10,000,-</td>
                             <td class="text-right">Rp.{{multiplyBy(selectedShift.Kasir.SepuluhRibu, 10000) | number :0}},-</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="number" ng-model="selectedShift.Kasir.LimaRibu" disabled>
+                                <input type="number" ng-model="selectedShift.Kasir.LimaRibu" ng-disabled="lockKasir">
                             </td>
                             <td>Rp.5,000,-</td>
                             <td class="text-right">Rp.{{multiplyBy(selectedShift.Kasir.LimaRibu, 5000) | number :0}},-</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="number" ng-model="selectedShift.Kasir.DuaRibu" disabled>
+                                <input type="number" ng-model="selectedShift.Kasir.DuaRibu" ng-disabled="lockKasir">
                             </td>
                             <td>Rp.2,000,-</td>
                             <td class="text-right">Rp.{{multiplyBy(selectedShift.Kasir.DuaRibu, 2000) | number :0}},-</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="number" ng-model="selectedShift.Kasir.Seribu" disabled>
+                                <input type="number" ng-model="selectedShift.Kasir.Seribu" ng-disabled="lockKasir">
                             </td>
                             <td>Rp.1,000,-</td>
                             <td class="text-right">Rp.{{multiplyBy(selectedShift.Kasir.Seribu, 1000) | number :0}},-</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="number" ng-model="selectedShift.Kasir.LimaRatus" disabled>
+                                <input type="number" ng-model="selectedShift.Kasir.LimaRatus" ng-disabled="lockKasir">
                             </td>
                             <td>Rp.500,-</td>
                             <td class="text-right">Rp.{{multiplyBy(selectedShift.Kasir.LimaRatus, 500) | number :0}},-</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="number" ng-model="selectedShift.Kasir.DuaRatus" disabled>
+                                <input type="number" ng-model="selectedShift.Kasir.DuaRatus" ng-disabled="lockKasir">
                             </td>
                             <td>Rp.200,-</td>
                             <td class="text-right">Rp.{{multiplyBy(selectedShift.Kasir.DuaRatus, 200) | number :0}},-</td>
                         </tr>
                         <tr>
                             <td>
-                                <input type="number" ng-model="selectedShift.Kasir.Seratus" disabled>
+                                <input type="number" ng-model="selectedShift.Kasir.Seratus" ng-disabled="lockKasir">
                             </td>
                             <td>Rp.100,-</td>
                             <td class="text-right">Rp.{{multiplyBy(selectedShift.Kasir.Seratus, 100) | number :0}},-</td>
@@ -151,7 +192,8 @@
                     <tfoot>
                         <tr>
                             <th>
-
+                                <a ng-show="lockKasir" class="btn btn-xs btn-warning" ng-click="editKasir()">EDIT</a>
+                                <a ng-hide="lockKasir" class="btn btn-xs btn-success" ng-click="saveKasir()">SAVE</a>
                             </th>
                             <th class="text-right">
                                 Total:
@@ -280,13 +322,38 @@
                         <tr ng-repeat="(key, value) in lunasPesawat">
                             <td>{{key}}</td>
                             <td>{{value.TotalPax | number :0}}</td>
-                            <td>{{value.LunasCash | number :0}}</td>
-                            <td>{{value.LunasTransfer | number :0}}</td>
-                            <td>{{value.LunasEDCDebet | number :0}}</td>
-                            <td>{{value.LunasEDCKredit | number :0}}</td>
-                            <td>{{value.LunasKTG | number:0}}</td>
+                            <td class="text-right">{{value.LunasCash | number :0}}</td>
+                            <td class="text-right">{{value.LunasTransfer | number :0}}</td>
+                            <td class="text-right">{{value.LunasEDCDebet | number :0}}</td>
+                            <td class="text-right">{{value.LunasEDCKredit | number :0}}</td>
+                            <td class="text-right">{{value.LunasKTG | number:0}}</td>
                         </tr>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                Total: {{TotalLunasPesawat.totalRow}}
+                            </th>
+                            <th>
+                                {{TotalLunasPesawat.totalPax}}
+                            </th>
+                            <th class="text-right">
+                                {{TotalLunasPesawat.totalCash | number :0}}
+                            </th>
+                            <th class="text-right">
+                                {{TotalLunasPesawat.totalTransfer | number :0}}
+                            </th>
+                            <th class="text-right">
+                                {{TotalLunasPesawat.totalEDCDebet | number :0}}
+                            </th>
+                            <th class="text-right">
+                                {{TotalLunasPesawat.totalEDCKredit | number :0}}
+                            </th>
+                            <th class="text-right">
+                                {{TotalLunasPesawat.totalKTG | number :0}}
+                            </th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
@@ -308,13 +375,38 @@
                         <tr ng-repeat="(key, value) in lunasPelni">
                             <td>{{key}}</td>
                             <td>{{value.TotalPax | number :0}}</td>
-                            <td>{{value.LunasCash | number :0}}</td>
-                            <td>{{value.LunasTransfer | number :0}}</td>
-                            <td>{{value.LunasEDCDebet | number :0}}</td>
-                            <td>{{value.LunasEDCKredit | number :0}}</td>
-                            <td>{{value.LunasKTG | number:0}}</td>
+                            <td class="text-right">{{value.LunasCash | number :0}}</td>
+                            <td class="text-right">{{value.LunasTransfer | number :0}}</td>
+                            <td class="text-right">{{value.LunasEDCDebet | number :0}}</td>
+                            <td class="text-right">{{value.LunasEDCKredit | number :0}}</td>
+                            <td class="text-right">{{value.LunasKTG | number:0}}</td>
                         </tr>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                Total: {{TotalLunasPelni.totalRow}}
+                            </th>
+                            <th>
+                                {{TotalLunasPelni.totalPax}}
+                            </th>
+                            <th class="text-right">
+                                {{TotalLunasPelni.totalCash | number :0}}
+                            </th>
+                            <th class="text-right">
+                                {{TotalLunasPelni.totalTransfer | number :0}}
+                            </th>
+                            <th class="text-right">
+                                {{TotalLunasPelni.totalEDCDebet | number :0}}
+                            </th>
+                            <th class="text-right">
+                                {{TotalLunasPelni.totalEDCKredit | number :0}}
+                            </th>
+                            <th class="text-right">
+                                {{TotalLunasPelni.totalKTG | number :0}}
+                            </th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
