@@ -88,6 +88,15 @@ app.controller('ShiftKasirDetailCtrl', ['$scope', '$rootScope', '$stateParams', 
             $scope.selectedShift.UpdatedBy = $scope.User.uid;
             $scope.selectedShift.$save().then(function(ref) {
                 $scope.lockPemasukan = true;
+                // Pesawat Dan Pelni
+                $scope.TotalLunasPesawat = $scope.sumAll($scope.lunasPesawat);
+                $scope.TotalLunasPelni = $scope.sumAll($scope.lunasPelni);
+
+                // Hitungan Hitungan Kasir Dan Lainnya
+                $scope.SelisihModalPengeluaran = $scope.totalJumlah($scope.selectedShift.Pemasukan) - $scope.totalJumlah($scope.selectedShift.Pengeluaran);
+                $scope.PenjualanCash = $scope.TotalLunasPesawat.totalCash + $scope.TotalLunasPelni.totalCash;
+                $scope.ModalDanPenjualan = $scope.SelisihModalPengeluaran + $scope.PenjualanCash;
+                $scope.SelisihKasir = $scope.totalKasir($scope.selectedShift.Kasir) - $scope.ModalDanPenjualan;
             }, function(error) {
                 console.log("Error:", error);
             });
@@ -119,6 +128,15 @@ app.controller('ShiftKasirDetailCtrl', ['$scope', '$rootScope', '$stateParams', 
             $scope.selectedShift.UpdatedBy = $scope.User.uid;
             $scope.selectedShift.$save().then(function(ref) {
                 $scope.lockPengeluaran = true;
+                // Pesawat Dan Pelni
+                $scope.TotalLunasPesawat = $scope.sumAll($scope.lunasPesawat);
+                $scope.TotalLunasPelni = $scope.sumAll($scope.lunasPelni);
+
+                // Hitungan Hitungan Kasir Dan Lainnya
+                $scope.SelisihModalPengeluaran = $scope.totalJumlah($scope.selectedShift.Pemasukan) - $scope.totalJumlah($scope.selectedShift.Pengeluaran);
+                $scope.PenjualanCash = $scope.TotalLunasPesawat.totalCash + $scope.TotalLunasPelni.totalCash;
+                $scope.ModalDanPenjualan = $scope.SelisihModalPengeluaran + $scope.PenjualanCash;
+                $scope.SelisihKasir = $scope.totalKasir($scope.selectedShift.Kasir) - $scope.ModalDanPenjualan;
             }, function(error) {
                 console.log("Error:", error);
             });
@@ -198,6 +216,15 @@ app.controller('ShiftKasirDetailCtrl', ['$scope', '$rootScope', '$stateParams', 
             $scope.selectedShift.UpdatedBy = $scope.User.uid;
             $scope.selectedShift.$save().then(function(ref) {
                 $scope.lockKasir = true;
+                // Pesawat Dan Pelni
+                $scope.TotalLunasPesawat = $scope.sumAll($scope.lunasPesawat);
+                $scope.TotalLunasPelni = $scope.sumAll($scope.lunasPelni);
+
+                // Hitungan Hitungan Kasir Dan Lainnya
+                $scope.SelisihModalPengeluaran = $scope.totalJumlah($scope.selectedShift.Pemasukan) - $scope.totalJumlah($scope.selectedShift.Pengeluaran);
+                $scope.PenjualanCash = $scope.TotalLunasPesawat.totalCash + $scope.TotalLunasPelni.totalCash;
+                $scope.ModalDanPenjualan = $scope.SelisihModalPengeluaran + $scope.PenjualanCash;
+                $scope.SelisihKasir = $scope.totalKasir($scope.selectedShift.Kasir) - $scope.ModalDanPenjualan;
             }, function(error) {
                 console.log("Error:", error);
             });
@@ -215,6 +242,15 @@ app.controller('ShiftKasirDetailCtrl', ['$scope', '$rootScope', '$stateParams', 
             $scope.selectedShift.UpdatedBy = $scope.User.uid;
             $scope.selectedShift.$save().then(function(ref) {
                 $scope.lockTutupKasir = true;
+                // Pesawat Dan Pelni
+                $scope.TotalLunasPesawat = $scope.sumAll($scope.lunasPesawat);
+                $scope.TotalLunasPelni = $scope.sumAll($scope.lunasPelni);
+
+                // Hitungan Hitungan Kasir Dan Lainnya
+                $scope.SelisihModalPengeluaran = $scope.totalJumlah($scope.selectedShift.Pemasukan) - $scope.totalJumlah($scope.selectedShift.Pengeluaran);
+                $scope.PenjualanCash = $scope.TotalLunasPesawat.totalCash + $scope.TotalLunasPelni.totalCash;
+                $scope.ModalDanPenjualan = $scope.SelisihModalPengeluaran + $scope.PenjualanCash;
+                $scope.SelisihKasir = $scope.totalKasir($scope.selectedShift.Kasir) - $scope.ModalDanPenjualan;
             }, function(error) {
                 console.log("Error:", error);
             });
