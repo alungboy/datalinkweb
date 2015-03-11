@@ -20,6 +20,28 @@
                 <table class="table table-bordered" style="font-size:12px; border: 1px solid black;">
                     <thead>
                         <tr>
+                            <th>Modal - Pengeluaran</th>
+                            <th class="text-right">{{SelisihModalPengeluaran | number: 0}}</th>
+                        </tr>
+                        <tr>
+                            <th>Kapal + Pesawat (Cash)</th>
+                            <th class="text-right">{{PenjualanCash | number: 0}}</th>
+                        </tr>
+                        <tr>
+                            <th>Total </th>
+                            <th class="text-right">{{ModalDanPenjualan | number: 0}}</th>
+                        </tr>
+                        <tr>
+                            <th>Selisih Dengan Kasir </th>
+                            <th class="text-right">{{SelisihKasir | number: 0}}</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered" style="font-size:12px; border: 1px solid black;">
+                    <thead>
+                        <tr>
                             <th style="width:300px;">Modal</th>
                             <th>Keterangan</th>
                             <th>Jumlah</th>
@@ -86,28 +108,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="table-responsive">
-                <table class="table table-bordered" style="font-size:12px; border: 1px solid black;">
-                    <thead>
-                        <tr>
-                            <th>Modal - Pengeluaran</th>
-                            <th class="text-right">{{SelisihModalPengeluaran | number: 0}}</th>
-                        </tr>
-                        <tr>
-                            <th>Kapal + Pesawat (Cash)</th>
-                            <th class="text-right">{{PenjualanCash | number: 0}}</th>
-                        </tr>
-                        <tr>
-                            <th>Total </th>
-                            <th class="text-right">{{ModalDanPenjualan | number: 0}}</th>
-                        </tr>
-                        <tr>
-                            <th>Selisih Dengan Kasir </th>
-                            <th class="text-right">{{SelisihKasir | number: 0}}</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+            
         </div>
         <div class="col-md-4">
             <div class="table-responsive">
@@ -307,6 +308,9 @@
                 </table>
             </div>
         </div>
+        
+    </div>
+    <div class="row">
         <div class="col-sm-6">
             <div class="table-responsive">
                 <table class="table table-bordered" style="font-size:12px; border: 1px solid black;">
