@@ -89,7 +89,7 @@ app.controller('InvoiceLunasDetailPesawatCtrl', ['$scope', '$rootScope', '$state
                     $scope.selectedInvoice.LunasCash = 0;
                     $scope.selectedInvoice.LunasTransfer = 0;
                     $scope.selectedInvoice.LunasEDCDebet = 0;
-                    $scope.selectedInvoice.LunasEDCKredit = $scope.selectedInvoice.HargaLast + $scope.selectedInvoice.HargaLast * 0.3;
+                    $scope.selectedInvoice.LunasEDCKredit = $scope.selectedInvoice.HargaLast + $scope.selectedInvoice.HargaLast * 0.03;
                     $scope.selectedInvoice.LunasKTG = 0;
                 }
                 if ($scope.selectedInvoice.LunasMethod === "KTG") {

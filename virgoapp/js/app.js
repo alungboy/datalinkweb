@@ -19,6 +19,4 @@ angular.module('app', [
     'angucomplete',
     'barcodeGenerator',
     'monospaced.qrcode'
-
-
 ]);
