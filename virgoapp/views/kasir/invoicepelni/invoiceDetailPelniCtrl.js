@@ -113,7 +113,7 @@ app.controller('InvoiceLunasDetailPelniCtrl', ['$scope', '$rootScope', '$statePa
                 if ($scope.selectedInvoice.LunasMethod === "Cash") {
                     $scope.selectedInvoice.LunasCash = $scope.selectedInvoice.HargaLast;
                     $scope.selectedInvoice.LunasTransfer = 0;
-                    $scope.selectedInvoice.LunasEDCDebit = 0;
+                    $scope.selectedInvoice.LunasEDCDebet = 0;
                     $scope.selectedInvoice.LunasEDCKredit = 0;
                     $scope.selectedInvoice.LunasKTG = 0;
                 }

@@ -4,7 +4,7 @@ app.controller('SearchJadwalPelniCtrl', ['$scope', '$rootScope', '$stateParams',
 
         $scope.DebarkasiArr = listPelabuhanPelni;
         $scope.embarView = "Embarkasi";
-        $scope.debarView = "Debarkasi"
+        $scope.debarView = "Debarkasi";
 
         if ($stateParams.embar || $stateParams.debar) {
             _.each(listPelabuhanPelni, function(value, key, list) {
