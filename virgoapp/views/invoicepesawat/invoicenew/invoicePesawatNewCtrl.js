@@ -89,6 +89,10 @@ app.controller('InvoicePesawatNewCtrl', ['$scope', '$rootScope', '$stateParams',
                 $scope.errMsg = 'Nama Airlines Harus Diisi';
                 return;
             }
+            if ($scope.selectedInvoice.BookingCode == '' || $scope.selectedInvoice.BookingCode == null) {
+                $scope.errMsg = 'Kode Booking Harus Diisi';
+                return;
+            }
             if ($scope.selectedInvoice.Berangkat == '' || $scope.selectedInvoice.Berangkat == null) {
                 $scope.errMsg = 'Berangkat Harus Diisi';
                 return;
