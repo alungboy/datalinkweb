@@ -1331,9 +1331,9 @@ angular.module('Fbase', ['app', 'firebase'])
                 //     Bayi: 174000
                 // },
                 'EKO': {
-                    Dewasa: 476000,
-                    Anak: 373000,
-                    Bayi: 95000
+                    Dewasa: 480000,
+                    Anak: 376000,
+                    Bayi: 97000
                 }
             },
             // Tual
