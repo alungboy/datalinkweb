@@ -30,7 +30,7 @@ app.controller('SearchJadwalPelniCtrl', ['$scope', '$rootScope', '$stateParams',
                 $scope.errMsg = "Debarkasi Harus diisi";
                 return;
             }
-            if (835 == $scope.Debar.originalObject.Kode) {
+            if (scope.Embar == $scope.Debar.originalObject.Kode) {
                 $scope.errMsg = "Embarkasi Tidak Boleh Sama Dengan Debarkasi";
                 return;
             }
