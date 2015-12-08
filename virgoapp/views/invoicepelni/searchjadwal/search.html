@@ -1,17 +1,20 @@
 <div class="hbox hbox-auto-xs bg-light ">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Searh Jadwal Pelni
+            Search Jadwal Pelni
         </div>
         <div class="row wrapper">
             <div class="col-sm-3 m-b-xs">
-                <input class="form-control input-sm" value="BITUNG 835" disabled>
+                <select  ng-model="Embar" class="form-control input-sm" value="835">
+                  <option value="835">BITUNG 835</option>
+                  <option value="920">AMURANG 920</option>
+                </select>
                 <!-- <div inputclass="form-control input-sm" angucomplete placeholder="{{embarView}}" pause="200" selectedobject="Embar" localdata="DebarkasiArr" searchfields="Nama" titlefield="Nama,Kode" minlength="1" /> -->
             </div>
 
             <div class="col-sm-3">
                 <div inputclass="form-control input-sm" angucomplete placeholder="{{debarView}}" pause="200" selectedobject="Debar" localdata="DebarkasiArr" searchfields="Nama,Kode" titlefield="Nama,Kode" minlength="1" />
-        
+
             </div>
             <div class="col-sm-3">
                 <div ng-show="errMsg" class="alert alert-danger">

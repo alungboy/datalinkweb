@@ -22,10 +22,10 @@ app.controller('SearchJadwalPelniCtrl', ['$scope', '$rootScope', '$stateParams',
 
         $scope.searchPelni = function() {
             $scope.errMsg = '';
-            // if (!$scope.Embar && $scope.Embar == null) {
-            //     $scope.errMsg = "Embarkasi Harus diisi";
-            //     return;
-            // }
+            if (!$scope.Embar && $scope.Embar == null) {
+                $scope.errMsg = "Embarkasi Harus diisi";
+                return;
+            }
             if (!$scope.Debar && $scope.Debar == null) {
                 $scope.errMsg = "Debarkasi Harus diisi";
                 return;
@@ -35,7 +35,7 @@ app.controller('SearchJadwalPelniCtrl', ['$scope', '$rootScope', '$stateParams',
                 return;
             }
             ReqJadwalPelniRef().$push({
-                Embar: 835,
+                Embar: $scope.Embar,
                 Debar: $scope.Debar.originalObject.Kode,
                 CreatedAt: {
                     '.sv': 'timestamp'
@@ -43,7 +43,7 @@ app.controller('SearchJadwalPelniCtrl', ['$scope', '$rootScope', '$stateParams',
                 CreatedBy: $rootScope.User.uid
             }).then(function(ref) {
                 $state.transitionTo('app.invoicepelni.search.results', {
-                    embar: 835,
+                    embar: $scope.Embar,
                     debar: $scope.Debar.originalObject.Kode
                 });
 
@@ -81,12 +81,12 @@ app.controller('SearchResultsTiketPelniCtrl', ['$scope', '$rootScope', '$statePa
                     return null;
                 }
                 else{
-                 
+
                     $scope.showPelayaran = true;
                     return ListKelas;
                 }
-               
-               
+
+
             }
         }
 
@@ -100,7 +100,7 @@ app.controller('SearchResultsTiketPelniCtrl', ['$scope', '$rootScope', '$statePa
             }else{
                 return null;
             }
-            
+
         };
 
         $scope.kapalSearch = function(idKapal) {
@@ -147,7 +147,7 @@ app.controller('SearchResultsKapalPelniCtrl', ['$scope', '$rootScope', '$statePa
             }else{
                 return null;
             }
-            
+
         };
 
         $scope.createInvoce = function(idJadwal, idKelas) {
