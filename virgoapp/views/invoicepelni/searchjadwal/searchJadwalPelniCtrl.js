@@ -5,6 +5,7 @@ app.controller('SearchJadwalPelniCtrl', ['$scope', '$rootScope', '$stateParams',
         $scope.DebarkasiArr = listPelabuhanPelni;
         $scope.embarView = "Embarkasi";
         $scope.debarView = "Debarkasi";
+        $scope.Embar = "835";
 
         if ($stateParams.embar || $stateParams.debar) {
             _.each(listPelabuhanPelni, function(value, key, list) {
@@ -30,7 +31,7 @@ app.controller('SearchJadwalPelniCtrl', ['$scope', '$rootScope', '$stateParams',
                 $scope.errMsg = "Debarkasi Harus diisi";
                 return;
             }
-            if ($scope.Embar == $scope.Debar.originalObject.Kode) {
+            if (835 == $scope.Debar.originalObject.Kode) {
                 $scope.errMsg = "Embarkasi Tidak Boleh Sama Dengan Debarkasi";
                 return;
             }
