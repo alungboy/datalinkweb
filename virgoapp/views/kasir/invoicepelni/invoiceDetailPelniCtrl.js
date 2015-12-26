@@ -168,6 +168,33 @@ app.controller('InvoiceLunasDetailPelniCtrl', ['$scope', '$rootScope', '$statePa
 
         }
 
+        $scope.void = function() {
+            if (confirm('VOID kan Invoice a.n: ' + $scope.selectedInvoice.Pemesan + ' ?') == true) {
+                $scope.selectedInvoice.LunasAt = {
+                    '.sv': 'timestamp'
+                };
+                $scope.selectedInvoice.LunasBy = $scope.User.uid;
+                    $scope.selectedInvoice.LunasMethod = 'VOID';
+                    $scope.selectedInvoice.LunasCash = 0;
+                    $scope.selectedInvoice.LunasTransfer = 0;
+                    $scope.selectedInvoice.LunasEDCDebet = 0;
+                    $scope.selectedInvoice.LunasEDCKredit = 0;
+                    $scope.selectedInvoice.LunasKTG = 0;
+
+                $scope.selectedInvoice.$save().then(function(ref) {
+                    var paramSize = parseInt($stateParams.pageSize);
+                    $state.transitionTo('app.invoicelunaspesawat.list', {
+                        pageSize: paramSize,
+                    });
+
+                }, function(error) {
+                    console.log("Error:", error);
+                });
+            } else {
+                return;
+            }
+        }
+
         $scope.toListInvoice = function() {
             var paramSize = parseInt($stateParams.pageSize);
 
